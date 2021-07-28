@@ -1,18 +1,15 @@
-import { Button, Typography } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 
 export default function HomePage() {
   return (
-    <div>
-      <Typography variant="h1">Home Page</Typography>
-      <Typography variant="h2">Home Page</Typography>
-      <Typography variant="h3">Home Page</Typography>
-      <Typography variant="h4">Home Page</Typography>
-      <Typography variant="h5">Home Page</Typography>
-      <Typography variant="h6">Home Page</Typography>
-
+    <Box m={5}>
       <Button variant="contained" color="primary">
-        Testing
+        Primary
       </Button>
-    </div>
+
+      <Button variant="contained" color="secondary">
+        Secondary
+      </Button>
+    </Box>
   )
 }

@@ -1,12 +1,11 @@
 import NavBar from './NavBar'
-import MainTheme from 'assets/theme/MainTheme'
 
 export default function DefaultLayout({ children }) {
   return (
-    <MainTheme>
+    <div>
       <NavBar />
 
       <main>{children}</main>
-    </MainTheme>
+    </div>
   )
 }
