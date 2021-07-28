@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 
-import theme from 'assets/theme/Theme'
-import 'assets/styles/globals.css'
-import DefaultLayout from 'layout/DefaultLayout'
+import theme from 'styles/theme/Theme'
+import 'styles/globals.css'
+import DefaultLayout from 'components/layout/DefaultLayout'
 
 export default function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
