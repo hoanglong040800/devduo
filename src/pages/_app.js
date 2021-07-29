@@ -4,7 +4,6 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core'
 
 import theme from 'styles/theme/Theme'
 import 'styles/globals.css'
-import DefaultLayout from 'components/layout/DefaultLayout'
 
 export default function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -27,10 +26,8 @@ export default function MyApp({ Component, pageProps }) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <DefaultLayout>
-          <Component {...pageProps} />
-        </DefaultLayout>
+        <Component {...pageProps} />
+        {/* <CssBaseline /> */}
       </ThemeProvider>
     </>
   )

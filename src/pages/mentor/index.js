@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import ContentTemplate from 'components/template/ContentTemplate'
 
 export default function Mentor() {
   return (
-    <>
+    <ContentTemplate>
       <h1>Mentor page</h1>
 
       <ul>
@@ -18,6 +19,6 @@ export default function Mentor() {
           <Link href="/mentor/material-ui">Material UI</Link>
         </li>
       </ul>
-    </>
+    </ContentTemplate>
   )
 }

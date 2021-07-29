@@ -1,14 +1,12 @@
 import { Container } from '@material-ui/core'
-import NavBar from '../common/NavBar'
+import NavBar from 'components/common/NavBar/NavBar'
 
 export default function DefaultLayout({ children }) {
   return (
     <div>
       <NavBar />
 
-      <main>
-        <Container>{children}</Container>
-      </main>
+      <Container>{children}</Container>
     </div>
   )
 }
