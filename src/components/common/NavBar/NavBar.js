@@ -8,31 +8,34 @@ import ProfileMenu from './ProfileMenu'
 
 export default function NavBar() {
   const classes = useStyles()
-  const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] = useState(false)
 
   return (
-    <AppBar position="static" color="default">
-      <Container>
-        <Toolbar>
-          <Link href="/">
-            <a>
-              <Image
-                src="/devduo.svg"
-                alt="logo-devduo"
-                height="40"
-                width="40"
-              />
-            </a>
-          </Link>
+    <>
+      <AppBar position="static" color="default">
+        <Container>
+          <Toolbar>
+            <Link href="/">
+              <a>
+                <Image
+                  src="/devduo.svg"
+                  alt="logo-devduo"
+                  height="40"
+                  width="40"
+                />
+              </a>
+            </Link>
 
-          <Box className={classes.nav}>
-            <NavLinks />
+            <Box className={classes.nav}>
+              <NavLinks />
 
-            {isLogin ? <ProfileMenu /> : <AuthGroupButton />}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              {isLogin ? <ProfileMenu /> : <AuthGroupButton />}
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+    </>
   )
 }
 

@@ -1,23 +1,28 @@
 import { Box, Button, makeStyles } from '@material-ui/core'
+import AuthForm from 'components/common/AuthForm/AuthForm'
 
 export default function AuthGroupButton() {
   const classes = useStyles()
 
   return (
-    <Box>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.leftBtn}
-      >
-        Sign Up
-      </Button>
+    <>
+      <Box>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          className={classes.leftBtn}
+        >
+          Sign Up
+        </Button>
 
-      <Button variant="outlined" color="secondary" size="small">
-        Log In
-      </Button>
-    </Box>
+        <Button variant="outlined" color="secondary" size="small">
+          Log In
+        </Button>
+      </Box>
+      
+      <AuthForm />
+    </>
   )
 }
 
