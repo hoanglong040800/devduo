@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function CenterModal({ children, open, onClose }) {
+export default function CenterModal({ children, open, onClose, position }) {
   const classes = useStyles()
 
   return (

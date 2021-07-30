@@ -1,4 +1,4 @@
-import CenterModal from 'components/common/Modal/CenterModal'
+import CenterModal from 'components/common/modal/DefaultModal'
 
 export default function AuthForm() {
 
