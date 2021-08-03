@@ -10,20 +10,17 @@ export default function AuthGroupButton() {
   return (
     <>
       <Box>
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          className={classes.leftBtn}
-          onClick={() => dispatch(openSignupForm())}
-        >
-          Sign Up
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.leftBtn}
+            onClick={() => dispatch(openSignupForm())}
+          >
+            Sign Up
+          </Button>
 
         <Button
-          variant="outlined"
-          color="secondary"
-          size="small"
+          color="default"
           onClick={() => dispatch(openLoginForm())}
         >
           Log In

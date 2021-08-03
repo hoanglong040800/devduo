@@ -17,10 +17,11 @@ export default function AuthForm() {
   return (
     <CenterModal open={open} onClose={() => dispatch(closeAuthForm())}>
       <div className={classes.root}>
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center" mb={3}>
           <Button
             variant={isLogin ? 'outlined' : 'contained'}
             color={isLogin ? 'default' : 'primary'}
+            size="large"
             onClick={() => dispatch(openSignupForm())}
           >
             Signup
@@ -29,6 +30,7 @@ export default function AuthForm() {
           <Button
             variant={isLogin ? 'contained' : 'outlined'}
             color={isLogin ? 'primary' : 'default'}
+            size="large"
             onClick={() => dispatch(openLoginForm())}
           >
             Login
@@ -43,6 +45,7 @@ export default function AuthForm() {
 
 const useStyles = makeStyles({
   root: {
-    padding: '20px',
+    padding: '35px 40px',
+    width: '350px',
   },
 })

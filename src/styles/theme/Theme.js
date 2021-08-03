@@ -21,6 +21,11 @@ const theme = createTheme({
 
   typography: {
     fontFamily: 'Helvetica, Arial, sans-serif',
+
+    button:{
+      textTransform: 'none',
+    },
+
     h1: {
       fontWeight: 700,
     },
