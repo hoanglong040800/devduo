@@ -19,8 +19,10 @@ export default function CenterModal({ children, open, onClose, position }) {
       BackdropComponent={Backdrop}
       closeAfterTransition
     >
-      <Fade in={true}>
-        <Paper elevation={10}>{children}</Paper>
+      <Fade in={open} onClose={onClose}>
+        <Paper elevation={10} onClose={onClose}>
+          {children}
+        </Paper>
       </Fade>
     </Modal>
   )

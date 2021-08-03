@@ -1,9 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
-import { ThemeProvider, CssBaseline } from '@material-ui/core'
-
+import { ThemeProvider } from '@material-ui/core'
 import theme from 'styles/theme/Theme'
 import 'styles/globals.css'
+import { Provider } from 'react-redux'
+import store from 'store'
 
 export default function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -25,10 +26,11 @@ export default function MyApp({ Component, pageProps }) {
         <title>DevDuo</title>
       </Head>
 
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        {/* <CssBaseline /> */}
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     </>
   )
 }
