@@ -5,7 +5,7 @@ import {
   openLoginForm,
   openSignupForm,
 } from 'store/authFormSlice'
-import CenterModal from 'components/common/modal/DefaultModal'
+import CenterModal from 'components/common/modal/CenterModal'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 
