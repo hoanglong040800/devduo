@@ -1,24 +1,12 @@
-import Link from 'next/link'
 import ContentTemplate from 'components/template/ContentTemplate'
+import SidebarTemplate from 'components/template/SidebarTemplate'
+import FilterMentor from 'components/modules/mentor/FilterMentor'
+import ListMentor from 'components/modules/mentor/ListMentor'
 
-export default function Mentor() {
+export default function MentorPage() {
   return (
     <ContentTemplate>
-      <h1>Mentor page</h1>
-
-      <ul>
-        <li>
-          <Link href="/mentor/next-js">NextJS</Link>
-        </li>
-
-        <li>
-          <Link href="/mentor/react-js">ReactJS</Link>
-        </li>
-
-        <li>
-          <Link href="/mentor/material-ui">Material UI</Link>
-        </li>
-      </ul>
+      <SidebarTemplate sidebar={<FilterMentor />} main={<ListMentor />} />
     </ContentTemplate>
   )
 }

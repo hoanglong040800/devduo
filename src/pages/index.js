@@ -1,17 +1,11 @@
 import { Button } from '@material-ui/core'
 
-import ContentTemplate from 'components/template/ContentTemplate'
+import DefaultLayout from 'components/layout/DefaultLayout'
 
 export default function HomePage() {
   return (
-    <ContentTemplate>
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-
-      <Button variant="contained" color="secondary">
-        Secondary
-      </Button>
-    </ContentTemplate>
+    <DefaultLayout>
+      <h1>HOME PAGE</h1>
+    </DefaultLayout>
   )
 }
