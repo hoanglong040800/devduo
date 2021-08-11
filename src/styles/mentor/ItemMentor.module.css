@@ -1,19 +1,54 @@
 .paper {
   height: 350px;
   width: 100%;
+  cursor: pointer;
 }
 
-.imageContainer {
-  height: 40%;
+.thumnail {
+  height: 40%; /* .content */
   width: 100%;
 }
 
-.imageContainer img {
+.thumnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.content{
-    padding: 10px 20px;
+.content {
+  padding: 0 20px;
+  height: 60%; /* .thumnail */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info {
+  height: 75%;
+  /* background-color: lightgreen; */
+}
+
+.tech {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.techItem {
+  font-size: 0.9rem !important;
+  min-width: 30px !important;
+}
+
+.icon {
+  margin: 0 20px 0 0;
+}
+
+.stats {
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 0.5px solid #ecebeb;
+  /* background-color: lightblue; */
 }
