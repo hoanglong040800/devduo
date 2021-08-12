@@ -9,30 +9,7 @@ import {
 import { useState } from 'react'
 import classes from 'styles/mentor/ItemMentor.module.css'
 
-const dummyField = [
-  'AI',
-  'Blockchain',
-  'IoT',
-  'AI',
-  'Blockchain',
-  'IoT',
-  'AI',
-  'Blockchain',
-  'IoT',
-]
-
-const dummyTech = [
-  'ReactJS',
-  'NextJS',
-  'Material UI',
-  'BS4',
-  'ReactJS',
-  'NextJS',
-  'Material UI',
-  'BS4',
-]
-
-export default function ItemMentor() {
+export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)
 
   return (
@@ -41,7 +18,7 @@ export default function ItemMentor() {
       onClick={() => alert('Item Mentor Clicked')}
     >
       <div className={classes.thumnail}>
-        <img src="https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/portrait-photography/CODERED_B1_portrait_photography-P4a_438x447.jpg.img.jpg" />
+        <img src={item.thumnail} />
       </div>
 
       <content className={classes.content}>
@@ -52,7 +29,7 @@ export default function ItemMentor() {
             justifyContent="space-between"
             alignItems="center"
           >
-            <h4>Elon Musk</h4>
+            <h4>{item.fullName}</h4>
 
             {fav ? (
               <IconButton
@@ -82,16 +59,17 @@ export default function ItemMentor() {
             <WorkOutlineOutlined className={classes.icon} />
 
             <Box>
-              {dummyField.slice(0, 5).map(item => {
+              {item.field.slice(0, 5).map((field, index) => {
                 return (
                   <Button
+                    key={index}
                     size="small"
                     className={classes.techItem}
                     onClick={e => {
                       e.stopPropagation()
                     }}
                   >
-                    {item}
+                    {field}
                   </Button>
                 )
               })}
@@ -102,16 +80,17 @@ export default function ItemMentor() {
             <Code className={classes.icon} />
 
             <Box>
-              {dummyTech.slice(0, 5).map(item => {
+              {item.tech.slice(0, 5).map((tech, index) => {
                 return (
                   <Button
+                    key={index}
                     size="small"
                     className={classes.techItem}
                     onClick={e => {
                       e.stopPropagation()
                     }}
                   >
-                    {item}
+                    {tech}
                   </Button>
                 )
               })}
@@ -120,13 +99,13 @@ export default function ItemMentor() {
         </div>
 
         <Box className={classes.stats}>
-          <p>Mentee: 20</p>
+          <p>Mentee: {item.mentee}</p>
 
           <Box display="flex" alignItems="center">
             <AttachMoney size="small" color="secondary" />
 
             <Typography color="secondary">
-              <b>20k</b>
+              <b>{item.money}k</b>
             </Typography>
           </Box>
         </Box>
