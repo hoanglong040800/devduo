@@ -12,7 +12,7 @@ export default function NavBar() {
 
   return (
     <>
-      <AppBar position="static" color="default">
+      <AppBar position="static" style={{background: '#f8f8f8'}}>
         <Container>
           <Toolbar>
             <Link href="/">
