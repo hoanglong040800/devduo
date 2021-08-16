@@ -1,0 +1,45 @@
+{
+  "mentor": [
+    {
+      "id": 1,
+      "fullname": "Elon Musk",
+      "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
+      "field": ["AI", "Blockchain", "ML", "DL"],
+      "tech": ["ReactJS", "NextJS"],
+      "money": 50,
+      "mentee": 5
+    }
+  ],
+
+  "field": [
+    "AI",
+    "Blockchain",
+    "Big data",
+    "Web",
+    "Android",
+    "iOS",
+    "Mobile",
+    "ML",
+    "DL",
+    "PM",
+    "BA",
+    "BrSE",
+    "TL",
+    "BTL"
+  ],
+
+  "technology": [
+    "C#",
+    "C++",
+    "Java",
+    "PHP",
+    "Ruby",
+    "Golang",
+    "ReactJS",
+    "NextJS",
+    "NodeJS",
+    "Python",
+    "Kotlin",
+    "Flutter"
+  ]
+}
