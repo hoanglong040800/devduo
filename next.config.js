@@ -4,4 +4,8 @@ module.exports = {
     config.resolve.modules.push('src')
     return config
   },
+
+  images: {
+    domains: ['e7.pngegg.com'],
+  },
 }
