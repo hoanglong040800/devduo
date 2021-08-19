@@ -6,6 +6,6 @@ module.exports = {
   },
 
   images: {
-    domains: ['e7.pngegg.com'],
+    domains: ['e7.pngegg.com','media.vneconomy.vn'],
   },
 }

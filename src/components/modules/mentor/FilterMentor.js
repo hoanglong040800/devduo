@@ -14,9 +14,26 @@ import {
   Select,
   TextField,
 } from '@material-ui/core'
-import classes from 'styles/mentor/FilterMentor.module.css'
+import classes from './styles/FilterMentor.module.css'
 import { fieldDummy, techDummy, menteeDummy } from 'test/dummy/dummy-data.test'
-import { Attachmentee, Code, WorkOutlineOutlined } from '@material-ui/icons'
+import { Code, WorkOutlineOutlined } from '@material-ui/icons'
+
+export async function getStaticProps() {
+  const res = await fetch(process.env.API_URL + 'field')
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  } else {
+    console.log(data)
+  }
+
+  return {
+    props: {},
+  }
+}
 
 export default function FIlterMentor() {
   const [input, setInput] = useState({

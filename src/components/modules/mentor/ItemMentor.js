@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Paper, Box, Button, IconButton, Typography } from '@material-ui/core'
 import {
   AttachMoney,
@@ -7,7 +8,7 @@ import {
   WorkOutlineOutlined,
 } from '@material-ui/icons'
 import { useState } from 'react'
-import classes from 'styles/mentor/ItemMentor.module.css'
+import classes from './styles/ItemMentor.module.css'
 
 export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)
@@ -18,7 +19,13 @@ export default function ItemMentor({ item }) {
       onClick={() => alert('Item Mentor Clicked')}
     >
       <div className={classes.thumnail}>
-        <img src={item.thumnail} />
+        <Image
+          src={`/api/imageproxy?url=${encodeURIComponent(item.thumnail)}`}
+          layout="fill"
+          objectFit="cover"
+          alt={item.fullName}
+          quality={60}
+        />
       </div>
 
       <content className={classes.content}>
