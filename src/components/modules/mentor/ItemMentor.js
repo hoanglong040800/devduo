@@ -23,7 +23,7 @@ export default function ItemMentor({ item }) {
           src={`/api/imageproxy?url=${encodeURIComponent(item.thumnail)}`}
           layout="fill"
           objectFit="cover"
-          alt={item.fullName}
+          alt={item.fullname}
           quality={60}
         />
       </div>
@@ -36,7 +36,7 @@ export default function ItemMentor({ item }) {
             justifyContent="space-between"
             alignItems="center"
           >
-            <h4>{item.fullName}</h4>
+            <h4>{item.fullname}</h4>
 
             {fav ? (
               <IconButton

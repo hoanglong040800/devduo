@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Box, Typography, makeStyles } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
 export default function NavLinks() {
   const classes = useStyles()

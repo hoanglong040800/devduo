@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { makeStyles, Box, AppBar, Toolbar, Container } from '@material-ui/core'
+import { Box, AppBar, Toolbar, Container } from '@material-ui/core'
+import classes from './styles/NavBar.module.css'
 import NavLinks from './NavLinks'
 import AuthGroupButton from './AuthGroupButton'
 import ProfileMenu from './ProfileMenu'
 
 export default function NavBar() {
-  const classes = useStyles()
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(true)
 
   return (
     <>
-      <AppBar position="static" style={{background: '#f8f8f8'}}>
+      <AppBar position="sticky" style={{ background: '#f8f8f8' }}>
         <Container>
           <Toolbar>
             <Link href="/">
@@ -34,16 +34,6 @@ export default function NavBar() {
           </Toolbar>
         </Container>
       </AppBar>
-
     </>
   )
 }
-
-const useStyles = makeStyles({
-  nav: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-})

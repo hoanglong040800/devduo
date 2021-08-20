@@ -1,6 +1,6 @@
-import { Box, Grid, Paper } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 
-export default function SidebarTemplate({ sidebar, main, showSidebar = true }) {
+export default function SidebarMdTemplate({ sidebar, main, showSidebar = true }) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={3}>

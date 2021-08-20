@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { Box, IconButton, Button, Menu, MenuItem } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 
 export default function ProfileMenu() {
+  const router = useRouter()
   const [anchorEl, setAnchorEl] = useState(null)
 
   function toggleMenu(e) {
@@ -16,9 +18,7 @@ export default function ProfileMenu() {
   return (
     <Box display="flex" alignItems="center">
       <div aria-label="booking">
-        <Button color="secondary">
-          Booking: 5
-        </Button>
+        <Button color="secondary">Booking: 5</Button>
       </div>
 
       <div aria-label="profile">
@@ -35,7 +35,7 @@ export default function ProfileMenu() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={() => router.push('/user')}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>

@@ -8,6 +8,16 @@
       "tech": ["ReactJS", "NextJS"],
       "money": 50,
       "mentee": 5
+    },
+
+    {
+      "id": 2,
+      "fullname": "Bill Gates",
+      "thumnail": "https://static.cand.com.vn/Files/Image/minhtuyen/2021/05/17/thumb_660_e9cf1a07-f50c-4cc6-9d3e-cc8ca423934d.jpg",
+      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
+      "tech": ["C++", "C#"],
+      "money": 60,
+      "mentee": 20
     }
   ],
 
