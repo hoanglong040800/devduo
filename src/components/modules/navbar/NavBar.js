@@ -12,7 +12,7 @@ export default function NavBar() {
 
   return (
     <>
-      <AppBar position="sticky" style={{ background: '#f8f8f8' }}>
+      <AppBar position="sticky" elevation={2} style={{ background: '#f8f8f8' }}>
         <Container>
           <Toolbar>
             <Link href="/">
