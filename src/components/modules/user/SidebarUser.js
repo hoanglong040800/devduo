@@ -1,19 +1,56 @@
 import { Paper, makeStyles } from '@material-ui/core'
+import { useState } from 'react'
 
 export default function SidebarUser() {
   const classes = useStyles()
+  const [userOption, setUserOption] = useState([
+    {
+      name: 'profile',
+      display: 'Profile',
+      active: true,
+    },
+    {
+      name: 'plan',
+      display: 'Plan service',
+      active: false,
+    },
+    {
+      name: 'account',
+      display: 'Account',
+      active: false,
+    },
+    {
+      name: 'settings',
+      display: 'Settings',
+      active: false,
+    },
+  ])
+
+  function clickHandler(e) {
+
+    let newUserOption = userOption.map(item => {
+      return item.name === e.currentTarget.getAttribute('name')
+        ? { ...item, active: true }
+        : { ...item, active: false }
+    })
+
+    setUserOption(newUserOption)
+  }
 
   return (
     <Paper variant="outlined">
-      <div className={`${classes.item} ${classes.active}`}>
-        <div>Profile</div>
-      </div>
-
-      <div className={classes.item}>Plan service</div>
-
-      <div className={classes.item}>Account</div>
-
-      <div className={classes.item}>Settings</div>
+      {userOption.map((item, index) => {
+        return (
+          <div
+            key={index}
+            name={item.name}
+            className={`${classes.item} ${item.active ? classes.active : ''}`}
+            onClick={clickHandler}
+          >
+            <div>{item.display}</div>
+          </div>
+        )
+      })}
     </Paper>
   )
 }
@@ -35,5 +72,6 @@ const useStyles = makeStyles(theme => ({
   active: {
     color: theme.palette.primary.main,
     borderLeft: `5px solid ${theme.palette.primary.main}`,
+    transition: '0.2s',
   },
 }))
