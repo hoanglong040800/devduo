@@ -3,16 +3,16 @@ import { useDispatch } from 'react-redux'
 import { changeUserOption } from 'store/userOptionSlice'
 import User from './index'
 
-export default function UserProfile() {
+export default function UserSettings() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    dispatch(changeUserOption('profile'))
+    dispatch(changeUserOption('settings'))
   },[])
 
   return (
     <User>
-      <h1>Profile</h1>
+      <h1>Settings</h1>
     </User>
   )
 }

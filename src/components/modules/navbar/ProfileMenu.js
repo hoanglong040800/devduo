@@ -36,7 +36,7 @@ export default function ProfileMenu() {
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
           <MenuItem onClick={() => router.push('/user/profile')}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={() => router.push('/user/account')}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
       </div>

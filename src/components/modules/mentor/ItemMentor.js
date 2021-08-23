@@ -111,7 +111,7 @@ export default function ItemMentor({ item }) {
           <Box display="flex" alignItems="center">
             <AttachMoney size="small" color="secondary" />
 
-            <Typography color="secondary">
+            <Typography color="seconrodary">
               <b>{item.money}k</b>
             </Typography>
           </Box>

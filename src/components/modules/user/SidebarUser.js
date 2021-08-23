@@ -1,41 +1,7 @@
 import { Paper, makeStyles } from '@material-ui/core'
-import { useState } from 'react'
 
-export default function SidebarUser() {
+export default function SidebarUser({ userOption, clickHandler }) {
   const classes = useStyles()
-  const [userOption, setUserOption] = useState([
-    {
-      name: 'profile',
-      display: 'Profile',
-      active: true,
-    },
-    {
-      name: 'plan',
-      display: 'Plan service',
-      active: false,
-    },
-    {
-      name: 'account',
-      display: 'Account',
-      active: false,
-    },
-    {
-      name: 'settings',
-      display: 'Settings',
-      active: false,
-    },
-  ])
-
-  function clickHandler(e) {
-
-    let newUserOption = userOption.map(item => {
-      return item.name === e.currentTarget.getAttribute('name')
-        ? { ...item, active: true }
-        : { ...item, active: false }
-    })
-
-    setUserOption(newUserOption)
-  }
 
   return (
     <Paper variant="outlined">
@@ -45,7 +11,7 @@ export default function SidebarUser() {
             key={index}
             name={item.name}
             className={`${classes.item} ${item.active ? classes.active : ''}`}
-            onClick={clickHandler}
+            onClick={() => clickHandler(item.name)}
           >
             <div>{item.display}</div>
           </div>
