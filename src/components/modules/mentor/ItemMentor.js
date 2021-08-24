@@ -1,12 +1,5 @@
 import Image from 'next/image'
-import {
-  Paper,
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  Chip,
-} from '@material-ui/core'
+import { Paper, Box, IconButton, Typography, Chip } from '@material-ui/core'
 import {
   AttachMoney,
   Code,
@@ -16,6 +9,7 @@ import {
 } from '@material-ui/icons'
 import { useState } from 'react'
 import classes from './styles/ItemMentor.module.css'
+import { convertMoney } from 'utils/money-helper'
 
 export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)
@@ -35,7 +29,7 @@ export default function ItemMentor({ item }) {
         />
       </div>
 
-      <content className={classes.content}>
+      <div className={classes.content}>
         <div className={classes.info}>
           <Box
             mb={2}
@@ -111,11 +105,11 @@ export default function ItemMentor({ item }) {
             <AttachMoney size="small" color="secondary" />
 
             <Typography color="secondary">
-              <b>{item.money}k</b>
+              <b>{convertMoney(item.money)}</b>
             </Typography>
           </Box>
         </Box>
-      </content>
+      </div>
     </Paper>
   )
 }

@@ -15,29 +15,14 @@ import {
   TextField,
 } from '@material-ui/core'
 import classes from './styles/FilterMentor.module.css'
-import { fieldDummy, techDummy, menteeDummy } from 'test/dummy/dummy-data.test'
+import { fieldDummy, techDummy, menteeDummy } from 'test/dummy-data.test'
 import { Code, WorkOutlineOutlined } from '@material-ui/icons'
 
-export async function getStaticProps() {
-  const res = await fetch(process.env.API_URL + 'field')
-  const data = await res.json()
+export default function FIlterMentor({ fieldList, techList }) {
+  const menteeList = [5, 10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000]
 
-  if (!data) {
-    return {
-      notFound: true,
-    }
-  } else {
-    console.log(data)
-  }
-
-  return {
-    props: {},
-  }
-}
-
-export default function FIlterMentor() {
   const [input, setInput] = useState({
-    fullName: '',
+    fullname: '',
     money: 'asc',
     mentee: 0,
   })
@@ -54,6 +39,7 @@ export default function FIlterMentor() {
         <Grid item xs={8} md={12}>
           <FormGroup>
             <TextField
+              name="fullname"
               label="Search name, field, tech"
               variant="standard"
               color="secondary"
@@ -83,7 +69,7 @@ export default function FIlterMentor() {
 
             <Box className={classes.checkboxGroup}>
               <FormGroup>
-                {fieldDummy.map((item, index) => {
+                {fieldList.map((item, index) => {
                   return (
                     <FormControlLabel
                       key={index}
@@ -106,7 +92,7 @@ export default function FIlterMentor() {
 
             <Box className={classes.checkboxGroup}>
               <FormGroup>
-                {techDummy.map((item, index) => {
+                {techList.map((item, index) => {
                   return (
                     <FormControlLabel
                       key={index}
@@ -132,7 +118,7 @@ export default function FIlterMentor() {
                 value={input.mentee}
                 onChange={changeHandler}
               >
-                {menteeDummy.map((item, index) => {
+                {menteeList.map((item, index) => {
                   return (
                     <FormControlLabel
                       key={index}
