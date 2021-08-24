@@ -36,7 +36,7 @@ export default function FIlterMentor({ fieldList, techList }) {
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={3}>
-        <Grid item xs={8} md={12}>
+        <Grid item xs={12} sm={8} md={12} >
           <FormGroup>
             <TextField
               name="fullname"
@@ -47,7 +47,7 @@ export default function FIlterMentor({ fieldList, techList }) {
           </FormGroup>
         </Grid>
 
-        <Grid item xs={4} md={12}>
+        <Grid item xs={12} sm={4} md={12}>
           <FormGroup className={classes.money}>
             <InputLabel>Money</InputLabel>
 
@@ -60,7 +60,7 @@ export default function FIlterMentor({ fieldList, techList }) {
       </Grid>
 
       <Grid container spacing={3} className={classes.secondRow}>
-        <Grid item xs={4} md={12}>
+        <Grid item xs={12} sm={4} md={12}>
           <FormControl>
             <Box display="flex" alignItems="center">
               <WorkOutlineOutlined className={classes.icon} />
@@ -83,7 +83,7 @@ export default function FIlterMentor({ fieldList, techList }) {
           </FormControl>
         </Grid>
 
-        <Grid item xs={4} md={12}>
+        <Grid item xs={12} sm={4} md={12}>
           <FormControl>
             <Box display="flex" alignItems="center">
               <Code className={classes.icon} />
@@ -106,7 +106,7 @@ export default function FIlterMentor({ fieldList, techList }) {
           </FormControl>
         </Grid>
 
-        <Grid item xs={4} md={12}>
+        <Grid item xs={12} sm={4} md={12}>
           <FormControl>
             <Box display="flex" alignItems="center">
               Mentee: {input.mentee}
