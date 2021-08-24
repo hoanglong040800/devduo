@@ -1,5 +1,12 @@
 import Image from 'next/image'
-import { Paper, Box, Button, IconButton, Typography } from '@material-ui/core'
+import {
+  Paper,
+  Box,
+  Button,
+  IconButton,
+  Typography,
+  Chip,
+} from '@material-ui/core'
 import {
   AttachMoney,
   Code,
@@ -68,16 +75,12 @@ export default function ItemMentor({ item }) {
             <Box>
               {item.field.slice(0, 5).map((field, index) => {
                 return (
-                  <Button
-                    key={index}
+                  <Chip
+                    label={field}
                     size="small"
-                    className={classes.techItem}
-                    onClick={e => {
-                      e.stopPropagation()
-                    }}
-                  >
-                    {field}
-                  </Button>
+                    variant="outlined"
+                    key={index}
+                  />
                 )
               })}
             </Box>
@@ -89,16 +92,12 @@ export default function ItemMentor({ item }) {
             <Box>
               {item.tech.slice(0, 5).map((tech, index) => {
                 return (
-                  <Button
-                    key={index}
+                  <Chip
+                    label={tech}
                     size="small"
-                    className={classes.techItem}
-                    onClick={e => {
-                      e.stopPropagation()
-                    }}
-                  >
-                    {tech}
-                  </Button>
+                    variant="outlined"
+                    key={index}
+                  />
                 )
               })}
             </Box>
@@ -111,7 +110,7 @@ export default function ItemMentor({ item }) {
           <Box display="flex" alignItems="center">
             <AttachMoney size="small" color="secondary" />
 
-            <Typography color="seconrodary">
+            <Typography color="secondary">
               <b>{item.money}k</b>
             </Typography>
           </Box>
