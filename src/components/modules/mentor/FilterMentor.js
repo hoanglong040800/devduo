@@ -17,6 +17,7 @@ import {
 import classes from './styles/FilterMentor.module.css'
 import { fieldDummy, techDummy, menteeDummy } from 'test/dummy-data.test'
 import { Code, WorkOutlineOutlined } from '@material-ui/icons'
+import { convertMoney } from 'utils/money-helper'
 
 export default function FIlterMentor({ fieldList, techList }) {
   const menteeList = [5, 10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000]
@@ -24,19 +25,23 @@ export default function FIlterMentor({ fieldList, techList }) {
   const [input, setInput] = useState({
     fullname: '',
     money: 'asc',
-    mentee: 0,
+    mentee: 5,
   })
 
   function changeHandler(e) {
-    const name = e.target.name
-    const value = e.target.value
+    let name = e.target.name
+    let value = e.target.value
+
+    name === 'mentee' ? (value = parseInt(value)) : null
+
     setInput({ ...input, [name]: value })
+    console.log(input)
   }
 
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={8} md={12} >
+        <Grid item xs={12} sm={8} md={12}>
           <FormGroup>
             <TextField
               name="fullname"
@@ -109,7 +114,7 @@ export default function FIlterMentor({ fieldList, techList }) {
         <Grid item xs={12} sm={4} md={12}>
           <FormControl>
             <Box display="flex" alignItems="center">
-              Mentee: {input.mentee}
+              Mentee: start at {convertMoney(input.mentee)}
             </Box>
 
             <Box className={classes.checkboxGroup}>
@@ -122,7 +127,7 @@ export default function FIlterMentor({ fieldList, techList }) {
                   return (
                     <FormControlLabel
                       key={index}
-                      label={item}
+                      label={convertMoney(item)}
                       value={item}
                       control={<Radio />}
                     />

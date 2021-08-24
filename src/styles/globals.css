@@ -12,3 +12,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+*::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+  background: #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  outline: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
