@@ -1,51 +1,53 @@
-import { Button, TextField, Box, FormControl } from '@material-ui/core'
-import { useState } from 'react'
+import { Button, Box } from '@material-ui/core'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schema } from 'utils/validation-schema'
+import TextFieldController from 'components/common/TextFieldController'
 
 export default function SignupForm() {
-  const [input, setInput] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const {
+    control,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   })
 
-  function changeHandler(e) {
-    const name = e.target.name
-    const value = e.target.value
-    setInput({ ...input, [name]: value })
+  function onSubmit() {
+    alert(watch('email'), watch('pswd'))
   }
 
   return (
     <>
-      <form noValidate>
-        <FormControl margin="dense" fullWidth>
-          <TextField
-            label="Email"
-            name="email"
-            value={input.email}
-            onChange={changeHandler}
-          />
-        </FormControl>
+      <form>
+        <TextFieldController
+          name="email"
+          label="Email"
+          control={control}
+          errors={errors}
+        />
 
-        <FormControl margin="dense" fullWidth>
-          <TextField
-            label="Password"
-            name="password"
-            value={input.password}
-            onChange={changeHandler}
-          />
-        </FormControl>
+        <TextFieldController
+          name="pswd"
+          label="Password"
+          control={control}
+          errors={errors}
+        />
 
-        <FormControl margin="dense" fullWidth>
-          <TextField
-            label="Confirm Password"
-            name="confirmPassword"
-            value={input.confirmPassword}
-            onChange={changeHandler}
-          />
-        </FormControl>
+        <TextFieldController
+          name="pswdCf"
+          label="Password Confirmation"
+          control={control}
+          errors={errors}
+        />
 
         <Box display="flex" justifyContent="center" mt={4}>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit(onSubmit)}
+          >
             Signup
           </Button>
         </Box>

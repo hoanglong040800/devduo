@@ -15,12 +15,10 @@ import {
   TextField,
 } from '@material-ui/core'
 import classes from './styles/FilterMentor.module.css'
-import { fieldDummy, techDummy, menteeDummy } from 'test/dummy-data.test'
 import { Code, WorkOutlineOutlined } from '@material-ui/icons'
-import { convertMoney } from 'utils/money-helper'
 
 export default function FIlterMentor({ fieldList, techList }) {
-  const menteeList = [5, 10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000]
+  const menteeList = [5, 10, 20, 30, 50, 100, 150, 200, 250, 300]
 
   const [input, setInput] = useState({
     fullname: '',
@@ -114,7 +112,7 @@ export default function FIlterMentor({ fieldList, techList }) {
         <Grid item xs={12} sm={4} md={12}>
           <FormControl>
             <Box display="flex" alignItems="center">
-              Mentee: start at {convertMoney(input.mentee)}
+              Mentee: start at {input.mentee}
             </Box>
 
             <Box className={classes.checkboxGroup}>
@@ -127,7 +125,7 @@ export default function FIlterMentor({ fieldList, techList }) {
                   return (
                     <FormControlLabel
                       key={index}
-                      label={convertMoney(item)}
+                      label={item}
                       value={item}
                       control={<Radio />}
                     />

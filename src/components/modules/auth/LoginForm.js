@@ -8,17 +8,23 @@ import {
   Slide,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import TextFieldController from 'components/common/TextFieldController'
+import { schema } from 'utils/validation-schema'
 
 export default function LoginForm() {
-  const [input, setInput] = useState({
-    email: '',
-    password: '',
+  const {
+    watch,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   })
 
-  function changeHandler(e) {
-    const name = e.target.name
-    const value = e.target.value
-    setInput({ ...input, [name]: value })
+  function onSubmit() {
+    alert(watch('email'))
   }
 
   // Fogot Password
@@ -38,24 +44,20 @@ export default function LoginForm() {
 
   return (
     <>
-      <form noValidate>
-        <FormControl margin="dense" fullWidth>
-          <TextField
-            label="Email"
-            name="email"
-            value={input.email}
-            onChange={changeHandler}
-          />
-        </FormControl>
+      <form>
+        <TextFieldController
+          name="email"
+          label="Email"
+          control={control}
+          errors={errors}
+        />
 
-        <FormControl margin="dense" fullWidth>
-          <TextField
-            label="Password"
-            name="password"
-            value={input.password}
-            onChange={changeHandler}
-          />
-        </FormControl>
+        <TextFieldController
+          name="pswd"
+          label="Password"
+          control={control}
+          errors={errors}
+        />
 
         <Box textAlign="right" mt={2}>
           <Button color="primary" onClick={forgotHandler}>
@@ -64,7 +66,11 @@ export default function LoginForm() {
         </Box>
 
         <Box display="flex" justifyContent="center" mt={4}>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit(onSubmit)}
+          >
             Login
           </Button>
         </Box>
