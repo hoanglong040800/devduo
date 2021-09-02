@@ -8,7 +8,7 @@ import AuthGroupButton from './AuthGroupButton'
 import ProfileMenu from './ProfileMenu'
 
 export default function NavBar() {
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(true)
   const mui = useStyles()
 
   return (

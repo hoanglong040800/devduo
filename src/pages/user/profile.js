@@ -1,20 +1,163 @@
-import { useEffect } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Box, Button, Chip, Grid, makeStyles } from '@material-ui/core'
+import { WorkOutlineOutlined } from '@material-ui/icons'
+import MultiCheckboxController from 'components/common/MultiCheckboxController'
+import TextAreaController from 'components/common/TextAreaController'
+import TextFieldController from 'components/common/TextFieldController'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { changeUserOption } from 'store/userOptionSlice'
+import { schema } from 'utils/validation-schema'
 import User from './index'
-import { convertMoney } from 'utils/money-helper'
 
-export default function UserProfile() {
+export async function getStaticProps() {
+  const fieldRes = await fetch(`${process.env.API_URL}/field`)
+  const fieldData = await fieldRes.json()
+
+  const techRes = await fetch(`${process.env.API_URL}/technology`)
+  const techData = await techRes.json()
+
+  return {
+    props: {
+      fieldList: fieldData,
+      techList: techData,
+    },
+  }
+}
+
+export default function UserProfile({ fieldList, techList }) {
+  const classes = useStyles()
   const dispatch = useDispatch()
+  const {
+    watch,
+    handleSubmit,
+    control,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
+
+  const property = {
+    leftGrid: {
+      item: true,
+      xs: 12,
+      sm: 4,
+    },
+
+    rightGrid: {
+      item: true,
+      xs: 12,
+      sm: 8,
+    },
+
+    fullGrid: {
+      item: true,
+      xs: 12,
+    },
+
+    form: {
+      control: control,
+      errors: errors,
+    },
+  }
+
+  const [selectedFields, setSelectedFields] = useState([])
+  const [selectedTechs, setSelectedTechs] = useState([])
 
   useEffect(() => {
     dispatch(changeUserOption('profile'))
   }, [])
 
+  function onSubmit() {
+    console.log(watch('fields'))
+  }
+
   return (
     <User>
       <h1>Profile</h1>
-      {convertMoney(1545)}
+
+      <form>
+        <Grid container spacing={4}>
+          <Grid {...property.leftGrid}>
+            <TextFieldController
+              name="thumnailUrl"
+              label="Thumnail URL"
+              {...property.form}
+            />
+          </Grid>
+
+          <Grid {...property.rightGrid}>
+            <h3>Thumnail image</h3>
+          </Grid>
+
+          <Grid {...property.fullGrid}>
+            <TextFieldController
+              name="fullname"
+              label="Full Name"
+              {...property.form}
+            />
+          </Grid>
+
+          <Grid {...property.leftGrid}>
+            <Box display="flex" alignItems="center">
+              <WorkOutlineOutlined />
+              Field
+            </Box>
+
+            <Box className={classes.checkboxGroup}>
+              <MultiCheckboxController
+                list={fieldList}
+                name="fields"
+                control={control}
+                setValue={setValue}
+                selectedList={selectedFields}
+                setSelectedList={setSelectedFields}
+              />
+            </Box>
+          </Grid>
+
+          <Grid {...property.rightGrid}>
+            <Box my={5}>
+              {
+                //
+                selectedFields.map(item => (
+                  <Chip key={item} label={item} variant="outlined" />
+                ))
+              }
+            </Box>
+          </Grid>
+
+          <Grid {...property.fullGrid}>
+            <TextAreaController
+              name="description"
+              label="Description"
+              {...property.form}
+            />
+          </Grid>
+
+          <Box display="flex" justifyContent="flex-end" my={5}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={onSubmit}
+            >
+              Save
+            </Button>
+          </Box>
+        </Grid>
+      </form>
     </User>
   )
 }
+
+const useStyles = makeStyles({
+  checkboxGroup: {
+    height: 150,
+    margin: '15px 0',
+    padding: '0 20px',
+    overflowY: 'scroll',
+  },
+})

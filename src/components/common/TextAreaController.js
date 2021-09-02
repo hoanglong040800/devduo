@@ -1,7 +1,7 @@
 import { FormControl, TextField } from '@material-ui/core'
 import { Controller } from 'react-hook-form'
 
-export default function TextFieldController({
+export default function TextAreaController({
   name,
   label,
   control,
@@ -20,6 +20,9 @@ export default function TextFieldController({
             label={label}
             error={!!errors[name]}
             helperText={errors[name]?.message}
+            multiline
+            minRows={8}
+            maxRows={10}
           />
         )}
       />
