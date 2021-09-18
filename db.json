@@ -2,6 +2,7 @@
   "mentor": [
     {
       "id": 1,
+      "username": "elonmusk",
       "fullname": "Elon Musk",
       "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
       "field": ["AI", "Blockchain", "ML", "DL"],
@@ -12,7 +13,19 @@
 
     {
       "id": 2,
+      "username": "elonmusk",
       "fullname": "Bill Gates",
+      "thumnail": "https://static.cand.com.vn/Files/Image/minhtuyen/2021/05/17/thumb_660_e9cf1a07-f50c-4cc6-9d3e-cc8ca423934d.jpg",
+      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
+      "tech": ["C++", "C#"],
+      "money": 1525,
+      "mentee": 20
+    },
+
+    {
+      "id": 3,
+      "username": "jackma",
+      "fullname": "Jack Ma",
       "thumnail": "https://static.cand.com.vn/Files/Image/minhtuyen/2021/05/17/thumb_660_e9cf1a07-f50c-4cc6-9d3e-cc8ca423934d.jpg",
       "field": ["AI", "Blockchain", "ML", "DL", "PM"],
       "tech": ["C++", "C#"],

@@ -10,14 +10,16 @@ import {
 import { useState } from 'react'
 import classes from './styles/ItemMentor.module.css'
 import { convertMoney } from 'common/utils/utils'
+import { useRouter } from 'next/router'
 
 export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)
+  const router=useRouter()
 
   return (
     <Paper
       className={classes.paper}
-      onClick={() => alert('Item Mentor Clicked')}
+      onClick={()=>router.push(`/mentor/${item.id}`)}
     >
       <div className={classes.thumnail}>
         <Image

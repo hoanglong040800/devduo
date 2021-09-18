@@ -11,7 +11,6 @@ import { changeUserOption } from 'common/store/userOptionSlice'
 import { schema } from 'common/utils/validation-schema'
 import SidebarUser from 'modules/user/SidebarUser'
 import SidebarSmTemplate from 'common/template/SidebarSmTemplate'
-import ContentTemplate from 'common/template/ContentTemplate'
 
 export async function getServerSideProps() {
   const fieldRes = await fetch(`${process.env.API_URL}/field`)
@@ -70,6 +69,7 @@ export default function UserProfile({ fieldList, techList }) {
 
   useEffect(() => {
     dispatch(changeUserOption('profile'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function onSubmit() {
