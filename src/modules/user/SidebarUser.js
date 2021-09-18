@@ -1,7 +1,11 @@
 import { Paper, makeStyles } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
-export default function SidebarUser({ userOption, clickHandler }) {
+export default function SidebarUser() {
   const classes = useStyles()
+  const router = useRouter()
+  const userOption = useSelector(state => state.userOption)
 
   return (
     <Paper variant="outlined">
@@ -11,7 +15,7 @@ export default function SidebarUser({ userOption, clickHandler }) {
             key={index}
             name={item.name}
             className={`${classes.item} ${item.active ? classes.active : ''}`}
-            onClick={() => clickHandler(item.name)}
+            onClick={() => router.push(item.link)}
           >
             <div>{item.display}</div>
           </div>

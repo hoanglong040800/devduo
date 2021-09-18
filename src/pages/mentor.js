@@ -1,8 +1,8 @@
 import { Box, Button } from '@material-ui/core'
-import ContentTemplate from 'components/template/ContentTemplate'
-import SidebarMdTemplate from 'components/template/SidebarMdTemplate'
-import FilterMentor from 'components/modules/mentor/FilterMentor'
-import ListMentor from 'components/modules/mentor/ListMentor'
+import ContentTemplate from 'common/template/ContentTemplate'
+import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
+import FilterMentor from 'modules/mentor/FilterMentor'
+import ListMentor from 'modules/mentor/ListMentor'
 import { useState } from 'react'
 
 export async function getStaticProps() {
@@ -41,8 +41,9 @@ export default function MentorPage({ mentorList, fieldList, techList }) {
       <SidebarMdTemplate
         showSidebar={showSidebar}
         sidebar={<FilterMentor fieldList={fieldList} techList={techList} />}
-        main={<ListMentor showSidebar={showSidebar} list={mentorList} />}
-      />
+      >
+        <ListMentor showSidebar={showSidebar} list={mentorList} />
+      </SidebarMdTemplate>
     </ContentTemplate>
   )
 }

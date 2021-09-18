@@ -4,16 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "api": "json-server db.json --port 5000",
+    "json": "json-server db.json --port 5000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
     "@hookform/resolvers": "^2.8.0",
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",

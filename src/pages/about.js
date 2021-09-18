@@ -1,4 +1,4 @@
-import ContentTemplate from 'components/template/ContentTemplate'
+import ContentTemplate from 'common/template/ContentTemplate'
 
 export default function AboutPage() {
   return (

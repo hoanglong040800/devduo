@@ -5,21 +5,25 @@ const initialState = [
     name: 'profile',
     display: 'Profile',
     active: true,
+    link: '/user/profile'
   },
   {
     name: 'plan',
     display: 'Plan service',
     active: false,
+    link: '/user/plan'
   },
   {
     name: 'account',
     display: 'Account',
     active: false,
+    link: '/user/account'
   },
   {
     name: 'settings',
     display: 'Settings',
     active: false,
+    link: '/user/settings'
   },
 ]
 

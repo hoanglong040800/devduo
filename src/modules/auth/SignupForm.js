@@ -1,8 +1,8 @@
 import { Button, Box } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { schema } from 'utils/validation-schema'
-import TextFieldController from 'components/common/TextFieldController'
+import { schema } from 'common/utils/validation-schema'
+import TextFieldController from 'common/components/TextFieldController'
 
 export default function SignupForm() {
   const {

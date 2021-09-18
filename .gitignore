@@ -15,7 +15,8 @@
 
 # production
 /build
-/src/test/
+src/common/test
+db.json
 
 # misc
 .DS_Store
@@ -34,3 +35,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+

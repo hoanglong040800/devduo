@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import DefaultLayout from 'components/layout/DefaultLayout'
+import DefaultLayout from 'common/layout/DefaultLayout'
 
 export default function ContentTemplate({ children }) {
   const classes = useStyles()

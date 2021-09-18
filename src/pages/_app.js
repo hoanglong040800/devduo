@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { Provider } from 'react-redux'
-import theme from 'styles/theme/Theme'
-import 'styles/globals.css'
-import store from 'store'
+import theme from 'common/theme/theme'
+import 'common/styles/globals.css'
+import store from 'common/store'
 
 export default function MyApp({ Component, pageProps }) {
   return (

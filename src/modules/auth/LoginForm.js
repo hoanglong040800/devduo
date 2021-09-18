@@ -1,17 +1,10 @@
 import { useState } from 'react'
-import {
-  Button,
-  TextField,
-  Box,
-  FormControl,
-  Snackbar,
-  Slide,
-} from '@material-ui/core'
+import { Button, Box, Snackbar, Slide } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import TextFieldController from 'components/common/TextFieldController'
-import { schema } from 'utils/validation-schema'
+import TextFieldController from 'common/components/TextFieldController'
+import { schema } from 'common/utils/validation-schema'
 
 export default function LoginForm() {
   const {

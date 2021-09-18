@@ -16,7 +16,6 @@
     "coverage",
     ".npm",
     ".yarn",
-    "src/.next"
   ],
   "typeAcquisition": {
     "enable": true,

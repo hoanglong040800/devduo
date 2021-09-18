@@ -1,17 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, Chip, Grid, makeStyles } from '@material-ui/core'
 import { WorkOutlineOutlined } from '@material-ui/icons'
-import MultiCheckboxController from 'components/common/MultiCheckboxController'
-import TextAreaController from 'components/common/TextAreaController'
-import TextFieldController from 'components/common/TextFieldController'
+import MultiCheckboxController from 'common/components/MultiCheckboxController'
+import TextAreaController from 'common/components/TextAreaController'
+import TextFieldController from 'common/components/TextFieldController'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { changeUserOption } from 'store/userOptionSlice'
-import { schema } from 'utils/validation-schema'
-import User from './index'
+import { changeUserOption } from 'common/store/userOptionSlice'
+import { schema } from 'common/utils/validation-schema'
+import SidebarUser from 'modules/user/SidebarUser'
+import SidebarSmTemplate from 'common/template/SidebarSmTemplate'
+import ContentTemplate from 'common/template/ContentTemplate'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const fieldRes = await fetch(`${process.env.API_URL}/field`)
   const fieldData = await fieldRes.json()
 
@@ -71,11 +73,11 @@ export default function UserProfile({ fieldList, techList }) {
   }, [])
 
   function onSubmit() {
-    console.log(watch('fields'))
+    alert(watch('fields'))
   }
 
   return (
-    <User>
+    <SidebarSmTemplate sidebar={SidebarUser}>
       <h1>Profile</h1>
 
       <form>
@@ -149,7 +151,7 @@ export default function UserProfile({ fieldList, techList }) {
           </Box>
         </Grid>
       </form>
-    </User>
+    </SidebarSmTemplate>
   )
 }
 

@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import NavBar from 'components/modules/navbar/NavBar'
+import NavBar from 'common/components/navbar/NavBar'
 
 export default function DefaultLayout({ children }) {
   const classes = useStyles()

@@ -1,7 +1,7 @@
 import { Box, Button, makeStyles } from '@material-ui/core'
-import AuthForm from 'components/modules/auth/AuthForm'
+import AuthForm from 'modules/auth/AuthForm'
 import { useDispatch } from 'react-redux'
-import { openLoginForm, openSignupForm } from 'store/authFormSlice'
+import { openLoginForm, openSignupForm } from 'common/store/authFormSlice'
 
 export default function AuthGroupButton() {
   const classes = useStyles()

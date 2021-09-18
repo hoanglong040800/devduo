@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import DefaultLayout from 'components/layout/DefaultLayout'
-import { Box, makeStyles, Typography } from '@material-ui/core'
+import DefaultLayout from 'common/layout/DefaultLayout'
+import { Box, Typography } from '@material-ui/core'
 
 export default function NotFound() {
   return (

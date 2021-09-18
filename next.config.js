@@ -1,5 +1,5 @@
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   webpack(config) {
     config.resolve.modules.push('src')
@@ -13,9 +13,5 @@ module.exports = {
         destination: '/user/profile',
       },
     ]
-  },
-
-  images: {
-    domains: [],
   },
 }

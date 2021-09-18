@@ -9,7 +9,7 @@ import {
 } from '@material-ui/icons'
 import { useState } from 'react'
 import classes from './styles/ItemMentor.module.css'
-import { convertMoney } from 'utils/money-helper'
+import { convertMoney } from 'common/utils/utils'
 
 export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)

@@ -4,8 +4,8 @@ import {
   closeAuthForm,
   openLoginForm,
   openSignupForm,
-} from 'store/authFormSlice'
-import CenterModal from 'components/common/CenterModal'
+} from 'common/store/authFormSlice'
+import CenterModal from 'common/components/CenterModal'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 
