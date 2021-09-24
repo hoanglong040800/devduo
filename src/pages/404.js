@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import DefaultLayout from 'common/layout/DefaultLayout'
 import { Box, Typography } from '@material-ui/core'
 
 export default function NotFound() {
   return (
-    <DefaultLayout>
+    <>
       <div style={{ height: 230, position: 'relative', marginTop: 40 }}>
         <Image src="/404.png" layout="fill" alt="404" objectFit="contain" />
       </div>
@@ -22,6 +21,6 @@ export default function NotFound() {
           </span>
         </Typography>
       </Box>
-    </DefaultLayout>
+    </>
   )
 }

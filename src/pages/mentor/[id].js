@@ -1,4 +1,3 @@
-import ContentTemplate from 'common/template/ContentTemplate'
 import { fetchAllMentor, fetchMentorById } from 'modules/mentor/fetch-mentor'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -49,11 +48,9 @@ export default function MentorDetail({ details }) {
         <title>{details.fullname}</title>
       </Head>
 
-      <ContentTemplate>
-        <h1>Mentor Detail</h1>
-        <h3>id: {details.id}</h3>
-        <h3>fullname: {details.fullname}</h3>
-      </ContentTemplate>
+      <>
+        <pre>{JSON.stringify(details, 0, 2)}</pre>
+      </>
     </>
   )
 }

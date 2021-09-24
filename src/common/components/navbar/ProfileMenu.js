@@ -35,8 +35,14 @@ export default function ProfileMenu() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
-          <MenuItem onClick={() => router.push('/user/profile')}>Profile</MenuItem>
-          <MenuItem onClick={() => router.push('/user/account')}>My account</MenuItem>
+          <MenuItem onClick={() => router.push('/user/booking')}>
+            Booking
+          </MenuItem>
+
+          <MenuItem onClick={() => router.push('/user/profile')}>
+            Profile
+          </MenuItem>
+
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
       </div>

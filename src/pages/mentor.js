@@ -1,5 +1,4 @@
 import { Box, Button } from '@material-ui/core'
-import ContentTemplate from 'common/template/ContentTemplate'
 import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
 import {
   fetchAllFields,
@@ -24,7 +23,7 @@ export default function MentorPage({ mentorList, fieldList, techList }) {
   const [showSidebar, setShowSidebar] = useState(true)
 
   return (
-    <ContentTemplate>
+    <>
       <Box my={3}>
         <Button
           variant={showSidebar ? 'contained' : 'outlined'}
@@ -40,6 +39,6 @@ export default function MentorPage({ mentorList, fieldList, techList }) {
       >
         <ListMentor showSidebar={showSidebar} list={mentorList} />
       </SidebarMdTemplate>
-    </ContentTemplate>
+    </>
   )
 }

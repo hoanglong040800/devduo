@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import theme from 'common/theme/theme'
 import 'common/styles/globals.css'
 import store from 'common/store'
+import DefaultLayout from 'common/layout/DefaultLayout'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -21,8 +22,10 @@ export default function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
-          <Component {...pageProps} />
+          
+          <DefaultLayout>
+            <Component {...pageProps} />
+          </DefaultLayout>
         </ThemeProvider>
       </Provider>
     </>

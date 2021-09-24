@@ -1,16 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Chip, Grid, makeStyles } from '@material-ui/core'
+import { Box, Button, Chip, Divider, Grid, makeStyles } from '@material-ui/core'
 import { WorkOutlineOutlined } from '@material-ui/icons'
 import MultiCheckboxController from 'common/components/MultiCheckboxController'
 import TextAreaController from 'common/components/TextAreaController'
 import TextFieldController from 'common/components/TextFieldController'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { changeUserOption } from 'common/store/userOptionSlice'
 import { schema } from 'common/utils/validation-schema'
 import SidebarUser from 'modules/user/SidebarUser'
-import SidebarSmTemplate from 'common/template/SidebarSmTemplate'
 
 export async function getServerSideProps() {
   const fieldRes = await fetch(`${process.env.API_URL}/field`)
@@ -67,18 +65,15 @@ export default function UserProfile({ fieldList, techList }) {
   const [selectedFields, setSelectedFields] = useState([])
   const [selectedTechs, setSelectedTechs] = useState([])
 
-  useEffect(() => {
-    dispatch(changeUserOption('profile'))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   function onSubmit() {
     alert(watch('fields'))
   }
 
   return (
-    <SidebarSmTemplate sidebar={SidebarUser}>
+    <SidebarUser value="/user/profile">
       <h1>Profile</h1>
+
+      <Divider />
 
       <form>
         <Grid container spacing={4}>
@@ -151,7 +146,7 @@ export default function UserProfile({ fieldList, techList }) {
           </Box>
         </Grid>
       </form>
-    </SidebarSmTemplate>
+    </SidebarUser>
   )
 }
 

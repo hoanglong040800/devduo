@@ -1,23 +1,36 @@
-import { Container } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
-import NavBar from 'common/components/navbar/NavBar'
+import { Box, Container } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import Footer from 'common/components/footer/Footer'
+import Navbar from 'common/components/navbar/Navbar'
 
 export default function DefaultLayout({ children }) {
-  const classes = useStyles()
+  const classes = useStyle()
 
   return (
     <>
-      <NavBar />
+      <Navbar />
 
-      <Container className={classes.container}>{children}</Container>
+      <div className={classes.main}>
+        <Container maxWidth="xl" className={classes.container}>
+          <Box mt={5} mb={10}>
+            {children}
+          </Box>
+        </Container>
+
+        <Footer />
+      </div>
     </>
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyle = makeStyles(() => ({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+
   container: {
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: 1280,
-    },
+    flexGrow: 1,
   },
 }))

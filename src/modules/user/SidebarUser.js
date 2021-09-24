@@ -1,47 +1,59 @@
-import { Paper, makeStyles } from '@material-ui/core'
-import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import { Grid, makeStyles, Paper, Tab, Tabs } from '@material-ui/core'
+import { userPages } from 'common/utils/constants'
 
-export default function SidebarUser() {
-  const classes = useStyles()
+import { useRouter } from 'next/router'
+
+export default function SidebarUser({ children, value }) {
   const router = useRouter()
-  const userOption = useSelector(state => state.userOption)
+  const mui = useStyles()
 
   return (
-    <Paper variant="outlined">
-      {userOption.map((item, index) => {
-        return (
-          <div
-            key={index}
-            name={item.name}
-            className={`${classes.item} ${item.active ? classes.active : ''}`}
-            onClick={() => router.push(item.link)}
-          >
-            <div>{item.display}</div>
-          </div>
-        )
-      })}
-    </Paper>
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={3} className={mui.sidebar}>
+        <Paper variant="outlined" className={mui.paper}>
+          <Tabs orientation="vertical" value={value} variant="fullWidth">
+            {
+              //
+              userPages.map(item => (
+                <Tab
+                  key={item.label}
+                  label={item.label}
+                  value={item.pathname}
+                  onClick={() => router.push(item.pathname)}
+                  className={mui.tab}
+                />
+              ))
+            }
+          </Tabs>
+        </Paper>
+      </Grid>
+
+      <Grid item xs={12} md={9}>
+        {children}
+      </Grid>
+    </Grid>
   )
 }
 
 const useStyles = makeStyles(theme => ({
-  item: {
-    padding: '10px 20px',
-    fontSize: '1rem',
-    fontWeight: 700,
-    color: '#989898',
-    borderBottom: '1px solid lightgray',
-    cursor: 'pointer',
-
-    '&:hover': {
-      background: '#f9f9f9',
+  paper: {
+    '& .MuiTabs-indicator': {
+      width: '3px !important',
+      backgroundColor: [theme.palette.primary.light],
     },
   },
 
-  active: {
-    color: theme.palette.primary.main,
-    borderLeft: `5px solid ${theme.palette.primary.main}`,
-    transition: '0.2s',
+  sidebar: {
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '200px',
+    },
+  },
+
+  tab: {
+    padding: '10px 20px',
+    fontSize: '0.9rem',
+    fontWeight: 700,
+    borderBottom: '1px solid lightgray',
+    color: [theme.palette.primary.dark],
   },
 }))
