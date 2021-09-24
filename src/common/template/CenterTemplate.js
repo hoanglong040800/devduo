@@ -9,7 +9,8 @@ export default function CenterTemplate({ children }) {
 const useStyles = makeStyles({
   main: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
     marginTop: 50,
   },
 })

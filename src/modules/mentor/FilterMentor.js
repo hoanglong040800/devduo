@@ -43,7 +43,7 @@ export default function FIlterMentor({ fieldList, techList }) {
           <FormGroup>
             <TextField
               name="fullname"
-              label="Search name, field, tech"
+              label="Search name"
               variant="standard"
               color="secondary"
             />

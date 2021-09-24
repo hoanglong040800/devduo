@@ -18,7 +18,9 @@ export default function ProfileMenu() {
   return (
     <Box display="flex" alignItems="center">
       <div aria-label="booking">
-        <Button color="secondary">Booking: 5</Button>
+        <Button color="secondary" onClick={() => router.push('/user/booking')}>
+          Booking: 5
+        </Button>
       </div>
 
       <div aria-label="profile">

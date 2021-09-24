@@ -16,7 +16,7 @@ export default function AuthGroupButton() {
             className={classes.leftBtn}
             onClick={() => dispatch(openSignupForm())}
           >
-            Sign Up
+            Signup
           </Button>
 
         <Button

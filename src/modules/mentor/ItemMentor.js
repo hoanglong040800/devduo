@@ -14,12 +14,12 @@ import { useRouter } from 'next/router'
 
 export default function ItemMentor({ item }) {
   const [fav, setFav] = useState(false)
-  const router=useRouter()
+  const router = useRouter()
 
   return (
     <Paper
       className={classes.paper}
-      onClick={()=>router.push(`/mentor/${item.id}`)}
+      onClick={() => router.push(`/mentor/${item.id}`)}
     >
       <div className={classes.thumnail}>
         <Image
@@ -107,7 +107,7 @@ export default function ItemMentor({ item }) {
             <AttachMoney size="small" color="secondary" />
 
             <Typography color="secondary">
-              <b>{convertMoney(item.money)}</b>
+              <b>{item.money}/h</b>
             </Typography>
           </Box>
         </Box>

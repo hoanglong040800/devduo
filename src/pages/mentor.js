@@ -7,6 +7,7 @@ import {
 } from 'modules/mentor/fetch-mentor'
 import FilterMentor from 'modules/mentor/FilterMentor'
 import ListMentor from 'modules/mentor/ListMentor'
+import Head from 'next/head'
 import { useState } from 'react'
 
 export async function getStaticProps() {
@@ -24,6 +25,10 @@ export default function MentorPage({ mentorList, fieldList, techList }) {
 
   return (
     <>
+      <Head>
+        <title>Find your mentor | DevDuo</title>
+      </Head>
+
       <Box my={3}>
         <Button
           variant={showSidebar ? 'contained' : 'outlined'}

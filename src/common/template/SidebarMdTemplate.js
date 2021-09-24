@@ -1,5 +1,4 @@
 import { Box, Grid } from '@material-ui/core'
-import ContentTemplate from './ContentTemplate'
 
 export default function SidebarMdTemplate({
   sidebar,
@@ -7,14 +6,14 @@ export default function SidebarMdTemplate({
   showSidebar = true,
 }) {
   return (
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={3}>
-          <Box display={showSidebar ? 'block' : 'none'}>{sidebar}</Box>
-        </Grid>
-
-        <Grid item xs={12} md={showSidebar ? 9 : 12}>
-          {children}
-        </Grid>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={3}>
+        <Box display={showSidebar ? 'block' : 'none'}>{sidebar}</Box>
       </Grid>
+
+      <Grid item xs={12} md={showSidebar ? 9 : 12}>
+        {children}
+      </Grid>
+    </Grid>
   )
 }
