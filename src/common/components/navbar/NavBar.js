@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Box, AppBar, Toolbar, Container } from '@material-ui/core'
@@ -6,9 +5,10 @@ import classes from './styles/NavBar.module.css'
 import NavLinks from './NavLinks'
 import AuthGroupButton from './AuthGroupButton'
 import ProfileMenu from './ProfileMenu'
+import { useSession } from 'next-auth/client'
 
 export default function NavBar() {
-  const [isLogin, setIsLogin] = useState(false)
+  const [session, loading] = useSession()
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function NavBar() {
             <Box className={classes.nav}>
               <NavLinks />
 
-              {isLogin ? <ProfileMenu /> : <AuthGroupButton />}
+              {session ? <ProfileMenu /> : <AuthGroupButton />}
             </Box>
           </Toolbar>
         </Container>

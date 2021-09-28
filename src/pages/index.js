@@ -1,4 +1,25 @@
+import { useSession } from 'next-auth/client'
+import Head from 'next/head'
 
 export default function HomePage() {
-  return <h1>HOME PAGE</h1>
+  const [session, loading] = useSession()
+
+  return (
+    <>
+      <Head>
+        <title>Home - DevDuo</title>
+      </Head>
+
+      {
+        //
+        session ? (
+          <>
+            <h1>Hello, {session.user.name}</h1>
+          </>
+        ) : (
+          <h1>Home page</h1>
+        )
+      }
+    </>
+  )
 }

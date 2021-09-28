@@ -12,3 +12,9 @@ export const userPages = [
     pathname: '/user/change-password',
   },
 ]
+
+export const url = {
+  notLogin: '/',
+  afterLogin: 'http://localhost:3000/user/booking',
+  afterLogout: 'http://localhost:3000',
+}

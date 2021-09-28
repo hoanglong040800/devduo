@@ -2,9 +2,15 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, IconButton, Button, Menu, MenuItem } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
+import { signOut, useSession } from 'next-auth/client'
+import Image from 'next/image'
+import { makeStyles } from '@material-ui/styles'
+import { url } from 'common/utils/constants'
 
 export default function ProfileMenu() {
+  const mui = useStyles()
   const router = useRouter()
+  const [session, loading] = useSession()
   const [anchorEl, setAnchorEl] = useState(null)
 
   function toggleMenu(e) {
@@ -24,9 +30,14 @@ export default function ProfileMenu() {
       </div>
 
       <div aria-label="profile">
-        <IconButton variant="outlined" onClick={toggleMenu}>
-          <AccountCircle color="secondary" fontSize="large" />
-        </IconButton>
+        <Box onClick={toggleMenu} className={mui.imgContainer}>
+          <img
+            src={session.user.image}
+            alt={session.user.name}
+            width="100%"
+            height="100%"
+          />
+        </Box>
 
         <Menu
           open={Boolean(anchorEl)}
@@ -45,9 +56,26 @@ export default function ProfileMenu() {
             Profile
           </MenuItem>
 
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>
+            Logout
+          </MenuItem>
         </Menu>
       </div>
     </Box>
   )
 }
+
+const useStyles = makeStyles({
+  imgContainer: {
+    width: 40,
+    height: 40,
+    objectFit: 'contain',
+    margin: '0 0 0 10px',
+    cursor: 'pointer',
+
+    '& img': {
+      borderRadius: 100,
+      border: '0.5px solid rgba(0, 0, 0, 0.2)',
+    },
+  },
+})

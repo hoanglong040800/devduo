@@ -6,6 +6,7 @@ import theme from 'common/theme/theme'
 import 'common/styles/globals.css'
 import store from 'common/store'
 import DefaultLayout from 'common/layout/DefaultLayout'
+import { Provider as SessionProvider } from 'next-auth/client'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -22,10 +23,12 @@ export default function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          
-          <DefaultLayout>
-            <Component {...pageProps} />
-          </DefaultLayout>
+
+          <SessionProvider session={pageProps.session}>
+            <DefaultLayout>
+              <Component {...pageProps} />
+            </DefaultLayout>
+          </SessionProvider>
         </ThemeProvider>
       </Provider>
     </>

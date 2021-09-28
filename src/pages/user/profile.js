@@ -9,8 +9,21 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { schema } from 'common/utils/validation-schema'
 import SidebarUser from 'modules/user/SidebarUser'
+import { getSession } from 'next-auth/client'
+import { url } from 'common/utils/constants'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: url.notLogin,
+        permanent: false,
+      },
+    }
+  }
+
   const fieldRes = await fetch(`${process.env.API_URL}/field`)
   const fieldData = await fieldRes.json()
 
