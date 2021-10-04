@@ -16,7 +16,6 @@
 # production
 /build
 src/common/test
-db.json
 
 # misc
 .DS_Store

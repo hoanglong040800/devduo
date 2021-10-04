@@ -32,7 +32,7 @@
       "money": 1525,
       "mentee": 20
     },
-    
+
     {
       "id": 4,
       "username": "elonmusk",
@@ -68,34 +68,56 @@
   ],
 
   "field": [
-    "AI",
-    "Blockchain",
-    "Big data",
-    "Web",
-    "Android",
-    "iOS",
-    "Mobile",
-    "ML",
-    "DL",
-    "PM",
-    "BA",
-    "BrSE",
-    "TL",
-    "BTL"
+    {
+      "id": 1,
+      "name": "AI"
+    },
+    {
+      "id": 2,
+      "name": "Blockchain"
+    },
+    {
+      "id": 3,
+      "name": "Big data"
+    },
+    {
+      "id": 4,
+      "name": "Web"
+    },
+    {
+      "id": 5,
+      "name": "Android"
+    },
+    {
+      "id": 6,
+      "name": "iOS"
+    }
   ],
 
   "technology": [
-    "C#",
-    "C++",
-    "Java",
-    "PHP",
-    "Ruby",
-    "Golang",
-    "ReactJS",
-    "NextJS",
-    "NodeJS",
-    "Python",
-    "Kotlin",
-    "Flutter"
+    {
+      "id": 1,
+      "name": "JS"
+    },
+    {
+      "id": 2,
+      "name": "C#"
+    },
+    {
+      "id": 3,
+      "name": "Java"
+    },
+    {
+      "id": 4,
+      "name": "PHP"
+    },
+    {
+      "id": 5,
+      "name": "Ruby"
+    },
+    {
+      "id": 6,
+      "name": "Golang"
+    }
   ]
 }

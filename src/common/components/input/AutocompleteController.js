@@ -1,6 +1,5 @@
 import { Chip, TextField } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-import { getIdFromArrObj } from 'common/utils/util'
 import { Controller } from 'react-hook-form'
 
 export default function AutocompleteController({
@@ -10,13 +9,13 @@ export default function AutocompleteController({
   setValue,
   label = '',
   options = [],
-  optionLabel = 'id',
+  optionLabel = 'name',
   defaultValue = [],
   required = false,
   limitTags = 5,
 }) {
   function handleOnChange(value) {
-    setValue(name, getIdFromArrObj(value), { shouldValidate: true })
+    setValue(name, value, { shouldValidate: true })
   }
 
   return (
@@ -28,7 +27,6 @@ export default function AutocompleteController({
           options={options}
           getOptionLabel={option => option[optionLabel]}
           getOptionSelected={(option, value) => option.id === value.id}
-          noOptionsText="Không có dữ liệu"
           defaultValue={defaultValue}
           limitTags={limitTags}
           multiple

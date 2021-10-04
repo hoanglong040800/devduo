@@ -20,14 +20,14 @@ export async function fetchMentorById(apiUrl, id) {
 }
 
 export async function fetchAllFields(apiUrl){
-  const res = await fetch(`${process.env.API_URL}/field`)
+  const res = await fetch(`${apiUrl}/field`)
   const data = await res.json()
 
   return data
 }
 
 export async function fetchAllTech(apiUrl){
-  const res = await fetch(`${process.env.API_URL}/technology`)
+  const res = await fetch(`${apiUrl}/technology`)
   const data = await res.json()
 
   return data

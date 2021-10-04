@@ -6,6 +6,8 @@ export default function TextFieldController({
   label,
   control,
   errors,
+  setValue,
+  type='text',
   defaultValue = '',
   required=false,
 }) {
@@ -19,6 +21,7 @@ export default function TextFieldController({
           <TextField
             {...field}
             label={label}
+            type={type}
             required={required}
             error={!!errors[name]}
             helperText={errors[name]?.message}

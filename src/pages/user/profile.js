@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Divider, Grid, makeStyles } from '@material-ui/core'
+import { Box, Button, Divider } from '@material-ui/core'
 import TextAreaController from 'common/components/input/TextAreaController'
 import TextFieldController from 'common/components/input/TextFieldController'
 import { useForm } from 'react-hook-form'
@@ -8,6 +8,8 @@ import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
 import { url } from 'common/utils/constants'
 import Head from 'next/head'
+import { fetchAllFields, fetchAllTech } from 'modules/mentor/fetch-mentor'
+import AutocompleteController from 'common/components/input/AutocompleteController'
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
@@ -21,22 +23,15 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const fieldRes = await fetch(`${process.env.API_URL}/field`)
-  const fieldData = await fieldRes.json()
-
-  const techRes = await fetch(`${process.env.API_URL}/technology`)
-  const techData = await techRes.json()
-
   return {
     props: {
-      fieldList: fieldData,
-      techList: techData,
+      fieldOptions: await fetchAllFields(process.env.API_URL),
+      techOptions: await fetchAllTech(process.env.API_URL),
     },
   }
 }
 
-export default function UserProfile({ fieldList, techList }) {
-  const classes = useStyles()
+export default function UserProfile({ fieldOptions, techOptions }) {
   const {
     handleSubmit,
     control,
@@ -50,6 +45,7 @@ export default function UserProfile({ fieldList, techList }) {
     form: {
       control: control,
       errors: errors,
+      setValue: setValue,
     },
   }
 
@@ -68,50 +64,69 @@ export default function UserProfile({ fieldList, techList }) {
       </Head>
 
       <SidebarUser value="/user/profile">
-        <h1>Profile</h1>
+        <h1>Edit Profile</h1>
 
         <Divider />
 
-        <TextFieldController
-          name="fullname"
-          label="Full Name"
-          required
-          {...property.form}
-        />
+        <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
+          <TextFieldController
+            name="fullname"
+            label="Full Name"
+            required
+            {...property.form}
+          />
 
-        <TextFieldController
-          name="thumnail_url"
-          label="Thumnail URL"
-          required
-          {...property.form}
-        />
+          <TextFieldController
+            name="thumnail_url"
+            label="Thumnail URL"
+            required
+            {...property.form}
+          />
 
-        <TextAreaController
-          name="description"
-          label="Description"
-          {...property.form}
-        />
+          <TextFieldController
+            name="money"
+            label="Money ($/h)"
+            type="number"
+            required
+            {...property.form}
+          />
 
-        <Box display="flex" justifyContent="flex-end" my={5}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={handleSubmit(onSubmit, onError)}
-          >
-            Save
-          </Button>
+          <Box mt={2}>
+            <AutocompleteController
+              name="fields"
+              label="Fields"
+              options={fieldOptions}
+              {...property.form}
+            />
+          </Box>
+
+          <Box mt={2}>
+            <AutocompleteController
+              name="tech"
+              label="Tech"
+              options={techOptions}
+              {...property.form}
+            />
+          </Box>
+
+          <TextAreaController
+            name="description"
+            label="Description"
+            {...property.form}
+          />
+
+          <Box display="flex" justifyContent="flex-end" my={5}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={handleSubmit(onSubmit, onError)}
+            >
+              Save
+            </Button>
+          </Box>
         </Box>
       </SidebarUser>
     </>
   )
 }
-
-const useStyles = makeStyles({
-  checkboxGroup: {
-    height: 150,
-    margin: '15px 0',
-    padding: '0 20px',
-    overflowY: 'scroll',
-  },
-})
