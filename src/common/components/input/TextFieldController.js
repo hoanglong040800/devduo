@@ -7,6 +7,7 @@ export default function TextFieldController({
   control,
   errors,
   defaultValue = '',
+  required=false,
 }) {
   return (
     <FormControl margin="normal" fullWidth>
@@ -18,6 +19,7 @@ export default function TextFieldController({
           <TextField
             {...field}
             label={label}
+            required={required}
             error={!!errors[name]}
             helperText={errors[name]?.message}
           />

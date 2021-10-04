@@ -1,5 +1,5 @@
 import { Checkbox, FormControl, FormControlLabel } from '@material-ui/core'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 export default function MultiCheckboxController({

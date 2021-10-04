@@ -1,16 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Chip, Divider, Grid, makeStyles } from '@material-ui/core'
-import { WorkOutlineOutlined } from '@material-ui/icons'
-import MultiCheckboxController from 'common/components/MultiCheckboxController'
-import TextAreaController from 'common/components/TextAreaController'
-import TextFieldController from 'common/components/TextFieldController'
-import { useState } from 'react'
+import { Box, Button, Divider, Grid, makeStyles } from '@material-ui/core'
+import TextAreaController from 'common/components/input/TextAreaController'
+import TextFieldController from 'common/components/input/TextFieldController'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { schema } from 'common/utils/validation-schema'
+import { profileSchema } from 'common/utils/validation-schema'
 import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
 import { url } from 'common/utils/constants'
+import Head from 'next/head'
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
@@ -40,126 +37,73 @@ export async function getServerSideProps(context) {
 
 export default function UserProfile({ fieldList, techList }) {
   const classes = useStyles()
-  const dispatch = useDispatch()
   const {
-    watch,
     handleSubmit,
     control,
     formState: { errors },
     setValue,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(profileSchema),
   })
 
   const property = {
-    leftGrid: {
-      item: true,
-      xs: 12,
-      sm: 4,
-    },
-
-    rightGrid: {
-      item: true,
-      xs: 12,
-      sm: 8,
-    },
-
-    fullGrid: {
-      item: true,
-      xs: 12,
-    },
-
     form: {
       control: control,
       errors: errors,
     },
   }
 
-  const [selectedFields, setSelectedFields] = useState([])
-  const [selectedTechs, setSelectedTechs] = useState([])
+  function onSubmit(data) {
+    console.log('SUBMIT', data)
+  }
 
-  function onSubmit() {
-    alert(watch('fields'))
+  function onError(err) {
+    console.log('ERROR', err)
   }
 
   return (
-    <SidebarUser value="/user/profile">
-      <h1>Profile</h1>
+    <>
+      <Head>
+        <title>Edit Profile</title>
+      </Head>
 
-      <Divider />
+      <SidebarUser value="/user/profile">
+        <h1>Profile</h1>
 
-      <form>
-        <Grid container spacing={4}>
-          <Grid {...property.leftGrid}>
-            <TextFieldController
-              name="thumnailUrl"
-              label="Thumnail URL"
-              {...property.form}
-            />
-          </Grid>
+        <Divider />
 
-          <Grid {...property.rightGrid}>
-            <h3>Thumnail image</h3>
-          </Grid>
+        <TextFieldController
+          name="fullname"
+          label="Full Name"
+          required
+          {...property.form}
+        />
 
-          <Grid {...property.fullGrid}>
-            <TextFieldController
-              name="fullname"
-              label="Full Name"
-              {...property.form}
-            />
-          </Grid>
+        <TextFieldController
+          name="thumnail_url"
+          label="Thumnail URL"
+          required
+          {...property.form}
+        />
 
-          <Grid {...property.leftGrid}>
-            <Box display="flex" alignItems="center">
-              <WorkOutlineOutlined />
-              Field
-            </Box>
+        <TextAreaController
+          name="description"
+          label="Description"
+          {...property.form}
+        />
 
-            <Box className={classes.checkboxGroup}>
-              <MultiCheckboxController
-                list={fieldList}
-                name="fields"
-                control={control}
-                setValue={setValue}
-                selectedList={selectedFields}
-                setSelectedList={setSelectedFields}
-              />
-            </Box>
-          </Grid>
-
-          <Grid {...property.rightGrid}>
-            <Box my={5}>
-              {
-                //
-                selectedFields.map(item => (
-                  <Chip key={item} label={item} variant="outlined" />
-                ))
-              }
-            </Box>
-          </Grid>
-
-          <Grid {...property.fullGrid}>
-            <TextAreaController
-              name="description"
-              label="Description"
-              {...property.form}
-            />
-          </Grid>
-
-          <Box display="flex" justifyContent="flex-end" my={5}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={onSubmit}
-            >
-              Save
-            </Button>
-          </Box>
-        </Grid>
-      </form>
-    </SidebarUser>
+        <Box display="flex" justifyContent="flex-end" my={5}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleSubmit(onSubmit, onError)}
+          >
+            Save
+          </Button>
+        </Box>
+      </SidebarUser>
+    </>
   )
 }
 
