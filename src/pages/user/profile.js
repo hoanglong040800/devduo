@@ -10,6 +10,7 @@ import { url } from 'common/utils/constants'
 import Head from 'next/head'
 import { fetchAllFields, fetchAllTech } from 'modules/mentor/fetch-mentor'
 import AutocompleteController from 'common/components/input/AutocompleteController'
+import { arrToObjWithData } from 'common/utils/utils'
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
@@ -33,12 +34,25 @@ export async function getServerSideProps(context) {
 
 export default function UserProfile({ fieldOptions, techOptions }) {
   const {
+    watch,
     handleSubmit,
     control,
     formState: { errors },
     setValue,
   } = useForm({
     resolver: yupResolver(profileSchema),
+    defaultValues: {
+      fullname: 'abc',
+      thumnail_url: 'http://abc.com',
+      money: 10,
+      fields: [],
+      tech: [],
+      description: '',
+      contact: {},
+      phone: '0937229340',
+      fb: 'http://fb.com',
+      linkedin: 'http://linkedin.com',
+    },
   })
 
   const property = {
@@ -49,7 +63,20 @@ export default function UserProfile({ fieldOptions, techOptions }) {
     },
   }
 
+  const contacts = ['phone', 'fb', 'linkedin']
+
   function onSubmit(data) {
+    // assemble contact from contact fields
+    setValue('contact', arrToObjWithData(contacts, data))
+
+    // empty contacts to avoid errors at BE
+    contacts.map(value => {
+      data[value] = ''
+    })
+
+    data['contact'] = watch('contact')
+    data['user_id'] = 123
+
     console.log('SUBMIT', data)
   }
 
@@ -109,11 +136,36 @@ export default function UserProfile({ fieldOptions, techOptions }) {
             />
           </Box>
 
-          <TextAreaController
-            name="description"
-            label="Description"
-            {...property.form}
-          />
+          <Box mt={2}>
+            <TextAreaController
+              name="description"
+              label="Description"
+              {...property.form}
+            />
+          </Box>
+
+          <Box mt={2} maxWidth="300px">
+            <h3>Contacts*</h3>
+
+            <TextFieldController
+              name="phone"
+              label="Phone Number"
+              required
+              {...property.form}
+            />
+
+            <TextFieldController
+              name="fb"
+              label="Faccebook"
+              {...property.form}
+            />
+
+            <TextFieldController
+              name="linkedin"
+              label="LinkedIn"
+              {...property.form}
+            />
+          </Box>
 
           <Box display="flex" justifyContent="flex-end" my={5}>
             <Button

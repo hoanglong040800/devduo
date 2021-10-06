@@ -21,6 +21,7 @@ export default function TextAreaController({
             error={!!errors[name]}
             helperText={errors[name]?.message}
             multiline
+            variant='outlined'
             minRows={8}
             maxRows={10}
           />

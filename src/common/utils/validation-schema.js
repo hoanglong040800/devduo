@@ -10,6 +10,9 @@ export const authSchema = yup.object().shape({
     .oneOf([yup.ref('pswd'), null], 'This field does not match with password'),
 })
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
 export const profileSchema = yup.object().shape({
   fullname: yup.string().required().min(2).max(40).label('Full Name'),
 
@@ -28,4 +31,18 @@ export const profileSchema = yup.object().shape({
   tech: yup.array().max(5).label('Tech'),
 
   description: yup.string().max(255).label('Description'),
+
+  contact: yup.object().label('Contact'),
+
+  fb: yup.string().url().label('Facebook'),
+
+  linkedin: yup.string().url().label('LinkedIn'),
+
+  phone: yup
+    .string()
+    .required()
+    .min(10)
+    .max(10)
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .label('Phone number'),
 })
