@@ -26,13 +26,14 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
+      user_id: session.user.id,
       fieldOptions: await fetchAllFields(process.env.API_URL),
       techOptions: await fetchAllTech(process.env.API_URL),
     },
   }
 }
 
-export default function UserProfile({ fieldOptions, techOptions }) {
+export default function UserProfile({ user_id, fieldOptions, techOptions }) {
   const {
     watch,
     handleSubmit,
@@ -75,7 +76,7 @@ export default function UserProfile({ fieldOptions, techOptions }) {
     })
 
     data['contact'] = watch('contact')
-    data['user_id'] = 123
+    data['user_id'] = user_id
 
     console.log('SUBMIT', data)
   }

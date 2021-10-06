@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, IconButton, Button, Menu, MenuItem } from '@material-ui/core'
-import { AccountCircle } from '@material-ui/icons'
 import { signOut, useSession } from 'next-auth/client'
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/styles'
 import { url } from 'common/utils/constants'
 
