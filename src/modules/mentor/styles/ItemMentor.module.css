@@ -6,25 +6,28 @@
 
 .thumnail {
   position: relative;
-  height: 40%; /* .content */
+  height: 40%; /* relate to content */
   width: 100%;
 }
 
 .thumnail img {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: top center;
 }
 
 .content {
   padding: 0 20px;
-  height: 60%; /* .thumnail */
+  height: 60%; /* relate to thumnail */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.info {
-  height: 75%;
+.header {
+  height: 70%;
+  padding: 0.7rem 0 0.5rem 0;
   /* background-color: lightgreen; */
 }
 
@@ -43,8 +46,8 @@
   margin: 0 20px 0 0;
 }
 
-.stats {
-  height: 20%;
+.footer {
+  height: 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;

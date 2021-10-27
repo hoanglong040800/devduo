@@ -5,7 +5,7 @@ export const userPages = [
   },
   {
     label: 'Edit Profile',
-    pathname: '/user/profile',
+    pathname: '/user/edit-profile',
   },
   {
     label: 'Change Password',

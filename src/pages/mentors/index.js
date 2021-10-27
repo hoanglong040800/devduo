@@ -1,26 +1,20 @@
 import { Box, Button } from '@material-ui/core'
 import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
-import {
-  fetchAllFields,
-  fetchAllMentor,
-  fetchAllTech,
-} from 'modules/mentor/fetch-mentor'
+import { getAllMentor } from 'modules/mentor/fetch-mentor'
 import FilterMentor from 'modules/mentor/FilterMentor'
 import ListMentor from 'modules/mentor/ListMentor'
 import Head from 'next/head'
 import { useState } from 'react'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     props: {
-      mentorList: await fetchAllMentor(process.env.API_URL),
-      fieldList: await fetchAllFields(process.env.API_URL),
-      techList: await fetchAllTech(process.env.API_URL),
+      mentorList: await getAllMentor(process.env.API_URL),
     },
   }
 }
 
-export default function MentorPage({ mentorList, fieldList, techList }) {
+export default function MentorPage({ mentorList }) {
   const [showSidebar, setShowSidebar] = useState(false)
 
   return (
@@ -38,10 +32,7 @@ export default function MentorPage({ mentorList, fieldList, techList }) {
         </Button>
       </Box>
 
-      <SidebarMdTemplate
-        showSidebar={showSidebar}
-        sidebar={<FilterMentor fieldList={fieldList} techList={techList} />}
-      >
+      <SidebarMdTemplate showSidebar={showSidebar} sidebar={<FilterMentor />}>
         <ListMentor showSidebar={showSidebar} list={mentorList} />
       </SidebarMdTemplate>
     </>

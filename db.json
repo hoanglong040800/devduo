@@ -1,73 +1,144 @@
 {
-  "mentor": [
+  "mentors": [
     {
-      "id": 1,
-      "username": "elonmusk",
-      "fullname": "Elon Musk",
+      "user_id": 3,
+      "full_name": "Elon Musk",
+      "price": 50,
+      "description": "Some description text here",
+      "status": true,
       "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL"],
-      "tech": ["ReactJS", "NextJS"],
-      "money": 50,
-      "mentee": 5
-    },
+      "contacts": {
+        "phone": "0987654321",
+        "facebook": "https://fb.com",
+        "linkedin": "https://linkedin.com"
+      },
 
-    {
-      "id": 2,
-      "username": "elonmusk",
-      "fullname": "Bill Gates",
-      "thumnail": "https://static.cand.com.vn/Files/Image/minhtuyen/2021/05/17/thumb_660_e9cf1a07-f50c-4cc6-9d3e-cc8ca423934d.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
-      "tech": ["C++", "C#"],
-      "money": 1525,
-      "mentee": 20
-    },
+      "bookings": {
+        "total_pending": 3,
+        "totol_ongoing": 1,
+        "total_finish": 5
+      },
 
-    {
-      "id": 3,
-      "username": "jackma",
-      "fullname": "Jack Ma",
-      "thumnail": "https://hronline.vn/uploads/images/jackma.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
-      "tech": ["C++", "C#"],
-      "money": 1525,
-      "mentee": 20
-    },
+      "fields": [
+        {
+          "id": 1,
+          "name": "AI"
+        },
+        {
+          "id": 2,
+          "name": "Blockchain"
+        },
+        {
+          "id": 3,
+          "name": "Big data"
+        },
+        {
+          "id": 4,
+          "name": "Web"
+        },
+        {
+          "id": 5,
+          "name": "Mobile"
+        },
+        {
+          "id": 6,
+          "name": "iOS"
+        }
+      ],
 
+      "technologies": [
+        {
+          "id": 1,
+          "name": "JS"
+        },
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "PHP"
+        },
+        {
+          "id": 5,
+          "name": "Ruby"
+        },
+        {
+          "id": 6,
+          "name": "Golang"
+        }
+      ]
+    },
     {
-      "id": 4,
-      "username": "elonmusk",
-      "fullname": "Elon Musk",
+      "user_id": 1,
+      "full_name": "Elon Musk",
+      "price": 50,
+      "description": "Some description text here",
+      "status": true,
       "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL"],
-      "tech": ["ReactJS", "NextJS"],
-      "money": 50,
-      "mentee": 5
+      "contacts": {
+        "phone": "0987654321",
+        "facebook": "https://fb.com",
+        "linkedin": "https://linkedin.com"
+      },
+
+      "bookings": {
+        "total_pending": 3,
+        "totol_ongoing": 1,
+        "total_finish": 5
+      },
+
+      "fields": [
+        {
+          "id": 1,
+          "name": "AI"
+        }
+      ],
+
+      "technologies": [
+        {
+          "id": 4,
+          "name": "PHP"
+        }
+      ]
     },
 
     {
-      "id": 5,
-      "username": "elonmusk",
-      "fullname": "Bill Gates",
-      "thumnail": "https://static.cand.com.vn/Files/Image/minhtuyen/2021/05/17/thumb_660_e9cf1a07-f50c-4cc6-9d3e-cc8ca423934d.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
-      "tech": ["C++", "C#"],
-      "money": 1525,
-      "mentee": 20
-    },
+      "user_id": 2,
+      "full_name": "Elon Musk",
+      "price": 50,
+      "description": "",
+      "thumnail": "https://media.com",
+      "status": true,
 
-    {
-      "id": 6,
-      "username": "jackma",
-      "fullname": "Jack Ma",
-      "thumnail": "https://hronline.vn/uploads/images/jackma.jpg",
-      "field": ["AI", "Blockchain", "ML", "DL", "PM"],
-      "tech": ["C++", "C#"],
-      "money": 1525,
-      "mentee": 20
+      "bookings": {
+        "total_pending": 3,
+        "totol_ongoing": 1,
+        "total_finish": 5
+      },
+
+      "fields": [
+      ],
+
+      "technologies": [
+      ]
     }
   ],
 
-  "field": [
+  "users": [
+    {
+      "id": 1,
+      "email": "hoanglong040800@gmail.com",
+      "username": "hoanglong040800",
+      "password": ""
+    }
+  ],
+
+  "fields": [
     {
       "id": 1,
       "name": "AI"
@@ -86,7 +157,7 @@
     },
     {
       "id": 5,
-      "name": "Android"
+      "name": "Mobile"
     },
     {
       "id": 6,
@@ -94,7 +165,7 @@
     }
   ],
 
-  "technology": [
+  "technologies": [
     {
       "id": 1,
       "name": "JS"
@@ -118,6 +189,18 @@
     {
       "id": 6,
       "name": "Golang"
+    }
+  ],
+
+  "booking": [
+    {
+      "id": 1,
+      "mentor_id": 1,
+      "mentee_id": 2,
+      "money": 2,
+      "duration": 1.5,
+      "time_start": "1920",
+      "status": "ongoing"
     }
   ]
 }

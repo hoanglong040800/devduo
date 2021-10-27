@@ -7,7 +7,7 @@ export default function NavLinks() {
 
   return (
     <Box display="flex">
-      <Link href="/mentor">
+      <Link href="/mentors">
         <a>
           <Typography color="primary" className={classes.link}>
             Find Mentor

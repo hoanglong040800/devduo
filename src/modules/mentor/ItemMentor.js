@@ -9,7 +9,6 @@ import {
 } from '@material-ui/icons'
 import { useState } from 'react'
 import classes from './styles/ItemMentor.module.css'
-import { convertMoney } from 'common/utils/utils'
 import { useRouter } from 'next/router'
 
 export default function ItemMentor({ item }) {
@@ -19,27 +18,23 @@ export default function ItemMentor({ item }) {
   return (
     <Paper
       className={classes.paper}
-      onClick={() => router.push(`/mentor/${item.id}`)}
+      onClick={() => router.push(`/mentors/${item.user_id}`)}
     >
       <div className={classes.thumnail}>
-        <Image
-          src={`/api/imageproxy?url=${encodeURIComponent(item.thumnail)}`}
-          layout="fill"
-          objectFit="cover"
-          alt={item.fullname}
-          quality={60}
+        <img
+          src={item.thumnail}
+          alt={item.full_name}
         />
       </div>
 
       <div className={classes.content}>
-        <div className={classes.info}>
+        <div className={classes.header}>
           <Box
-            mb={2}
             display="flex"
             justifyContent="space-between"
             alignItems="center"
           >
-            <h4>{item.fullname}</h4>
+            <Typography variant='h6'>{item.full_name}</Typography>
 
             {fav ? (
               <IconButton
@@ -69,13 +64,13 @@ export default function ItemMentor({ item }) {
             <WorkOutlineOutlined className={classes.icon} />
 
             <Box>
-              {item.field.slice(0, 5).map((field, index) => {
+              {item.fields.slice(0, 5).map(field => {
                 return (
                   <Chip
-                    label={field}
+                    label={field.name}
                     size="small"
                     variant="outlined"
-                    key={index}
+                    key={field.id}
                   />
                 )
               })}
@@ -86,13 +81,13 @@ export default function ItemMentor({ item }) {
             <Code className={classes.icon} />
 
             <Box>
-              {item.tech.slice(0, 5).map((tech, index) => {
+              {item.technologies.slice(0, 5).map(technology => {
                 return (
                   <Chip
-                    label={tech}
+                    label={technology.name}
                     size="small"
                     variant="outlined"
-                    key={index}
+                    key={technology.id}
                   />
                 )
               })}
@@ -100,14 +95,14 @@ export default function ItemMentor({ item }) {
           </Box>
         </div>
 
-        <Box className={classes.stats}>
-          <p>Mentee: {item.mentee}</p>
+        <Box className={classes.footer}>
+          <p>Finish: 15</p>
 
           <Box display="flex" alignItems="center">
             <AttachMoney size="small" color="secondary" />
 
             <Typography color="secondary">
-              <b>{item.money}/h</b>
+              <b>{item.price}/h</b>
             </Typography>
           </Box>
         </Box>

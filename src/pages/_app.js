@@ -7,6 +7,7 @@ import 'common/styles/globals.css'
 import store from 'common/store'
 import DefaultLayout from 'common/layout/DefaultLayout'
 import { Provider as SessionProvider } from 'next-auth/client'
+import Auth from 'modules/auth/Auth'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -26,7 +27,13 @@ export default function MyApp({ Component, pageProps }) {
 
           <SessionProvider session={pageProps.session}>
             <DefaultLayout>
-              <Component {...pageProps} />
+              {Component.auth ? (
+                <Auth>
+                  <Component {...pageProps} />
+                </Auth>
+              ) : (
+                <Component {...pageProps} />
+              )}
             </DefaultLayout>
           </SessionProvider>
         </ThemeProvider>

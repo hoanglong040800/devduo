@@ -50,8 +50,8 @@ export default function ProfileMenu() {
             Booking
           </MenuItem>
 
-          <MenuItem onClick={() => router.push('/user/profile')}>
-            Profile
+          <MenuItem onClick={() => router.push('/user/edit-profile')}>
+            Edit Profile
           </MenuItem>
 
           <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>

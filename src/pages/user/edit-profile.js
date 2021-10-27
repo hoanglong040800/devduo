@@ -6,34 +6,34 @@ import { useForm } from 'react-hook-form'
 import { profileSchema } from 'common/utils/validation-schema'
 import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
-import { url } from 'common/utils/constants'
 import Head from 'next/head'
-import { fetchAllFields, fetchAllTech } from 'modules/mentor/fetch-mentor'
 import AutocompleteController from 'common/components/input/AutocompleteController'
 import { arrToObjWithData } from 'common/utils/utils'
+import { getAllFields, getAllTech } from 'modules/fetch-common'
+import { getMentorById } from 'modules/mentor/fetch-mentors'
 
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: url.notLogin,
-        permanent: false,
-      },
-    }
-  }
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  const apiUrl = process.env.API_URL
 
   return {
     props: {
-      user_id: session.user.id,
-      fieldOptions: await fetchAllFields(process.env.API_URL),
-      techOptions: await fetchAllTech(process.env.API_URL),
+      session,
+      apiUrl,
+      allFields: await getAllFields(apiUrl),
+      allTechnologies: await getAllTech(apiUrl),
+      mentorDetails: await getMentorById(apiUrl, session.user.id),
     },
   }
 }
 
-export default function UserProfile({ user_id, fieldOptions, techOptions }) {
+export default function UserProfile({
+  session,
+  apiUrl,
+  allFields,
+  allTechnologies,
+  mentorDetails,
+}) {
   const {
     watch,
     handleSubmit,
@@ -43,16 +43,16 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
   } = useForm({
     resolver: yupResolver(profileSchema),
     defaultValues: {
-      fullname: 'abc',
-      thumnail_url: 'http://abc.com',
-      money: 10,
-      fields: [],
-      tech: [],
-      description: '',
-      contact: {},
-      phone: '0937229340',
-      fb: 'http://fb.com',
-      linkedin: 'http://linkedin.com',
+      full_name: mentorDetails.full_name || '',
+      thumnail: mentorDetails.thumnail || '',
+      price: mentorDetails.price || 5,
+      fields: mentorDetails.fields || [],
+      technologies: mentorDetails.technologies || [],
+      description: mentorDetails.description || '',
+
+      contacts: mentorDetails.contacts || {},
+      facebook: mentorDetails.facebook || '',
+      linkedin: mentorDetails.linkedin || '',
     },
   })
 
@@ -64,19 +64,18 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
     },
   }
 
-  const contacts = ['phone', 'fb', 'linkedin']
-
   function onSubmit(data) {
-    // assemble contact from contact fields
-    setValue('contact', arrToObjWithData(contacts, data))
+    const contactFields = ['facebook', 'linkedin']
 
-    // empty contacts to avoid errors at BE
-    contacts.map(value => {
-      data[value] = ''
+    // assemble contact from contact fields
+    setValue('contact', arrToObjWithData(contactFields, data))
+
+    // empty contact fields to avoid errors at BE
+    contactFields.map(value => {
+      delete data[value]
     })
 
-    data['contact'] = watch('contact')
-    data['user_id'] = user_id
+    data['contacts'] = watch('contacts')
 
     console.log('SUBMIT', data)
   }
@@ -91,28 +90,28 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
         <title>Edit Profile</title>
       </Head>
 
-      <SidebarUser value="/user/profile">
+      <SidebarUser value="/user/edit-profile">
         <h1>Edit Profile</h1>
 
         <Divider />
 
         <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
           <TextFieldController
-            name="fullname"
+            name="full_name"
             label="Full Name"
             required
             {...property.form}
           />
 
           <TextFieldController
-            name="thumnail_url"
+            name="thumnail"
             label="Thumnail URL"
             required
             {...property.form}
           />
 
           <TextFieldController
-            name="money"
+            name="price"
             label="Money ($/h)"
             type="number"
             required
@@ -123,16 +122,20 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
             <AutocompleteController
               name="fields"
               label="Fields"
-              options={fieldOptions}
+              options={allFields}
+              defaultValue={mentorDetails.fields}
+              required
               {...property.form}
             />
           </Box>
 
           <Box mt={2}>
             <AutocompleteController
-              name="tech"
-              label="Tech"
-              options={techOptions}
+              name="technologies"
+              label="Technologies"
+              options={allTechnologies}
+              defaultValue={mentorDetails.technologies}
+              required
               {...property.form}
             />
           </Box>
@@ -146,17 +149,10 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
           </Box>
 
           <Box mt={2} maxWidth="300px">
-            <h3>Contacts*</h3>
+            <h3>Contacts</h3>
 
             <TextFieldController
-              name="phone"
-              label="Phone Number"
-              required
-              {...property.form}
-            />
-
-            <TextFieldController
-              name="fb"
+              name="facebook"
               label="Faccebook"
               {...property.form}
             />
@@ -183,3 +179,5 @@ export default function UserProfile({ user_id, fieldOptions, techOptions }) {
     </>
   )
 }
+
+UserProfile.auth = true

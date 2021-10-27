@@ -15,13 +15,11 @@ const options = {
 
   callbacks: {
     signIn: async (token, user, account) => {
-      console.log('-- signIn --')
       return Promise.resolve(token)
     },
 
     session: async (session, user) => {
-      console.log('-- session --')
-      session.user.id = user.sub
+      session.user.id = 1
       return Promise.resolve(session)
     },
   },
