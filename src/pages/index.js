@@ -14,7 +14,7 @@ export default function HomePage() {
         //
         session ? (
           <>
-            <h1>Hello, {session.user.name}</h1>
+            <h1>Hello, {session.user.full_name}</h1>
           </>
         ) : (
           <h1>Home page</h1>

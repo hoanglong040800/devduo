@@ -33,59 +33,48 @@ export default function ProfileMenu() {
 
   return (
     <Box display="flex" alignItems="center">
-      <div aria-label="booking">
-        <Button
-          color="secondary"
-          onClick={() => handleSelect('/user/booking/mentor')}
-        >
-          Booking: 5
-        </Button>
-      </div>
+      <Box onClick={toggleMenu} className={mui.imgContainer}>
+        <img
+          src={session.user.image}
+          alt={session.user.name}
+          width="100%"
+          height="100%"
+        />
+      </Box>
 
-      <div aria-label="profile">
-        <Box onClick={toggleMenu} className={mui.imgContainer}>
-          <img
-            src={session.user.image}
-            alt={session.user.name}
-            width="100%"
-            height="100%"
-          />
-        </Box>
+      <Menu
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        keepMounted
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <MenuItem onClick={() => handleSelect(`/mentors/${session.user.id}`)}>
+          <Typography variant="h6">{session.user.full_name}</Typography>
+        </MenuItem>
 
-        <Menu
-          open={Boolean(anchorEl)}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          keepMounted
-          getContentAnchorEl={null}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        >
-          <MenuItem onClick={() => handleSelect(`/mentors/${session.user.id}`)}>
-            <Typography variant="h6">{session.user.full_name}</Typography>
-          </MenuItem>
+        <Divider variant="middle" />
 
-          <Divider variant="middle" />
+        <MenuItem onClick={() => handleSelect('/user/booking/mentor')}>
+          Your mentor
+        </MenuItem>
 
-          <MenuItem onClick={() => handleSelect('/user/booking/mentor')}>
-            Your mentor
-          </MenuItem>
+        <MenuItem onClick={() => handleSelect('/user/booking/mentee')}>
+          Your mentee
+        </MenuItem>
 
-          <MenuItem onClick={() => handleSelect('/user/booking/mentee')}>
-            Your mentee
-          </MenuItem>
+        <MenuItem onClick={() => handleSelect('/user/edit-profile')}>
+          My Profile
+        </MenuItem>
 
-          <MenuItem onClick={() => handleSelect('/user/edit-profile')}>
-            Edit profile
-          </MenuItem>
+        <Divider variant="middle" />
 
-          <Divider variant="middle" />
-
-          <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>
-            Logout
-          </MenuItem>
-        </Menu>
-      </div>
+        <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>
+          Logout
+        </MenuItem>
+      </Menu>
     </Box>
   )
 }

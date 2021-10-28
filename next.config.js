@@ -10,7 +10,7 @@ module.exports = {
     return [
       {
         source: '/user',
-        destination: '/user/profile',
+        destination: '/user/edit-profile',
       },
       {
         source: '/user/booking',

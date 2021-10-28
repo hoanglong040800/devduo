@@ -73,6 +73,7 @@
         }
       ]
     },
+
     {
       "user_id": 1,
       "full_name": "Elon Musk",
@@ -112,7 +113,7 @@
       "full_name": "Elon Musk",
       "price": 50,
       "description": "",
-      "thumnail": "https://media.com",
+      "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
       "status": true,
 
       "bookings": {
@@ -122,9 +123,17 @@
       },
 
       "fields": [
+        {
+          "id": 1,
+          "name": "AI"
+        }
       ],
 
       "technologies": [
+        {
+          "id": 4,
+          "name": "PHP"
+        }
       ]
     }
   ],
