@@ -1,15 +1,23 @@
 export const userPages = [
   {
     label: 'Booking',
-    pathname: '/user/booking',
+    pathname: '/user/booking/mentor',
   },
   {
     label: 'Edit Profile',
     pathname: '/user/edit-profile',
   },
+]
+
+export const bookingPages = [
   {
-    label: 'Change Password',
-    pathname: '/user/change-password',
+    label: 'Mentor',
+    pathname: '/user/booking/mentor',
+  },
+
+  {
+    label: 'Mentee',
+    pathname: '/user/booking/mentee',
   },
 ]
 

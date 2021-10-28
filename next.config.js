@@ -12,6 +12,10 @@ module.exports = {
         source: '/user',
         destination: '/user/profile',
       },
+      {
+        source: '/user/booking',
+        destination: '/user/booking/mentor',
+      },
     ]
   },
 }

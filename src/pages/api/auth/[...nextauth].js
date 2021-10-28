@@ -14,12 +14,18 @@ const options = {
   ],
 
   callbacks: {
-    signIn: async (token, user, account) => {
+    jwt: async (token, user) => {
+      if (user) {
+        token['full_name'] = user['name']
+      }
+
       return Promise.resolve(token)
     },
 
-    session: async (session, user) => {
+    session: async (session, token) => {
       session.user.id = 1
+      session.user.full_name = token.full_name
+
       return Promise.resolve(session)
     },
   },

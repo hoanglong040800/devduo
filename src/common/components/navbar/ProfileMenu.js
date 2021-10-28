@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Box, IconButton, Button, Menu, MenuItem } from '@material-ui/core'
+import {
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+  Divider,
+  Typography,
+} from '@material-ui/core'
 import { signOut, useSession } from 'next-auth/client'
 import { makeStyles } from '@material-ui/styles'
 import { url } from 'common/utils/constants'
@@ -19,10 +26,18 @@ export default function ProfileMenu() {
     setAnchorEl(null)
   }
 
+  function handleSelect(pathname) {
+    handleClose()
+    router.push(`${pathname}`)
+  }
+
   return (
     <Box display="flex" alignItems="center">
       <div aria-label="booking">
-        <Button color="secondary" onClick={() => router.push('/user/booking')}>
+        <Button
+          color="secondary"
+          onClick={() => handleSelect('/user/booking/mentor')}
+        >
           Booking: 5
         </Button>
       </div>
@@ -46,13 +61,25 @@ export default function ProfileMenu() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
-          <MenuItem onClick={() => router.push('/user/booking')}>
-            Booking
+          <MenuItem onClick={() => handleSelect(`/mentors/${session.user.id}`)}>
+            <Typography variant="h6">{session.user.full_name}</Typography>
           </MenuItem>
 
-          <MenuItem onClick={() => router.push('/user/edit-profile')}>
-            Edit Profile
+          <Divider variant="middle" />
+
+          <MenuItem onClick={() => handleSelect('/user/booking/mentor')}>
+            Your mentor
           </MenuItem>
+
+          <MenuItem onClick={() => handleSelect('/user/booking/mentee')}>
+            Your mentee
+          </MenuItem>
+
+          <MenuItem onClick={() => handleSelect('/user/edit-profile')}>
+            Edit profile
+          </MenuItem>
+
+          <Divider variant="middle" />
 
           <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>
             Logout

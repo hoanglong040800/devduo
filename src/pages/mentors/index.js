@@ -1,6 +1,6 @@
 import { Box, Button } from '@material-ui/core'
 import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
-import { getAllMentor } from 'modules/mentor/fetch-mentor'
+import { getAllMentor } from 'modules/mentor/fetch-mentors'
 import FilterMentor from 'modules/mentor/FilterMentor'
 import ListMentor from 'modules/mentor/ListMentor'
 import Head from 'next/head'

@@ -1,4 +1,3 @@
-import { getMentorById } from 'modules/mentor/fetch-mentor'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -20,9 +19,7 @@ export default function MentorDetail({ details }) {
           <title>Mentor Detail - DevDuo</title>
         </Head>
 
-        <ContentTemplate>
-          <div>Loading...</div>
-        </ContentTemplate>
+        <div>Loading...</div>
       </>
     )
   }

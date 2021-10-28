@@ -1,4 +1,5 @@
 import { Divider } from '@material-ui/core'
+import BookingTabs from 'modules/booking/BookingTabs'
 import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
 import Head from 'next/head'
@@ -11,19 +12,20 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function UserChangePassword() {
+export default function BookingMentee() {
   return (
     <>
-    <Head>
-      <title>Change Password</title>
-    </Head>
-      <SidebarUser value="/user/change-password">
-        <h1>Change Password</h1>
+      <Head>
+        <title>Booking Mentor</title>
+      </Head>
 
-        <Divider />
+      <SidebarUser value="/user/booking/mentor">
+        <BookingTabs value="/user/booking/mentor">
+
+        </BookingTabs>
       </SidebarUser>
     </>
   )
 }
 
-UserChangePassword.auth=true
+BookingMentee.auth = true
