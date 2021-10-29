@@ -31,12 +31,22 @@ export default function ProfileMenu() {
     router.push(`${pathname}`)
   }
 
+  function handleLogout() {
+    const regEx = /user|booking|new/
+
+    regEx.test(router.pathname)
+      ? signOut({ callbackUrl: '/' })
+      : signOut({ redirect: false })
+
+    handleClose()
+  }
+
   return (
     <Box display="flex" alignItems="center">
       <Box onClick={toggleMenu} className={mui.imgContainer}>
         <img
           src={session.user.image}
-          alt={session.user.name}
+          alt={session.user.full_name}
           width="100%"
           height="100%"
         />
@@ -71,9 +81,7 @@ export default function ProfileMenu() {
 
         <Divider variant="middle" />
 
-        <MenuItem onClick={() => signOut({ callbackUrl: url.afterLogout })}>
-          Logout
-        </MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </Box>
   )

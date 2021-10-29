@@ -1,38 +1,42 @@
-import { Box, makeStyles } from '@material-ui/core'
+import { Box, Grid, makeStyles, Typography } from '@material-ui/core'
+import ContactDetail from './ContactDetail'
 
 export default function HeaderDetail({ details }) {
   const mui = useStyles()
 
   return (
-    <Box>
-      <div className={mui.imgContainer}>
-        <img
-          src={details.thumnail}
-          alt={details.full_name}
-          className={mui.img}
-        />
-      </div>
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={4}>
+        <div className={mui.imgContainer}>
+          <img
+            src={details.thumnail}
+            alt={details.full_name}
+            className={mui.img}
+          />
+        </div>
+      </Grid>
 
-      <Box px={2} py={2}>
-        <h2>Elon Musk</h2>
-      </Box>
-    </Box>
+      <Grid item xs={12} sm={8}>
+        <div className={mui.content}>
+          <Typography variant="h4">{details.full_name}</Typography>
+
+          <ContactDetail contacts={details.contacts} />
+        </div>
+      </Grid>
+    </Grid>
   )
 }
 
 const useStyles = makeStyles(theme => ({
   imgContainer: {
     display: 'flex',
-    justifyContent: 'center',
+    margin: '0 auto',
+    width: '100%',
+    height: 150,
 
-    [theme.breakpoints.down('md')]: {
-      width: 100,
-      height: 100,
-    },
-
-    [theme.breakpoints.up('md')]: {
-      width: 200,
-      height: 200,
+    [theme.breakpoints.down('sm')]: {
+      width: 150,
+      height: 150,
     },
   },
 
@@ -41,6 +45,17 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     objectFit: 'cover',
     objectPosition: 'center center',
-    borderRadius: 1000,
+    border: '1px solid rgba(0, 0, 0, 0.1)',
+    borderRadius: 20,
+  },
+
+  content: {
+    padding: [theme.spacing(2, 3)],
+
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
   },
 }))

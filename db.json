@@ -1,16 +1,16 @@
 {
   "mentors": [
     {
-      "user_id": 3,
+      "user_id": 1,
       "full_name": "Elon Musk",
       "price": 50,
       "description": "Some description text here",
       "status": true,
       "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
       "contacts": {
-        "phone": "0987654321",
         "facebook": "https://fb.com",
-        "linkedin": "https://linkedin.com"
+        "linkedin": "https://linkedin.com",
+        "github": "https://github.com"
       },
 
       "bookings": {
@@ -75,14 +75,13 @@
     },
 
     {
-      "user_id": 1,
+      "user_id": 2,
       "full_name": "Elon Musk",
       "price": 50,
       "description": "Some description text here",
       "status": true,
       "thumnail": "https://media.vneconomy.vn/images/upload/2021/05/07/960x0.jpg",
       "contacts": {
-        "phone": "0987654321",
         "facebook": "https://fb.com",
         "linkedin": "https://linkedin.com"
       },
@@ -140,7 +139,7 @@
 
   "users": [
     {
-      "id": 1,
+      "id": 3,
       "email": "hoanglong040800@gmail.com",
       "username": "hoanglong040800",
       "password": ""
