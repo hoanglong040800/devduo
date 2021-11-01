@@ -5,7 +5,7 @@ export async function getAllFields(apiUrl){
   return data
 }
 
-export async function getAllTech(apiUrl){
+export async function getAllTechnologies(apiUrl){
   const res = await fetch(`${apiUrl}/technologies`)
   const data = await res.json()
 

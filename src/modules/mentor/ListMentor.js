@@ -1,7 +1,7 @@
 import { Box, Grid } from '@material-ui/core'
 import ItemMentor from './ItemMentor'
 
-export default function ListMentor({ list, showSidebar = true }) {
+export default function ListMentor({ list, showSidebar = false }) {
   return (
     <Box>
       <Grid container spacing={3}>

@@ -1,4 +1,3 @@
-import { Divider } from '@material-ui/core'
 import BookingTabs from 'modules/booking/BookingTabs'
 import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'

@@ -1,17 +1,24 @@
 import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core'
+import { useSession, signIn } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 
 export default function SideInfo({ details }) {
   const mui = useStyles()
+  const [session, loading] = useSession()
   const [status, setStatus] = useState('')
   const [isBooked, setIsBooked] = useState(false)
+  const [isMyProfile, setIsMyProfile] = useState(false)
 
   useEffect(() => {
     setIsBooked(status === 'pending' || status === 'ongoing' ? true : false)
-  }, [status])
+
+    setIsMyProfile(
+      session ? (session.user.id === details.user_id ? true : false) : false
+    )
+  }, [status, session, details])
 
   function handleBook() {
-    setStatus('pending')
+    session ? setStatus('pending') : signIn('google')
   }
 
   function handleCancel() {
@@ -42,7 +49,7 @@ export default function SideInfo({ details }) {
         <Box display="flex" justifyContent="center">
           {
             //
-            isBooked ? (
+            isMyProfile ? null : isBooked ? (
               <Button
                 style={{ background: '#ff6b52', color: '#fff' }}
                 variant="contained"

@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Divider } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 import TextAreaController from 'common/components/input/TextAreaController'
 import TextFieldController from 'common/components/input/TextFieldController'
 import { useForm } from 'react-hook-form'
@@ -9,7 +9,7 @@ import { getSession } from 'next-auth/client'
 import Head from 'next/head'
 import AutocompleteController from 'common/components/input/AutocompleteController'
 import { arrToObjWithData } from 'common/utils/utils'
-import { getAllFields, getAllTech } from 'modules/fetch-common'
+import { getAllFields, getAllTechnologies } from 'modules/fetch-common'
 import { getMentorById } from 'modules/mentor/fetch-mentors'
 
 export async function getServerSideProps(ctx) {
@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
       session,
       apiUrl,
       allFields: await getAllFields(apiUrl),
-      allTechnologies: await getAllTech(apiUrl),
+      allTechnologies: await getAllTechnologies(apiUrl),
       mentorDetails: await getMentorById(apiUrl, session.user.id),
     },
   }
@@ -51,8 +51,9 @@ export default function UserProfile({
       description: mentorDetails.description || '',
 
       contacts: mentorDetails.contacts || {},
-      facebook: mentorDetails.facebook || '',
-      linkedin: mentorDetails.linkedin || '',
+      facebook: mentorDetails.contacts.facebook || '',
+      linkedin: mentorDetails.contacts.linkedin || '',
+      github: mentorDetails.contacts.github || '',
     },
   })
 
@@ -65,7 +66,7 @@ export default function UserProfile({
   }
 
   function onSubmit(data) {
-    const contactFields = ['facebook', 'linkedin']
+    const contactFields = ['facebook', 'linkedin', 'github']
 
     // assemble contact from contact fields
     setValue('contact', arrToObjWithData(contactFields, data))
@@ -91,9 +92,6 @@ export default function UserProfile({
       </Head>
 
       <SidebarUser value="/user/edit-profile">
-        <h1>Edit Profile</h1>
-
-        <Divider />
 
         <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
           <TextFieldController
@@ -160,6 +158,12 @@ export default function UserProfile({
             <TextFieldController
               name="linkedin"
               label="LinkedIn"
+              {...property.form}
+            />
+
+            <TextFieldController
+              name="github"
+              label="Github"
               {...property.form}
             />
           </Box>

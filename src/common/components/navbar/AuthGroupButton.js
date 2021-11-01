@@ -1,5 +1,4 @@
 import { Box, Button } from '@material-ui/core'
-import { url } from 'common/utils/constants'
 import { signIn } from 'next-auth/client'
 
 export default function AuthGroupButton() {
@@ -9,11 +8,7 @@ export default function AuthGroupButton() {
         <Button
           color="primary"
           variant="contained"
-          onClick={() =>
-            signIn('google', {
-              callbackUrl: url.afterLogin,
-            })
-          }
+          onClick={() => signIn('google')}
         >
           Login
         </Button>

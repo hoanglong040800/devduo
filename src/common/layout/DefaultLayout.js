@@ -1,6 +1,5 @@
 import { Box, Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Footer from 'common/components/footer/Footer'
 import Navbar from 'common/components/navbar/Navbar'
 
 export default function DefaultLayout({ children }) {
@@ -16,8 +15,6 @@ export default function DefaultLayout({ children }) {
             {children}
           </Box>
         </Container>
-
-        <Footer />
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import { Box, Button } from '@material-ui/core'
 import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
+import { getAllFields, getAllTechnologies } from 'modules/fetch-common'
 import { getAllMentor } from 'modules/mentor/fetch-mentors'
 import FilterMentor from 'modules/mentor/FilterMentor'
 import ListMentor from 'modules/mentor/ListMentor'
@@ -9,18 +10,20 @@ import { useState } from 'react'
 export async function getServerSideProps() {
   return {
     props: {
+      allFields: await getAllFields(process.env.API_URL),
+      allTechnologies: await getAllTechnologies(process.env.API_URL),
       mentorList: await getAllMentor(process.env.API_URL),
     },
   }
 }
 
-export default function MentorPage({ mentorList }) {
+export default function MentorPage({ mentorList, allFields, allTechnologies }) {
   const [showSidebar, setShowSidebar] = useState(false)
 
   return (
     <>
       <Head>
-        <title>Find your mentor | DevDuo</title>
+        <title>Find your mentor - DevDuo</title>
       </Head>
 
       <Box my={3}>
@@ -28,11 +31,19 @@ export default function MentorPage({ mentorList }) {
           variant={showSidebar ? 'contained' : 'outlined'}
           onClick={() => setShowSidebar(!showSidebar)}
         >
-          Filter
+          Toggle filter
         </Button>
       </Box>
 
-      <SidebarMdTemplate showSidebar={showSidebar} sidebar={<FilterMentor />}>
+      <SidebarMdTemplate
+        showSidebar={showSidebar}
+        sidebar={
+          <FilterMentor
+            allFields={allFields}
+            allTechnologies={allTechnologies}
+          />
+        }
+      >
         <ListMentor showSidebar={showSidebar} list={mentorList} />
       </SidebarMdTemplate>
     </>

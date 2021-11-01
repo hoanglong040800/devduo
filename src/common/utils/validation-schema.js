@@ -30,11 +30,19 @@ export const profileSchema = yup.object().shape({
 
   technologies: yup.array().required().min(1).max(5).label('Technologies'),
 
-  description: yup.string().max(255).label('Description'),
+  description: yup.string().max(1000).label('Description'),
 
   contacts: yup.object().label('Contacts'),
 
   facebook: yup.string().url().label('Facebook'),
 
   linkedin: yup.string().url().label('LinkedIn'),
+
+  github: yup.string().url().label('Github'),
+})
+
+export const mentorFilterSchema = yup.object().shape({
+  fields: yup.array().max(1).label('Fields'),
+
+  technologies: yup.array().max(1).label('Technologies'),
 })

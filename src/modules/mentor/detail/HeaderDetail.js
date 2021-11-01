@@ -6,7 +6,7 @@ export default function HeaderDetail({ details }) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={4}>
         <div className={mui.imgContainer}>
           <img
             src={details.thumnail}
@@ -16,7 +16,7 @@ export default function HeaderDetail({ details }) {
         </div>
       </Grid>
 
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={8}>
         <div className={mui.content}>
           <Typography variant="h4">{details.full_name}</Typography>
 
