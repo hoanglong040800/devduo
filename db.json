@@ -13,13 +13,11 @@
         "github": "https://github.com/hoanglong040800",
         "linkedin": "https://linkedin.com"
       },
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 1,
@@ -46,7 +44,6 @@
           "name": "iOS"
         }
       ],
-
       "technologies": [
         {
           "id": 1,
@@ -74,7 +71,6 @@
         }
       ]
     },
-
     {
       "user_id": 2,
       "full_name": "Long Trần Hoàng",
@@ -86,20 +82,17 @@
         "facebook": "https://fb.com",
         "linkedin": "https://linkedin.com"
       },
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 1,
           "name": "AI"
         }
       ],
-
       "technologies": [
         {
           "id": 4,
@@ -107,7 +100,6 @@
         }
       ]
     },
-
     {
       "user_id": 3,
       "full_name": "Bill Gates",
@@ -120,20 +112,17 @@
         "github": "https://github.com",
         "linkedin": "https://linkedin.com"
       },
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 1,
           "name": "AI"
         }
       ],
-
       "technologies": [
         {
           "id": 4,
@@ -148,20 +137,17 @@
       "description": "Another description here",
       "thumnail": "https://icdn.dantri.com.vn/thumb_w/660/2021/07/23/elon-musk-1627029117041.png",
       "status": true,
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 1,
           "name": "AI"
         }
       ],
-
       "technologies": [
         {
           "id": 4,
@@ -176,13 +162,11 @@
       "description": "Another description here",
       "thumnail": "http://khoahocphattrien.vn/Images/Uploaded/Share/2021/02/03/42cSec_Bezos_1036084400.jpg",
       "status": true,
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 4,
@@ -197,7 +181,6 @@
           "name": "iOS"
         }
       ],
-
       "technologies": [
         {
           "id": 1,
@@ -220,13 +203,11 @@
       "description": "Another description here",
       "thumnail": "https://vcdn-vnexpress.vnecdn.net/2021/05/29/hieu-pc-1374-1622279339.jpg",
       "status": true,
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 4,
@@ -241,7 +222,6 @@
           "name": "iOS"
         }
       ],
-
       "technologies": [
         {
           "id": 1,
@@ -264,13 +244,11 @@
       "description": "Nice meme ban 30 days",
       "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg",
       "status": true,
-
       "bookings": {
         "total_pending": 3,
         "totol_ongoing": 1,
         "total_finish": 5
       },
-
       "fields": [
         {
           "id": 4,
@@ -285,7 +263,6 @@
           "name": "iOS"
         }
       ],
-
       "technologies": [
         {
           "id": 1,
@@ -302,7 +279,6 @@
       ]
     }
   ],
-
   "users": [
     {
       "id": 1,
@@ -310,7 +286,6 @@
       "username": "hoanglong040800",
       "password": ""
     },
-
     {
       "id": 2,
       "email": "18520093@gm.uit.edu.vn",
@@ -318,7 +293,6 @@
       "password": ""
     }
   ],
-
   "fields": [
     {
       "id": 1,
@@ -345,7 +319,6 @@
       "name": "iOS"
     }
   ],
-
   "technologies": [
     {
       "id": 1,
@@ -372,16 +345,63 @@
       "name": "Golang"
     }
   ],
-
+  
   "booking": [
     {
-      "id": 1,
-      "mentor_id": 1,
-      "mentee_id": 2,
-      "money": 2,
-      "duration": 1.5,
-      "time_start": "1920",
-      "status": "ongoing"
+      "duration": 1,
+      "total_price": 80,
+      "mentee": {
+        "id": 1,
+        "full_name": "Long Trần"
+      },
+      "mentor": {
+        "id": 7,
+        "full_name": "Mark Zukerberg"
+      },
+      "status": "finsh",
+      "id": 1
+    },
+    {
+      "duration": 1,
+      "total_price": 80,
+      "mentee": {
+        "id": 1,
+        "full_name": "Long Trần"
+      },
+      "mentor": {
+        "id": 2,
+        "full_name": "Trần Hoàng Long"
+      },
+      "status": "ongoing",
+      "id": 2
+    },
+    {
+      "duration": 1,
+      "total_price": 80,
+      "mentee": {
+        "id": 1,
+        "full_name": "Long Trần"
+      },
+      "mentor": {
+        "id": 7,
+        "full_name": "Mark Zukerberg"
+      },
+      "status": "cancel",
+      "id": 3
+    },
+    {
+      "duration": 1,
+      "total_price": 60,
+      "mentee": {
+        "id": 1,
+        "full_name": "Long Trần"
+      },
+      "mentor": {
+        "id": 3,
+        "full_name": "Bill Gates"
+      },
+      "status": "ongoing",
+      "id": 4
     }
   ]
 }

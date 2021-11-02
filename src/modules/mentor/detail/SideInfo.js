@@ -11,7 +11,7 @@ export default function SideInfo({ details, status, onClickBook, onCancel }) {
   const [isMyProfile, setIsMyProfile] = useState(false)
 
   useEffect(() => {
-    setIsBooked(status === 'pending' || status === 'ongoing' ? true : false)
+    setIsBooked(status === 'ongoing' ? true : false)
 
     setIsMyProfile(
       session ? (session.user.id === details.user_id ? true : false) : false

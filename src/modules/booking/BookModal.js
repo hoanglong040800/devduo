@@ -33,13 +33,7 @@ export default function BookModal({
 
   useEffect(() => {
     setValue('total_price', details.price * watch('duration'))
-  }, [watch('duration')])
-
-  function onSubmit(data) {
-    console.log('SUBMIT', data)
-
-    onBook(data)
-  }
+  }, [watch('duration'), details.price])
 
   function onError(error) {
     console.log('ERROR', error)
@@ -116,7 +110,7 @@ export default function BookModal({
             <Button
               variant="contained"
               color="primary"
-              onClick={handleSubmit(onSubmit, onError)}
+              onClick={handleSubmit(onBook, onError)}
               disabled={money < watch('total_price')}
             >
               Book

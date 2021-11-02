@@ -1,6 +1,7 @@
 import { Box } from '@material-ui/core'
 import RightSidebarTemplate from 'common/template/RightSidebarTemplate'
 import BookModal from 'modules/booking/BookModal'
+import { addBooking, getCurrentBooking } from 'modules/booking/fetch-booking'
 import MainInfo from 'modules/mentor/detail/MainInfo'
 import SideInfo from 'modules/mentor/detail/SideInfo'
 import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
@@ -8,22 +9,37 @@ import ListMentor from 'modules/mentor/ListMentor'
 import { signIn, useSession } from 'next-auth/client'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export async function getServerSideProps(ctx) {
+  const apiUrl = process.env.API_URL
+
   return {
     props: {
-      details: await getMentorById(process.env.API_URL, ctx.params.id),
-      limitMentors: await getLimitMentors(process.env.API_URL, 4),
+      apiUrl,
+      details: await getMentorById(apiUrl, ctx.params.id),
+      limitMentors: await getLimitMentors(apiUrl, 4),
     },
   }
 }
 
-export default function MentorDetail({ details, limitMentors }) {
+export default function MentorDetail({ apiUrl, details, limitMentors }) {
   const router = useRouter()
   const [session, loading] = useSession()
   const [openBookModal, setOpenBookModal] = useState(false)
-  const [status, setStatus] = useState('')
+  const [booking, setBooking] = useState({ id: null, status: '' })
+
+  useEffect(async () => {
+    if (session) {
+      const data = await getCurrentBooking(
+        apiUrl,
+        session.user.id,
+        details.user_id
+      )
+      if (data) setBooking(data)
+      else setBooking({ id: null, status: '' })
+    } else setBooking({ id: null, status: '' })
+  }, [session])
 
   function handleClickBook() {
     session ? handleOpenBookModal() : signIn('google')
@@ -38,15 +54,28 @@ export default function MentorDetail({ details, limitMentors }) {
   }
 
   async function handleBook(data) {
-    alert(
-      `You book ${details.full_name}\nDuration: ${data.duration}\nTotal price: ${data.total_price}`
-    )
-    setStatus('pending')
     handleCloseBookModal()
+
+    data['mentee'] = {}
+    data.mentee['id'] = session.user.id
+    data.mentee['full_name'] = session.user.full_name
+    data['mentor'] = {}
+    data.mentor['id'] = details.user_id
+    data.mentor['full_name'] = details.full_name
+
+    // data['mentee_id'] = session.user.id
+    // data['mentor_id'] = details.user_id
+    data['status'] = 'ongoing'
+
+    const resData = await addBooking(apiUrl, data)
+
+    console.log({ resData })
+
+    setBooking(resData)
   }
 
   function handleCancel() {
-    setStatus('cancel')
+    setBooking({ status: 'cancel', ...booking })
   }
 
   if (router.isFallback) {
@@ -71,7 +100,7 @@ export default function MentorDetail({ details, limitMentors }) {
         sidebar={
           <SideInfo
             details={details}
-            status={status}
+            status={booking.status}
             onClickBook={handleClickBook}
             onCancel={handleCancel}
           />
