@@ -5,7 +5,7 @@ import MainInfo from 'modules/mentor/detail/MainInfo'
 import SideInfo from 'modules/mentor/detail/SideInfo'
 import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
 import ListMentor from 'modules/mentor/ListMentor'
-import { useSession } from 'next-auth/client'
+import { signIn, useSession } from 'next-auth/client'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -37,8 +37,10 @@ export default function MentorDetail({ details, limitMentors }) {
     setOpenBookModal(false)
   }
 
-  function handleBook() {
-    alert(`You book ${details.full_name}`)
+  async function handleBook(data) {
+    alert(
+      `You book ${details.full_name}\nDuration: ${data.duration}\nTotal price: ${data.total_price}`
+    )
     setStatus('pending')
     handleCloseBookModal()
   }
@@ -82,6 +84,7 @@ export default function MentorDetail({ details, limitMentors }) {
         open={openBookModal}
         onClose={handleCloseBookModal}
         onBook={handleBook}
+        details={details}
       />
 
       <Box my={5}>

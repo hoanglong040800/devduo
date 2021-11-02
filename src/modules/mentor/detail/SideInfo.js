@@ -52,14 +52,26 @@ export default function SideInfo({ details, status, onClickBook, onCancel }) {
                 <Typography variant="h6">Edit Profile</Typography>
               </Button>
             ) : isBooked ? (
-              <Button
-                style={{ background: '#ff6b52', color: '#fff' }}
-                variant="contained"
-                fullWidth
-                onClick={onCancel}
-              >
-                <Typography variant="h6">Cancel</Typography>
-              </Button>
+              <div>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  fullWidth
+                  onClick={() => router.push('/user/booking/mentor')}
+                  style={{ marginBottom: 10 }}
+                >
+                  <Typography variant="h6">View booking</Typography>
+                </Button>
+
+                <Button
+                  style={{ background: '#ff6b52', color: '#fff' }}
+                  variant="contained"
+                  fullWidth
+                  onClick={onCancel}
+                >
+                  <Typography variant="h6">Cancel</Typography>
+                </Button>
+              </div>
             ) : (
               <Button
                 color="primary"
