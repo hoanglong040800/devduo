@@ -31,7 +31,7 @@ export default function BodyDetail({ details }) {
         <Typography variant="h5" gutterBottom>
           Description
         </Typography>
-        <Typography variant="body">{details.description}</Typography>
+        <Typography variant="body1">{details.description}</Typography>
       </Box>
     </Box>
   )

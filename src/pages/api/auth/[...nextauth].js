@@ -1,3 +1,4 @@
+import { getUserByEmail } from 'modules/user/fetch-users'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
@@ -16,6 +17,11 @@ const options = {
   callbacks: {
     jwt: async (token, user) => {
       if (user) {
+        const data = await getUserByEmail(process.env.API_URL, token['email'])
+
+        if (data) token['id'] = data.id
+        else token['id'] = 0
+
         token['full_name'] = user['name']
       }
 
@@ -23,7 +29,7 @@ const options = {
     },
 
     session: async (session, token) => {
-      session.user.id = 1
+      session.user.id = token.id
       session.user.full_name = token.full_name
 
       return Promise.resolve(session)

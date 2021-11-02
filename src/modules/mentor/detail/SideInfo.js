@@ -1,9 +1,11 @@
 import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core'
 import { useSession, signIn } from 'next-auth/client'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 export default function SideInfo({ details }) {
   const mui = useStyles()
+  const router = useRouter()
   const [session, loading] = useSession()
   const [status, setStatus] = useState('')
   const [isBooked, setIsBooked] = useState(false)
@@ -49,7 +51,16 @@ export default function SideInfo({ details }) {
         <Box display="flex" justifyContent="center">
           {
             //
-            isMyProfile ? null : isBooked ? (
+            isMyProfile ? (
+              <Button
+                color="primary"
+                variant="contained"
+                fullWidth
+                onClick={() => router.push('/user/edit-profile')}
+              >
+                <Typography variant="h6">Edit Profile</Typography>
+              </Button>
+            ) : isBooked ? (
               <Button
                 style={{ background: '#ff6b52', color: '#fff' }}
                 variant="contained"

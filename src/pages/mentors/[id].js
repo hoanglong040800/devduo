@@ -1,8 +1,8 @@
-import { Box, makeStyles, Typography } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import RightSidebarTemplate from 'common/template/RightSidebarTemplate'
 import MainInfo from 'modules/mentor/detail/MainInfo'
 import SideInfo from 'modules/mentor/detail/SideInfo'
-import { getAllMentor, getMentorById } from 'modules/mentor/fetch-mentors'
+import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
 import ListMentor from 'modules/mentor/ListMentor'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -11,12 +11,12 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       details: await getMentorById(process.env.API_URL, ctx.params.id),
-      allMentors: await getAllMentor(process.env.API_URL),
+      limitMentors: await getLimitMentors(process.env.API_URL, 4),
     },
   }
 }
 
-export default function MentorDetail({ details, allMentors }) {
+export default function MentorDetail({ details, limitMentors }) {
   const router = useRouter()
 
   if (router.isFallback) {
@@ -42,9 +42,9 @@ export default function MentorDetail({ details, allMentors }) {
       </RightSidebarTemplate>
 
       <Box my={5}>
-        <Typography variant="h3" gutterBottom>Mentors you may like</Typography>
+        <h1>Mentors you may like</h1>
 
-        <ListMentor list={allMentors} />
+        <ListMentor list={limitMentors} />
       </Box>
     </>
   )

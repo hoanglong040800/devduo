@@ -19,8 +19,10 @@ export default function HeaderDetail({ details }) {
       <Grid item xs={12} sm={8}>
         <div className={mui.content}>
           <Typography variant="h4">{details.full_name}</Typography>
-
-          <ContactDetail contacts={details.contacts} />
+          
+          {details.contacts ? (
+            <ContactDetail contacts={details.contacts} />
+          ) : null}
         </div>
       </Grid>
     </Grid>

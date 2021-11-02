@@ -16,7 +16,7 @@ export default function ListMentor({ list, showSidebar = false }) {
                     sm={6}
                     md={showSidebar ? 6 : 4}
                     lg={showSidebar ? 4 : 3}
-                    key={item.id}
+                    key={item.user_id}
                   >
                     <ItemMentor item={item} />
                   </Grid>
