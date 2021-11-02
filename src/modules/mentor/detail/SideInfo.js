@@ -3,11 +3,10 @@ import { useSession, signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-export default function SideInfo({ details }) {
+export default function SideInfo({ details, status, onClickBook, onCancel }) {
   const mui = useStyles()
   const router = useRouter()
   const [session, loading] = useSession()
-  const [status, setStatus] = useState('')
   const [isBooked, setIsBooked] = useState(false)
   const [isMyProfile, setIsMyProfile] = useState(false)
 
@@ -18,14 +17,6 @@ export default function SideInfo({ details }) {
       session ? (session.user.id === details.user_id ? true : false) : false
     )
   }, [status, session, details])
-
-  function handleBook() {
-    session ? setStatus('pending') : signIn('google')
-  }
-
-  function handleCancel() {
-    setStatus('cancel')
-  }
 
   return (
     <>
@@ -65,7 +56,7 @@ export default function SideInfo({ details }) {
                 style={{ background: '#ff6b52', color: '#fff' }}
                 variant="contained"
                 fullWidth
-                onClick={handleCancel}
+                onClick={onCancel}
               >
                 <Typography variant="h6">Cancel</Typography>
               </Button>
@@ -74,7 +65,7 @@ export default function SideInfo({ details }) {
                 color="primary"
                 variant="contained"
                 fullWidth
-                onClick={handleBook}
+                onClick={onClickBook}
               >
                 <Typography variant="h6">Book</Typography>
               </Button>
