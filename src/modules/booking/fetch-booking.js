@@ -9,6 +9,15 @@ export async function getAllMentorBooking(apiUrl, user_id) {
   return data
 }
 
+export async function getAllMenteeBooking(apiUrl, user_id) {
+  const res = await fetch(
+    `${apiUrl}/booking?mentor.id=${user_id}&_sort=id&_order=desc`
+  )
+  const data = await res.json()
+
+  return data
+}
+
 export async function getCurrentBooking(apiUrl, mentee_id, mentor_id) {
   const res = await fetch(
     `${apiUrl}/booking?mentee.id=${mentee_id}&mentor.id=${mentor_id}&status=ongoing&_sort=id&_order=desc`

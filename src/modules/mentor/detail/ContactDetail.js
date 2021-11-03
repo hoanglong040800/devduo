@@ -1,10 +1,11 @@
 import { Box, makeStyles } from '@material-ui/core'
-import { Facebook, GitHub, LinkedIn } from '@material-ui/icons'
+import { Facebook, GitHub, Language, LinkedIn } from '@material-ui/icons'
 
 const contactsComponents = {
   facebook: <Facebook style={{ color: '#1877F2' }} />,
   github: <GitHub style={{ color: '#333' }} />,
   linkedin: <LinkedIn style={{ color: '#0077B5' }} />,
+  website: <Language style={{ color: '#333' }} />,
 }
 
 export default function ContactDetail({ contacts }) {

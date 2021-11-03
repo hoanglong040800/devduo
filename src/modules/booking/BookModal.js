@@ -56,14 +56,14 @@ export default function BookModal({
               control={control}
               errors={errors}
             >
-              <MenuItem value={1}>1 giờ</MenuItem>
-              <MenuItem value={2}>2 giờ</MenuItem>
-              <MenuItem value={3}>3 giờ</MenuItem>
-              <MenuItem value={4}>4 giờ</MenuItem>
-              <MenuItem value={5}>5 giờ</MenuItem>
-              <MenuItem value={6}>6 giờ</MenuItem>
-              <MenuItem value={7}>7 giờ</MenuItem>
-              <MenuItem value={8}>8 giờ</MenuItem>
+              <MenuItem value={1}>1 hour</MenuItem>
+              <MenuItem value={2}>2 hours</MenuItem>
+              <MenuItem value={3}>3 hours</MenuItem>
+              <MenuItem value={4}>4 hours</MenuItem>
+              <MenuItem value={5}>5 hours</MenuItem>
+              <MenuItem value={6}>6 hours</MenuItem>
+              <MenuItem value={7}>7 hours</MenuItem>
+              <MenuItem value={8}>8 hours</MenuItem>
             </SelectController>
 
             <Box

@@ -39,6 +39,8 @@ export const profileSchema = yup.object().shape({
   linkedin: yup.string().url().label('LinkedIn'),
 
   github: yup.string().url().label('Github'),
+
+  website: yup.string().url().label('Website'),
 })
 
 export const mentorFilterSchema = yup.object().shape({

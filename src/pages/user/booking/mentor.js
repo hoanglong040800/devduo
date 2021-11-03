@@ -4,6 +4,8 @@ import { getSession } from 'next-auth/client'
 import { getAllMentorBooking } from 'modules/booking/fetch-booking'
 import Head from 'next/head'
 import { Box } from '@material-ui/core'
+import Link from 'next/link'
+import BookingList from 'modules/booking/list/BookingList'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
@@ -12,30 +14,21 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       apiUrl,
-      allActiveMentorBooking: await getAllMentorBooking(
-        apiUrl,
-        session.user.id
-      ),
+      allMentorBooking: await getAllMentorBooking(apiUrl, session.user.id),
     },
   }
 }
 
-export default function BookingMentee({ apiUrl, allActiveMentorBooking }) {
+export default function BookingMentee({ apiUrl, allMentorBooking }) {
   return (
     <>
       <Head>
-        <title>Booking Mentor</title>
+        <title>Your mentor</title>
       </Head>
 
       <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentor">
-          {allActiveMentorBooking.map(item => (
-            <Box key={item.id} mb={3}>
-              <p>{item.mentor.full_name}</p>
-              <p>{item.status}</p>
-              <p>{item.total_price}</p>
-            </Box>
-          ))}
+          <BookingList list={allMentorBooking} />
         </BookingTabs>
       </SidebarUser>
     </>

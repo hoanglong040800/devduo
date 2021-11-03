@@ -54,6 +54,7 @@ export default function UserProfile({
       facebook: mentorDetails.contacts.facebook || '',
       linkedin: mentorDetails.contacts.linkedin || '',
       github: mentorDetails.contacts.github || '',
+      website: mentorDetails.contacts.website || '',
     },
   })
 
@@ -92,7 +93,6 @@ export default function UserProfile({
       </Head>
 
       <SidebarUser value="/user/edit-profile">
-
         <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
           <TextFieldController
             name="full_name"
@@ -164,6 +164,12 @@ export default function UserProfile({
             <TextFieldController
               name="github"
               label="Github"
+              {...property.form}
+            />
+
+            <TextFieldController
+              name="website"
+              label="Website"
               {...property.form}
             />
           </Box>
