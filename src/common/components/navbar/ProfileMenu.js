@@ -44,12 +44,7 @@ export default function ProfileMenu() {
   return (
     <Box display="flex" alignItems="center">
       <Box onClick={toggleMenu} className={mui.imgContainer}>
-        <img
-          src={session.user.image}
-          alt={session.user.full_name}
-          width="100%"
-          height="100%"
-        />
+        <img src={session.user.thumnail} alt={session.user.full_name} />
       </Box>
 
       <Menu
@@ -96,6 +91,9 @@ const useStyles = makeStyles({
     cursor: 'pointer',
 
     '& img': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
       borderRadius: 100,
       border: '0.5px solid rgba(0, 0, 0, 0.2)',
     },

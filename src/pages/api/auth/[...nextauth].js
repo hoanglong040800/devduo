@@ -1,3 +1,4 @@
+import { getMentorById } from 'modules/mentor/fetch-mentors'
 import { getUserByEmail } from 'modules/user/fetch-users'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
@@ -19,10 +20,12 @@ const options = {
       if (user) {
         const data = await getUserByEmail(process.env.API_URL, token['email'])
 
-        if (data) token['id'] = data.id
-        else token['id'] = 0
-
-        token['full_name'] = user['name']
+        if (data) {
+          token['id'] = data.id
+          const profile = await getMentorById(process.env.API_URL, data.id)
+          token['thumnail'] = profile.thumnail
+          token['full_name'] = profile.full_name
+        } else token['id'] = 0
       }
 
       return Promise.resolve(token)
@@ -30,6 +33,7 @@ const options = {
 
     session: async (session, token) => {
       session.user.id = token.id
+      session.user.thumnail = token.thumnail
       session.user.full_name = token.full_name
 
       return Promise.resolve(session)

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "user_id": 1,
-      "full_name": "Long Trần",
+      "full_name": "Thỏ bảy màu",
       "price": 50,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, rem! Dolor voluptas molestiae atque dicta mollitia. Maxime blanditiis fugit unde repellat facere ullam recusandae. Vel, quasi sapiente rerum aspernatur soluta non minus ut amet distinctio quidem consequatur earum accusamus optio labore architecto beatae perspiciatis animi ab culpa!\n Qui, accusamus! Laborum architecto voluptates aliquam soluta eveniet optio doloribus placeat est dicta odio quam eaque similique adipisci nesciunt, aliquid eligendi repellat sed quo. Tempore expedita cumque quasi dicta id odit tenetur perferendis accusamus dolores, doloribus quaerat fuga, nihil ex molestiae voluptas necessitatibus autem aperiam itaque numquam consequatur?\n Quibusdam repellat magni doloremque enim?",
       "status": true,
@@ -73,34 +73,42 @@
       ]
     },
     {
-      "user_id": 2,
-      "full_name": "Long Trần Hoàng",
-      "price": 100,
-      "description": "Some description text here",
-      "status": true,
+      "full_name": "Test account",
       "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg",
-      "contacts": {
-        "facebook": "https://fb.com",
-        "website": "https://yourwebsite.com",
-        "linkedin": "https://linkedin.com"
-      },
-      "bookings": {
-        "total_pending": 3,
-        "totol_ongoing": 1,
-        "total_finish": 5
-      },
+      "price": 5,
       "fields": [
         {
           "id": 1,
           "name": "AI"
+        },
+        {
+          "id": 3,
+          "name": "Big data"
+        },
+        {
+          "id": 5,
+          "name": "Mobile"
         }
       ],
       "technologies": [
         {
           "id": 4,
           "name": "PHP"
+        },
+        {
+          "id": 3,
+          "name": "Java"
         }
-      ]
+      ],
+      "description": "Some description text hereeeeeee",
+      "contacts": {
+        "facebook": "https://fb.com",
+        "website": "https://yourwebsite.com",
+        "linkedin": "https://linkedin.com",
+        "github": "http://github.com/somebody"
+      },
+      "user_id": 2,
+      "id": 2
     },
     {
       "user_id": 3,
@@ -347,98 +355,5 @@
       "name": "Golang"
     }
   ],
-  "booking": [
-    {
-      "duration": 1,
-      "total_price": 80,
-      "mentee": {
-        "id": 1,
-        "full_name": "Long Trần"
-      },
-      "mentor": {
-        "id": 7,
-        "full_name": "Mark Zukerberg",
-        "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
-      },
-      "status": "finish",
-      "id": 1
-    },
-    {
-      "duration": 1,
-      "total_price": 80,
-      "mentee": {
-        "id": 1,
-        "full_name": "Long Trần"
-      },
-      "mentor": {
-        "id": 2,
-        "full_name": "Trần Hoàng Long",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
-      },
-      "status": "ongoing",
-      "id": 2
-    },
-    {
-      "duration": 1,
-      "total_price": 80,
-      "mentee": {
-        "id": 1,
-        "full_name": "Long Trần"
-      },
-      "mentor": {
-        "id": 7,
-        "full_name": "Mark Zukerberg",
-        "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
-      },
-      "status": "cancel",
-      "id": 3
-    },
-    {
-      "duration": 1,
-      "total_price": 60,
-      "mentee": {
-        "id": 1,
-        "full_name": "Long Trần"
-      },
-      "mentor": {
-        "id": 3,
-        "full_name": "Bill Gates",
-        "thumnail": "http://blog.futureme.vn/wp-content/uploads/2021/06/bill-gates-giau-co-nao-1-1024x576.jpg"
-      },
-      "status": "ongoing",
-      "id": 4
-    },
-    {
-      "duration": 2,
-      "total_price": 100,
-      "mentee": {
-        "id": 2,
-        "full_name": "Long Tran Hoang",
-        "image": "https://lh3.googleusercontent.com/a-/AOh14GgdTpsjVBfrdospm3eqFdiDIEy-JeT78PfDDfDQ=s96-c"
-      },
-      "mentor": {
-        "id": 1,
-        "full_name": "Long Trần",
-        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
-      },
-      "status": "cancel",
-      "id": 5
-    },
-    {
-      "duration": 1,
-      "total_price": 50,
-      "mentee": {
-        "id": 2,
-        "full_name": "Long Tran Hoang",
-        "image": "https://lh3.googleusercontent.com/a-/AOh14GgdTpsjVBfrdospm3eqFdiDIEy-JeT78PfDDfDQ=s96-c"
-      },
-      "mentor": {
-        "id": 1,
-        "full_name": "Long Trần",
-        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
-      },
-      "status": "ongoing",
-      "id": 6
-    }
-  ]
+  "booking": []
 }

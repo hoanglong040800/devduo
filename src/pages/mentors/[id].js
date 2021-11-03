@@ -59,7 +59,8 @@ export default function MentorDetail({ apiUrl, details, limitMentors }) {
     data['mentee'] = {}
     data.mentee['id'] = session.user.id
     data.mentee['full_name'] = session.user.full_name
-    data.mentee['image'] = session.user.image
+    data.mentee['thumnail'] = session.user.thumnail
+
     data['mentor'] = {}
     data.mentor['id'] = details.user_id
     data.mentor['full_name'] = details.full_name

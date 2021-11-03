@@ -10,7 +10,9 @@ import Head from 'next/head'
 import AutocompleteController from 'common/components/input/AutocompleteController'
 import { arrToObjWithData } from 'common/utils/utils'
 import { getAllFields, getAllTechnologies } from 'modules/fetch-common'
-import { getMentorById } from 'modules/mentor/fetch-mentors'
+import { getMentorById, updateMentor } from 'modules/mentor/fetch-mentors'
+import { makeStyles } from '@material-ui/styles'
+import { useRouter } from 'next/router'
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx)
@@ -58,6 +60,8 @@ export default function UserProfile({
     },
   })
 
+  const mui = useStyles()
+  const router = useRouter()
   const property = {
     form: {
       control: control,
@@ -66,11 +70,11 @@ export default function UserProfile({
     },
   }
 
-  function onSubmit(data) {
-    const contactFields = ['facebook', 'linkedin', 'github']
+  async function onSubmit(data) {
+    const contactFields = ['facebook', 'website', 'linkedin', 'github']
 
     // assemble contact from contact fields
-    setValue('contact', arrToObjWithData(contactFields, data))
+    setValue('contacts', arrToObjWithData(contactFields, data))
 
     // empty contact fields to avoid errors at BE
     contactFields.map(value => {
@@ -78,8 +82,12 @@ export default function UserProfile({
     })
 
     data['contacts'] = watch('contacts')
+    data['user_id'] = session.user.id
 
-    console.log('SUBMIT', data)
+    // console.log('SUBMIT', data)
+
+    await updateMentor(apiUrl, session.user.id, data)
+    router.push(`/mentors/${session.user.id}`)
   }
 
   function onError(err) {
@@ -94,6 +102,15 @@ export default function UserProfile({
 
       <SidebarUser value="/user/edit-profile">
         <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
+          <Box className={mui.imgContainer}>
+            <img
+              src={watch('thumnail')}
+              alt={session.user.full_name}
+              width="100%"
+              height="100%"
+            />
+          </Box>
+
           <TextFieldController
             name="full_name"
             label="Full Name"
@@ -191,3 +208,18 @@ export default function UserProfile({
 }
 
 UserProfile.auth = true
+
+const useStyles = makeStyles(theme => ({
+  imgContainer: {
+    display: 'flex',
+    margin: '0 auto',
+    width: '100%',
+    maxWidth: 200,
+    maxHeight: 200,
+
+    '& img': {
+      borderRadius: [theme.shape.borderRadius],
+      border: '1px solid rgba(0, 0, 0, 0.05)',
+    },
+  },
+}))

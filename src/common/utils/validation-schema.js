@@ -26,9 +26,9 @@ export const profileSchema = yup.object().shape({
     .max(2000)
     .label('Money'),
 
-  fields: yup.array().required().min(1).max(5).label('Fields'),
+  fields: yup.array().required().min(1).max(10).label('Fields'),
 
-  technologies: yup.array().required().min(1).max(5).label('Technologies'),
+  technologies: yup.array().required().min(1).max(10).label('Technologies'),
 
   description: yup.string().max(1000).label('Description'),
 
