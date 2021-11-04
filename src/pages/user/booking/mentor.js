@@ -1,11 +1,14 @@
 import BookingTabs from 'modules/booking/BookingTabs'
 import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
-import { getAllMentorBooking } from 'modules/booking/fetch-booking'
+import {
+  getAllMentorBooking,
+  updateBookingStatus,
+} from 'modules/booking/fetch-booking'
 import Head from 'next/head'
-import { Box } from '@material-ui/core'
-import Link from 'next/link'
 import BookingList from 'modules/booking/list/BookingList'
+import { useState } from 'react'
+import { updateMentorStatus } from 'modules/mentor/fetch-mentors'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
@@ -14,12 +17,27 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       apiUrl,
-      allMentorBooking: await getAllMentorBooking(apiUrl, session.user.id),
+      session,
+      initAllMentorBooking: await getAllMentorBooking(apiUrl, session.user.id),
     },
   }
 }
 
-export default function BookingMentee({ apiUrl, allMentorBooking }) {
+export default function BookingMentee({
+  apiUrl,
+  session,
+  initAllMentorBooking,
+}) {
+  const [allMentorBooking, setAllMentorBooking] = useState(initAllMentorBooking)
+
+  async function handleCancel(id) {
+    const booking = await updateBookingStatus(apiUrl, id, 'cancel')
+    await updateMentorStatus(apiUrl, booking.mentor.id, true)
+    
+    const data = await getAllMentorBooking(apiUrl, session.user.id)
+    setAllMentorBooking(data)
+  }
+
   return (
     <>
       <Head>
@@ -28,7 +46,7 @@ export default function BookingMentee({ apiUrl, allMentorBooking }) {
 
       <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentor">
-          <BookingList list={allMentorBooking} />
+          <BookingList list={allMentorBooking} onCancel={handleCancel} />
         </BookingTabs>
       </SidebarUser>
     </>

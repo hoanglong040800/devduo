@@ -39,7 +39,7 @@ export default function SideInfo({
         <Box mb={2}>
           {
             //
-            isBooked ? (
+            isMyProfile ? null : isBooked ? (
               <Typography variant="h6" align="center" gutterBottom>
                 Booking Status:{' '}
                 <span style={{ color: '#f0de16' }}>{bookingStatus}</span>

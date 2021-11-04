@@ -76,6 +76,7 @@
       "full_name": "ReactJS account",
       "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg",
       "price": 5,
+      "status": true,
       "fields": [
         {
           "id": 1,
@@ -269,7 +270,7 @@
       "price": 80,
       "description": "Nice meme ban 30 days",
       "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg",
-      "status": false,
+      "status": true,
       "contacts": {
         "facebook": "https://facebook.com/markzukerberge",
         "website": "https://markzukerberg.com",
@@ -390,7 +391,7 @@
         "full_name": "Thỏ bảy màu",
         "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
       },
-      "status": "ongoing",
+      "status": "cancel",
       "id": 1
     },
     {
@@ -406,8 +407,56 @@
         "full_name": "Mark Zukerberg",
         "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
       },
-      "status": "ongoing",
+      "status": "cancel",
       "id": 2
+    },
+    {
+      "duration": 1,
+      "total_price": 80,
+      "mentee": {
+        "id": 2,
+        "full_name": "ReactJS account",
+        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+      },
+      "mentor": {
+        "id": 7,
+        "full_name": "Mark Zukerberg",
+        "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
+      },
+      "status": "cancel",
+      "id": 3
+    },
+    {
+      "duration": 1,
+      "total_price": 50,
+      "mentee": {
+        "id": 2,
+        "full_name": "ReactJS account",
+        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+      },
+      "mentor": {
+        "id": 1,
+        "full_name": "Thỏ bảy màu",
+        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
+      },
+      "status": "cancel",
+      "id": 4
+    },
+    {
+      "duration": 1,
+      "total_price": 5,
+      "mentee": {
+        "id": 1,
+        "full_name": "Thỏ bảy màu",
+        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
+      },
+      "mentor": {
+        "id": 2,
+        "full_name": "ReactJS account",
+        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+      },
+      "status": "cancel",
+      "id": 5
     }
   ]
 }

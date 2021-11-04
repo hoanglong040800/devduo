@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import Link from 'next/link'
 
-export default function MenteeBookingItem({ item }) {
+export default function MenteeBookingItem({ item, onCancel }) {
   const mui = useStyles()
   const statusColor = {
     ongoing: '#f0de16',
@@ -54,13 +54,19 @@ export default function MenteeBookingItem({ item }) {
           {item.status}
         </Typography>
 
-        <Button
-          color="primary"
-          size="small"
-          disabled={item.status !== 'ongoing'}
-        >
-          Cancel
-        </Button>
+        {
+          //
+          item.status === 'ongoing' ? (
+            <Button
+              color="primary"
+              size="small"
+              disabled={item.status !== 'ongoing'}
+              onClick={() => onCancel(item.id)}
+            >
+              Cancel
+            </Button>
+          ) : null
+        }
       </Box>
     </div>
   )

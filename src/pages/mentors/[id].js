@@ -25,15 +25,16 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       apiUrl,
-      details: await getMentorById(apiUrl, ctx.params.id),
+      initDetails: await getMentorById(apiUrl, ctx.params.id),
       limitMentors: await getLimitMentors(apiUrl, 4),
     },
   }
 }
 
-export default function MentorDetail({ apiUrl, details, limitMentors }) {
+export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
   const router = useRouter()
   const [session, loading] = useSession()
+  const [details, setDetails] = useState(initDetails)
   const [openBookModal, setOpenBookModal] = useState(false)
   const [booking, setBooking] = useState({ id: null, status: '' })
 
@@ -79,8 +80,14 @@ export default function MentorDetail({ apiUrl, details, limitMentors }) {
     await updateMentorStatus(apiUrl, details.id, false)
   }
 
-  function handleCancel() {
+  async function handleCancel() {
+    await updateBookingStatus(apiUrl, booking.id, 'cancel')
+    await updateMentorStatus(apiUrl, details.id, true)
     setBooking({ status: 'cancel', ...booking })
+
+    // update UI (status)
+    const newDetails = await getMentorById(apiUrl, details.id)
+    setDetails(newDetails)
   }
 
   if (router.isFallback) {

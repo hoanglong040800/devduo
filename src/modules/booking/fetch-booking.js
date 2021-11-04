@@ -25,8 +25,6 @@ export async function getCurrentBooking(apiUrl, mentee_id, mentor_id) {
   )
   const data = await res.json()
 
-  console.log({ data })
-
   return data[0]
 }
 
@@ -49,5 +47,16 @@ export async function addBooking(apiUrl, data) {
 // ============== Update ===========
 
 export async function updateBookingStatus(apiUrl, id, status) {
-  
+  const body = { status: status }
+
+  const res = await fetch(`${apiUrl}/booking/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  const data = await res.json()
+  return data
 }
