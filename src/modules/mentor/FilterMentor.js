@@ -4,10 +4,9 @@ import { makeStyles } from '@material-ui/styles'
 import AutocompleteController from 'common/components/input/AutocompleteController'
 import SelectController from 'common/components/input/SelectController'
 import TextFieldController from 'common/components/input/TextFieldController'
-import { mentorFilterSchema } from 'common/utils/validation-schema'
 import { useForm } from 'react-hook-form'
 
-export default function FIlterMentor({ allFields, allTechnologies }) {
+export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
   const mui = useStyles()
 
   const {
@@ -17,13 +16,11 @@ export default function FIlterMentor({ allFields, allTechnologies }) {
     formState: { errors },
     setValue,
   } = useForm({
-    resolver: yupResolver(mentorFilterSchema),
-
     defaultValues: {
       full_name: '',
-      price: 'asc',
+      price: '',
       mentee: '',
-      fields: [],
+      fields: '',
       technologies: [],
     },
   })
@@ -42,10 +39,6 @@ export default function FIlterMentor({ allFields, allTechnologies }) {
       sm: 4,
       md: 12,
     },
-  }
-
-  function onSubmit(data) {
-    console.log('SUBMIT', data)
   }
 
   function onError(errors) {
@@ -71,6 +64,7 @@ export default function FIlterMentor({ allFields, allTechnologies }) {
             control={control}
             errors={errors}
           >
+            <MenuItem value="">Any</MenuItem>
             <MenuItem value="asc">Low to high</MenuItem>
             <MenuItem value="desc">High to low</MenuItem>
           </SelectController>
@@ -83,34 +77,50 @@ export default function FIlterMentor({ allFields, allTechnologies }) {
             control={control}
             errors={errors}
           >
-            <MenuItem value="">Any</MenuItem>
-            <MenuItem value="5">5</MenuItem>
-            <MenuItem value="10">10</MenuItem>
-            <MenuItem value="10">20</MenuItem>
-            <MenuItem value="10">30</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={50}>50</MenuItem>
+            <MenuItem value={50}>50</MenuItem>
           </SelectController>
         </Grid>
 
         <Grid {...props.gridTwo}>
-          <AutocompleteController
+          <SelectController
             name="fields"
             label="Fields"
-            options={allFields}
             control={control}
             errors={errors}
-            setValue={setValue}
-          />
+          >
+            <MenuItem value="">Any</MenuItem>
+            {
+              //
+              allFields.map(item => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                </MenuItem>
+              ))
+            }
+          </SelectController>
         </Grid>
 
         <Grid {...props.gridTwo}>
-          <AutocompleteController
+        <SelectController
             name="technologies"
             label="Technologies"
-            options={allTechnologies}
             control={control}
             errors={errors}
-            setValue={setValue}
-          />
+          >
+            <MenuItem value="">Any</MenuItem>
+            {
+              //
+              allTechnologies.map(item => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                </MenuItem>
+              ))
+            }
+          </SelectController>
         </Grid>
       </Grid>
 
@@ -119,7 +129,7 @@ export default function FIlterMentor({ allFields, allTechnologies }) {
           color="primary"
           variant="contained"
           size="small"
-          onClick={handleSubmit(onSubmit, onError)}
+          onClick={handleSubmit(onFilter, onError)}
         >
           Filter
         </Button>

@@ -38,7 +38,7 @@ export default function HomePage({ limitMentors }) {
       }
 
       <Box my={5}>
-        <h4>Newest Mentors</h4>
+        <h2>Newest Mentors</h2>
 
         <ListMentor list={limitMentors} />
 

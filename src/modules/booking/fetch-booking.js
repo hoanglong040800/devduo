@@ -1,5 +1,6 @@
 // ========= GET =============
 
+// getAllUserMentorBooking
 export async function getAllMentorBooking(apiUrl, user_id) {
   const res = await fetch(
     `${apiUrl}/booking?mentee.id=${user_id}&_sort=id&_order=desc`
@@ -43,4 +44,10 @@ export async function addBooking(apiUrl, data) {
   const resData = await res.json()
 
   return resData
+}
+
+// ============== Update ===========
+
+export async function updateBookingStatus(apiUrl, id, status) {
+  
 }

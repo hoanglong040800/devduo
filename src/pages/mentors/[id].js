@@ -1,10 +1,18 @@
 import { Box } from '@material-ui/core'
 import RightSidebarTemplate from 'common/template/RightSidebarTemplate'
 import BookModal from 'modules/booking/BookModal'
-import { addBooking, getCurrentBooking } from 'modules/booking/fetch-booking'
+import {
+  addBooking,
+  getCurrentBooking,
+  updateBookingStatus,
+} from 'modules/booking/fetch-booking'
 import MainInfo from 'modules/mentor/detail/MainInfo'
 import SideInfo from 'modules/mentor/detail/SideInfo'
-import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
+import {
+  getLimitMentors,
+  getMentorById,
+  updateMentorStatus,
+} from 'modules/mentor/fetch-mentors'
 import ListMentor from 'modules/mentor/ListMentor'
 import { signIn, useSession } from 'next-auth/client'
 import Head from 'next/head'
@@ -31,15 +39,11 @@ export default function MentorDetail({ apiUrl, details, limitMentors }) {
 
   useEffect(async () => {
     if (session) {
-      const data = await getCurrentBooking(
-        apiUrl,
-        session.user.id,
-        details.user_id
-      )
+      const data = await getCurrentBooking(apiUrl, session.user.id, details.id)
       if (data) setBooking(data)
       else setBooking({ id: null, status: '' })
     } else setBooking({ id: null, status: '' })
-  }, [session])
+  }, [session, details])
 
   function handleClickBook() {
     session ? handleOpenBookModal() : signIn('google')
@@ -62,19 +66,17 @@ export default function MentorDetail({ apiUrl, details, limitMentors }) {
     data.mentee['thumnail'] = session.user.thumnail
 
     data['mentor'] = {}
-    data.mentor['id'] = details.user_id
+    data.mentor['id'] = details.id
     data.mentor['full_name'] = details.full_name
     data.mentor['thumnail'] = details.thumnail
 
     // data['mentee_id'] = session.user.id
-    // data['mentor_id'] = details.user_id
+    // data['mentor_id'] = details.id
     data['status'] = 'ongoing'
 
     const resData = await addBooking(apiUrl, data)
-
-    console.log({ resData })
-
     setBooking(resData)
+    await updateMentorStatus(apiUrl, details.id, false)
   }
 
   function handleCancel() {
@@ -103,7 +105,7 @@ export default function MentorDetail({ apiUrl, details, limitMentors }) {
         sidebar={
           <SideInfo
             details={details}
-            status={booking.status}
+            bookingStatus={booking.status}
             onClickBook={handleClickBook}
             onCancel={handleCancel}
           />

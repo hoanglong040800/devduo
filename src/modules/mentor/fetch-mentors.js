@@ -9,7 +9,7 @@ export async function getAllMentor(apiUrl) {
 
 export async function getLimitMentors(apiUrl, limit = '') {
   const res = await fetch(
-    `${apiUrl}/mentors?_limit=${limit}&_sort=user_id&_order=desc`
+    `${apiUrl}/mentors?_limit=${limit}&_sort=id&_order=desc`
   )
   const data = await res.json()
 
@@ -17,18 +17,18 @@ export async function getLimitMentors(apiUrl, limit = '') {
 }
 
 export async function getMentorById(apiUrl, id) {
-  const res = await fetch(`${apiUrl}/mentors?user_id=${id}`)
+  const res = await fetch(`${apiUrl}/mentors/${id}`)
   const data = await res.json()
 
-  return data[0]
+  return data
 }
 
 // ========= ADD ===========
 
 // ========= UPDATE =========
 
-export async function updateMentor(apiUrl, user_id, input) {
-  const res = await fetch(`${apiUrl}/mentors/${user_id}`, {
+export async function updateMentor(apiUrl, id, input) {
+  const res = await fetch(`${apiUrl}/mentors/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -37,9 +37,21 @@ export async function updateMentor(apiUrl, user_id, input) {
   })
 
   const data = await res.json()
+  return data
+}
 
-  console.log({ data })
+export async function updateMentorStatus(apiUrl, id, status) {
+  const body = { status: status }
 
+  const res = await fetch(`${apiUrl}/mentors/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  const data = await res.json()
   return data
 }
 

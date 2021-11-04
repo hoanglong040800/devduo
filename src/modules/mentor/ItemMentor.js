@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Paper, Box, IconButton, Typography, Chip } from '@material-ui/core'
 import {
   AttachMoney,
@@ -18,7 +17,7 @@ export default function ItemMentor({ item }) {
   return (
     <Paper
       className={classes.paper}
-      onClick={() => router.push(`/mentors/${item.user_id}`)}
+      onClick={() => router.push(`/mentors/${item.id}`)}
     >
       <div className={classes.thumnail}>
         <img

@@ -42,9 +42,3 @@ export const profileSchema = yup.object().shape({
 
   website: yup.string().url().label('Website'),
 })
-
-export const mentorFilterSchema = yup.object().shape({
-  fields: yup.array().max(1).label('Fields'),
-
-  technologies: yup.array().max(1).label('Technologies'),
-})

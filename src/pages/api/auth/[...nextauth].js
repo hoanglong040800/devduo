@@ -22,9 +22,6 @@ const options = {
 
         if (data) {
           token['id'] = data.id
-          const profile = await getMentorById(process.env.API_URL, data.id)
-          token['thumnail'] = profile.thumnail
-          token['full_name'] = profile.full_name
         } else token['id'] = 0
       }
 
@@ -32,9 +29,10 @@ const options = {
     },
 
     session: async (session, token) => {
+      const profile = await getMentorById(process.env.API_URL, token.id)
       session.user.id = token.id
-      session.user.thumnail = token.thumnail
-      session.user.full_name = token.full_name
+      session.user.thumnail = profile.thumnail
+      session.user.full_name = profile.full_name
 
       return Promise.resolve(session)
     },

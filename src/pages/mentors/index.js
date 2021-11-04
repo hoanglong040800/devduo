@@ -8,17 +8,31 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 export async function getServerSideProps() {
+  const apiUrl = process.env.API_URL
+
   return {
     props: {
-      allFields: await getAllFields(process.env.API_URL),
-      allTechnologies: await getAllTechnologies(process.env.API_URL),
-      mentorList: await getAllMentor(process.env.API_URL),
+      apiUrl,
+      allFields: await getAllFields(apiUrl),
+      allTechnologies: await getAllTechnologies(apiUrl),
+      mentorList: await getAllMentor(apiUrl),
     },
   }
 }
 
-export default function MentorPage({ mentorList, allFields, allTechnologies }) {
+export default function MentorPage({
+  apiUrl,
+  mentorList,
+  allFields,
+  allTechnologies,
+}) {
   const [showSidebar, setShowSidebar] = useState(false)
+  const [list, setList] = useState(mentorList)
+
+  async function handleFilter(data) {
+    console.log('handleFilter', data)
+    console.log('URLSearchParams', new URLSearchParams(data).toString())
+  }
 
   return (
     <>
@@ -41,10 +55,11 @@ export default function MentorPage({ mentorList, allFields, allTechnologies }) {
           <FilterMentor
             allFields={allFields}
             allTechnologies={allTechnologies}
+            onFilter={handleFilter}
           />
         }
       >
-        <ListMentor showSidebar={showSidebar} list={mentorList} />
+        <ListMentor showSidebar={showSidebar} list={list} />
       </SidebarMdTemplate>
     </>
   )

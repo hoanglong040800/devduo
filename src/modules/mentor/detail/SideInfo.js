@@ -1,9 +1,14 @@
 import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core'
-import { useSession, signIn } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-export default function SideInfo({ details, status, onClickBook, onCancel }) {
+export default function SideInfo({
+  details,
+  bookingStatus,
+  onClickBook,
+  onCancel,
+}) {
   const mui = useStyles()
   const router = useRouter()
   const [session, loading] = useSession()
@@ -11,12 +16,12 @@ export default function SideInfo({ details, status, onClickBook, onCancel }) {
   const [isMyProfile, setIsMyProfile] = useState(false)
 
   useEffect(() => {
-    setIsBooked(status === 'ongoing' ? true : false)
+    setIsBooked(bookingStatus === 'ongoing' ? true : false)
 
     setIsMyProfile(
-      session ? (session.user.id === details.user_id ? true : false) : false
+      session ? (session.user.id === details.id ? true : false) : false
     )
-  }, [status, session, details])
+  }, [bookingStatus, session, details.id])
 
   return (
     <>
@@ -31,13 +36,21 @@ export default function SideInfo({ details, status, onClickBook, onCancel }) {
           </Typography>
         </Box>
 
-        {isBooked ? (
-          <Box mb={2}>
-            <Typography variant="h6" align="center">
-              Status: {status}
-            </Typography>
-          </Box>
-        ) : null}
+        <Box mb={2}>
+          {
+            //
+            isBooked ? (
+              <Typography variant="h6" align="center" gutterBottom>
+                Booking Status:{' '}
+                <span style={{ color: '#f0de16' }}>{bookingStatus}</span>
+              </Typography>
+            ) : details.status ? null : (
+              <Typography align="center" gutterBottom>
+                Mentor is offline or already booked
+              </Typography>
+            )
+          }
+        </Box>
 
         <Box display="flex" justifyContent="center">
           {
@@ -78,6 +91,7 @@ export default function SideInfo({ details, status, onClickBook, onCancel }) {
                 variant="contained"
                 fullWidth
                 onClick={onClickBook}
+                disabled={!details.status}
               >
                 <Typography variant="h6">Book</Typography>
               </Button>

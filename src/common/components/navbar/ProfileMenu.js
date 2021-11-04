@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import {
   Box,
-  Button,
   Menu,
   MenuItem,
   Divider,
@@ -10,7 +9,6 @@ import {
 } from '@material-ui/core'
 import { signOut, useSession } from 'next-auth/client'
 import { makeStyles } from '@material-ui/styles'
-import { url } from 'common/utils/constants'
 
 export default function ProfileMenu() {
   const mui = useStyles()
@@ -71,7 +69,7 @@ export default function ProfileMenu() {
         </MenuItem>
 
         <MenuItem onClick={() => handleSelect('/user/edit-profile')}>
-          My Profile
+          Edit Profile
         </MenuItem>
 
         <Divider variant="middle" />
