@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authFormReducer from './authFormSlice'
-import userOptionReducer from './userOptionSlice'
+import userInfoReducer from './userInfoSlice'
 
 export default configureStore({
   reducer: {
-    authForm: authFormReducer,
-    userOption: userOptionReducer,
+    userInfo: userInfoReducer,
   },
 })

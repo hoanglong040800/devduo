@@ -6,6 +6,7 @@ import NavLinks from './NavLinks'
 import AuthGroupButton from './AuthGroupButton'
 import ProfileMenu from './ProfileMenu'
 import { useSession } from 'next-auth/client'
+import UserInfo from './UserInfo'
 
 export default function NavBar() {
   const [session, loading] = useSession()
@@ -29,7 +30,18 @@ export default function NavBar() {
             <Box className={classes.nav}>
               <NavLinks />
 
-              {session ? <ProfileMenu /> : <AuthGroupButton />}
+              {
+                //
+                session ? (
+                  <Box display="flex" alignItems='center'>
+                    <UserInfo />
+
+                    <ProfileMenu />
+                  </Box>
+                ) : (
+                  <AuthGroupButton />
+                )
+              }
             </Box>
           </Toolbar>
         </Container>

@@ -8,19 +8,31 @@ export async function getAllMentor(apiUrl) {
 }
 
 export async function getLimitMentors(apiUrl, limit = '') {
-  const res = await fetch(
-    `${apiUrl}/mentors?_limit=${limit}&_sort=id&_order=desc`
-  )
-  const data = await res.json()
+  try {
+    const res = await fetch(
+      `${apiUrl}/mentors?_limit=${limit}&_sort=id&_order=desc`
+    )
+    const data = await res.json()
 
-  return data
+    if (data.length === 0) return false
+
+    return data
+  } catch (e) {
+    return false
+  }
 }
 
 export async function getMentorById(apiUrl, id) {
-  const res = await fetch(`${apiUrl}/mentors/${id}`)
-  const data = await res.json()
+  try {
+    const res = await fetch(`${apiUrl}/mentors/${id}`)
+    const data = await res.json()
 
-  return data
+    if (Object.keys(data).length === 0) return false
+
+    return data
+  } catch (e) {
+    return false
+  }
 }
 
 // ========= ADD ===========

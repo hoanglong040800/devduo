@@ -18,7 +18,7 @@ export default function BookModal({
   onClose,
   onBook,
   details,
-  money = 200,
+  money = 0,
 }) {
   const mui = useStyles()
   const {

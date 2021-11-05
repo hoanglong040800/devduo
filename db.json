@@ -76,7 +76,7 @@
       "full_name": "ReactJS account",
       "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg",
       "price": 5,
-      "status": true,
+      "status": false,
       "fields": [
         {
           "id": 1,
@@ -316,13 +316,38 @@
       "id": 1,
       "email": "hoanglong040800@gmail.com",
       "username": "hoanglong040800",
-      "password": ""
+      "money": 195
     },
     {
       "id": 2,
       "email": "18520093@gm.uit.edu.vn",
-      "username": "elonmuskfake",
-      "password": ""
+      "username": "reactjs account",
+      "money": 105
+    },
+    {
+      "id": 3,
+      "email": "billgates@ms.com",
+      "money": 200
+    },
+    {
+      "id": 4,
+      "email": "elonmusk@tesla.com",
+      "money": 100
+    },
+    {
+      "id": 5,
+      "email": "jeffbezos@amazon.com",
+      "money": 100
+    },
+    {
+      "id": 6,
+      "email": "hieupc@gov.com.vn",
+      "money": 100
+    },
+    {
+      "id": 7,
+      "email": "mark@meta.com",
+      "money": 100
     }
   ],
   "fields": [
@@ -379,70 +404,6 @@
   ],
   "booking": [
     {
-      "duration": 4,
-      "total_price": 200,
-      "mentee": {
-        "id": 2,
-        "full_name": "ReactJS account",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
-      },
-      "mentor": {
-        "id": 1,
-        "full_name": "Thỏ bảy màu",
-        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
-      },
-      "status": "cancel",
-      "id": 1
-    },
-    {
-      "duration": 1,
-      "total_price": 80,
-      "mentee": {
-        "id": 2,
-        "full_name": "ReactJS account",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
-      },
-      "mentor": {
-        "id": 7,
-        "full_name": "Mark Zukerberg",
-        "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
-      },
-      "status": "cancel",
-      "id": 2
-    },
-    {
-      "duration": 1,
-      "total_price": 80,
-      "mentee": {
-        "id": 2,
-        "full_name": "ReactJS account",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
-      },
-      "mentor": {
-        "id": 7,
-        "full_name": "Mark Zukerberg",
-        "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg"
-      },
-      "status": "cancel",
-      "id": 3
-    },
-    {
-      "duration": 1,
-      "total_price": 50,
-      "mentee": {
-        "id": 2,
-        "full_name": "ReactJS account",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
-      },
-      "mentor": {
-        "id": 1,
-        "full_name": "Thỏ bảy màu",
-        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
-      },
-      "status": "cancel",
-      "id": 4
-    },
-    {
       "duration": 1,
       "total_price": 5,
       "mentee": {
@@ -455,8 +416,8 @@
         "full_name": "ReactJS account",
         "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
       },
-      "status": "cancel",
-      "id": 5
+      "status": "ongoing",
+      "id": 1
     }
   ]
 }

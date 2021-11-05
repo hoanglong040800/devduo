@@ -1,5 +1,8 @@
 // ========= GET =============
 
+import { updateMentorStatus } from 'modules/mentor/fetch-mentors'
+import { updateUserMoney } from 'modules/user/fetch-users'
+
 // getAllUserMentorBooking
 export async function getAllMentorBooking(apiUrl, user_id) {
   const res = await fetch(
@@ -31,32 +34,58 @@ export async function getCurrentBooking(apiUrl, mentee_id, mentor_id) {
 // ========= ADD ============
 
 export async function addBooking(apiUrl, data) {
-  const res = await fetch(`${apiUrl}/booking`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
+  try {
+    const res = await fetch(`${apiUrl}/booking`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
 
-  const resData = await res.json()
+    const booking = await res.json()
 
-  return resData
+    await updateUserMoney(apiUrl, booking.mentee.id, -booking.total_price)
+    await updateUserMoney(apiUrl, booking.mentor.id, booking.total_price)
+    await updateMentorStatus(apiUrl, booking.mentor.id, false)
+
+    return booking
+  } catch (e) {
+    return false
+  }
 }
 
 // ============== Update ===========
 
 export async function updateBookingStatus(apiUrl, id, status) {
-  const body = { status: status }
+  try {
+    const body = { status: status }
 
-  const res = await fetch(`${apiUrl}/booking/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+    const res = await fetch(`${apiUrl}/booking/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
 
-  const data = await res.json()
-  return data
+    const booking = await res.json()
+
+    if (!booking) return false
+
+    switch (status) {
+      case 'cancel':
+        await updateUserMoney(apiUrl, booking.mentee.id, booking.total_price)
+        await updateUserMoney(apiUrl, booking.mentor.id, -booking.total_price)
+        await updateMentorStatus(apiUrl, booking.mentor.id, true)
+        break
+
+      default:
+        null
+    }
+
+    return booking
+  } catch (e) {
+    return false
+  }
 }

@@ -41,7 +41,7 @@ export default function BookingMentee({
         <title>Your mentee</title>
       </Head>
 
-      <SidebarUser value="/user/booking/Mentee">
+      <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentee">
           <BookingList list={allMenteeBooking} type="mentee" onCancel={handleCancel} />
         </BookingTabs>
