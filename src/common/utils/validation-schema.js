@@ -16,7 +16,7 @@ const phoneRegExp =
 export const profileSchema = yup.object().shape({
   full_name: yup.string().required().min(5).max(40).label('Full Name'),
 
-  thumnail: yup.string().required().url().label('Thumnail URL'),
+  thumbnail: yup.string().required().url().label('thumbnail URL'),
 
   price: yup
     .number()
@@ -30,7 +30,7 @@ export const profileSchema = yup.object().shape({
 
   technologies: yup.array().required().min(1).max(10).label('Technologies'),
 
-  description: yup.string().max(1000).label('Description'),
+  description: yup.string().required().max(1000).label('Description'),
 
   contacts: yup.object().label('Contacts'),
 

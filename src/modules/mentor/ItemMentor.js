@@ -19,9 +19,9 @@ export default function ItemMentor({ item }) {
       className={classes.paper}
       onClick={() => router.push(`/mentors/${item.id}`)}
     >
-      <div className={classes.thumnail}>
+      <div className={classes.thumbnail}>
         <img
-          src={item.thumnail}
+          src={item.thumbnail}
           alt={item.full_name}
         />
       </div>
@@ -95,7 +95,7 @@ export default function ItemMentor({ item }) {
         </div>
 
         <Box className={classes.footer}>
-          <p>Finish: 15</p>
+          <p>Finish: {item.bookings.total_finish}</p>
 
           <Box display="flex" alignItems="center">
             <AttachMoney size="small" color="secondary" />

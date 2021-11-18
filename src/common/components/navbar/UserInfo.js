@@ -12,7 +12,7 @@ export default function UserInfo() {
 
   useEffect(async () => {
     const data = await getUserById(
-      process.env.NEXT_PUBLIC_API_URL,
+      'http://localhost:8000',
       session.user.id
     )
 

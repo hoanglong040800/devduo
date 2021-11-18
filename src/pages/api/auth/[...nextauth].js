@@ -31,7 +31,7 @@ const options = {
     session: async (session, token) => {
       const profile = await getMentorById(process.env.API_URL, token.id)
       session.user.id = token.id
-      session.user.thumnail = profile.thumnail
+      session.user.thumbnail = profile.thumbnail
       session.user.full_name = profile.full_name
 
       return Promise.resolve(session)

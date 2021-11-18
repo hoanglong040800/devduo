@@ -16,7 +16,7 @@ export default function MentorBookingItem({ item, onCancel }) {
         <div className={mui.imgContainer}>
           <img
             src={
-              item.mentor.thumnail ||
+              item.mentor.thumbnail ||
               'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
             }
             alt={item.mentor.full_name}
@@ -39,7 +39,7 @@ export default function MentorBookingItem({ item, onCancel }) {
               Total price: {item.total_price}$
             </Typography>
 
-            <Typography variant="body2">10:10 1/11/2021</Typography>
+            <Typography variant="body2">{item.time_start}</Typography>
           </div>
         </Box>
       </Box>

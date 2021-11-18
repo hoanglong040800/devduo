@@ -13,8 +13,8 @@ export async function getServerSideProps() {
   return {
     props: {
       apiUrl,
-      allFields: await getAllFields(apiUrl),
-      allTechnologies: await getAllTechnologies(apiUrl),
+      allFields: await getAllFields('http://localhost:8000'),
+      allTechnologies: await getAllTechnologies('http://localhost:8000'),
       mentorList: await getAllMentor(apiUrl),
     },
   }

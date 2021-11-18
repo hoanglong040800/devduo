@@ -42,7 +42,7 @@ export default function ProfileMenu() {
   return (
     <Box display="flex" alignItems="center">
       <Box onClick={toggleMenu} className={mui.imgContainer}>
-        <img src={session.user.thumnail} alt={session.user.full_name} />
+        <img src={session.user.thumbnail} alt={session.user.full_name} />
       </Box>
 
       <Menu

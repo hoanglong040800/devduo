@@ -1,24 +1,9 @@
 {
   "mentors": [
     {
-      "id": 1,
-      "user_id": 1,
       "full_name": "Thỏ bảy màu",
+      "thumbnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg",
       "price": 50,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, rem! Dolor voluptas molestiae atque dicta mollitia. Maxime blanditiis fugit unde repellat facere ullam recusandae. Vel, quasi sapiente rerum aspernatur soluta non minus ut amet distinctio quidem consequatur earum accusamus optio labore architecto beatae perspiciatis animi ab culpa!\n Qui, accusamus! Laborum architecto voluptates aliquam soluta eveniet optio doloribus placeat est dicta odio quam eaque similique adipisci nesciunt, aliquid eligendi repellat sed quo. Tempore expedita cumque quasi dicta id odit tenetur perferendis accusamus dolores, doloribus quaerat fuga, nihil ex molestiae voluptas necessitatibus autem aperiam itaque numquam consequatur?\n Quibusdam repellat magni doloremque enim?",
-      "status": true,
-      "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg",
-      "contacts": {
-        "facebook": "https://facebook.com/ThoBayMau",
-        "website": "https://thobaymau.com",
-        "linkedin": "https://linkedin.com/ThoBayMau",
-        "github": "https://github.com/hoanglong040800"
-      },
-      "bookings": {
-        "total_pending": 3,
-        "totol_ongoing": 1,
-        "total_finish": 5
-      },
       "fields": [
         {
           "id": 1,
@@ -33,10 +18,6 @@
           "name": "Big data"
         },
         {
-          "id": 4,
-          "name": "Web"
-        },
-        {
           "id": 5,
           "name": "Mobile"
         },
@@ -49,10 +30,6 @@
         {
           "id": 1,
           "name": "JS"
-        },
-        {
-          "id": 2,
-          "name": "C#"
         },
         {
           "id": 3,
@@ -70,13 +47,22 @@
           "id": 6,
           "name": "Golang"
         }
-      ]
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, rem! Dolor voluptas molestiae atque dicta mollitia. Maxime blanditiis fugit unde repellat facere ullam recusandae. Vel, quasi sapiente rerum aspernatur soluta non minus ut amet distinctio quidem consequatur earum accusamus optio labore architecto beatae perspiciatis animi ab culpa!\n Qui, accusamus! Laborum architecto voluptates aliquam soluta eveniet optio doloribus placeat est dicta odio quam eaque similique adipisci nesciunt, aliquid eligendi repellat sed quo. Tempore expedita cumque quasi dicta id odit tenetur perferendis accusamus dolores, doloribus quaerat fuga, nihil ex molestiae voluptas necessitatibus autem aperiam itaque numquam consequatur?\n Quibusdam repellat magni doloremque enim?",
+      "contacts": {
+        "facebook": "https://facebook.com/ThoBayMau",
+        "website": "https://thobaymau.com",
+        "linkedin": "https://linkedin.com/ThoBayMau",
+        "github": "https://github.com/hoanglong040800"
+      },
+      "user_id": 1,
+      "id": 1
     },
     {
       "full_name": "ReactJS account",
-      "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg",
+      "thumbnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg",
       "price": 5,
-      "status": false,
+      "status": true,
       "fields": [
         {
           "id": 1,
@@ -113,7 +99,7 @@
       "full_name": "Bill Gates",
       "price": 60,
       "description": "Another description here",
-      "thumnail": "http://blog.futureme.vn/wp-content/uploads/2021/06/bill-gates-giau-co-nao-1-1024x576.jpg",
+      "thumbnail": "http://blog.futureme.vn/wp-content/uploads/2021/06/bill-gates-giau-co-nao-1-1024x576.jpg",
       "status": false,
       "contacts": {
         "facebook": "https://facebook.com",
@@ -121,9 +107,9 @@
         "linkedin": "https://linkedin.com"
       },
       "bookings": {
-        "total_pending": 3,
         "totol_ongoing": 1,
-        "total_finish": 5
+        "total_finish": 5,
+        "total_cancel": 3
       },
       "fields": [
         {
@@ -144,7 +130,7 @@
       "full_name": "Elon Musk",
       "price": 60,
       "description": "Another description here",
-      "thumnail": "https://icdn.dantri.com.vn/thumb_w/660/2021/07/23/elon-musk-1627029117041.png",
+      "thumbnail": "https://icdn.dantri.com.vn/thumb_w/660/2021/07/23/elon-musk-1627029117041.png",
       "status": true,
       "contacts": {
         "facebook": "https://facebook.com/elonmusk",
@@ -152,9 +138,9 @@
         "linkedin": "https://linkedin.com/elonmusk"
       },
       "bookings": {
-        "total_pending": 3,
         "totol_ongoing": 1,
-        "total_finish": 5
+        "total_finish": 5,
+        "total_cancel": 3
       },
       "fields": [
         {
@@ -175,7 +161,7 @@
       "full_name": "Jeff Bezos",
       "price": 60,
       "description": "Another description here",
-      "thumnail": "http://khoahocphattrien.vn/Images/Uploaded/Share/2021/02/03/42cSec_Bezos_1036084400.jpg",
+      "thumbnail": "http://khoahocphattrien.vn/Images/Uploaded/Share/2021/02/03/42cSec_Bezos_1036084400.jpg",
       "status": false,
       "contacts": {
         "facebook": "https://facebook.com/jeffbezos",
@@ -183,9 +169,9 @@
         "linkedin": "https://linkedin.com/jeffbezos"
       },
       "bookings": {
-        "total_pending": 3,
         "totol_ongoing": 1,
-        "total_finish": 5
+        "total_finish": 5,
+        "total_cancel": 3
       },
       "fields": [
         {
@@ -222,7 +208,7 @@
       "full_name": "Hiếu PC",
       "price": 30,
       "description": "Another description here",
-      "thumnail": "https://vcdn-vnexpress.vnecdn.net/2021/05/29/hieu-pc-1374-1622279339.jpg",
+      "thumbnail": "https://vcdn-vnexpress.vnecdn.net/2021/05/29/hieu-pc-1374-1622279339.jpg",
       "status": true,
       "contacts": {
         "facebook": "https://facebook.com/hieupc",
@@ -230,9 +216,9 @@
         "linkedin": "https://linkedin.com/hieupc"
       },
       "bookings": {
-        "total_pending": 3,
         "totol_ongoing": 1,
-        "total_finish": 5
+        "total_finish": 5,
+        "total_cancel": 3
       },
       "fields": [
         {
@@ -269,7 +255,7 @@
       "full_name": "Mark Zukerberg",
       "price": 80,
       "description": "Nice meme ban 30 days",
-      "thumnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg",
+      "thumbnail": "https://ichef.bbci.co.uk/news/640/cpsprodpb/544D/production/_121118512_mediaitem121118511.jpg",
       "status": true,
       "contacts": {
         "facebook": "https://facebook.com/markzukerberge",
@@ -277,9 +263,9 @@
         "linkedin": "https://linkedin.com/markzukerberg"
       },
       "bookings": {
-        "total_pending": 3,
         "totol_ongoing": 1,
-        "total_finish": 5
+        "total_finish": 5,
+        "total_cancel": 3
       },
       "fields": [
         {
@@ -316,13 +302,13 @@
       "id": 1,
       "email": "hoanglong040800@gmail.com",
       "username": "hoanglong040800",
-      "money": 195
+      "money": 200
     },
     {
       "id": 2,
       "email": "18520093@gm.uit.edu.vn",
       "username": "reactjs account",
-      "money": 105
+      "money": 100
     },
     {
       "id": 3,
@@ -409,15 +395,47 @@
       "mentee": {
         "id": 1,
         "full_name": "Thỏ bảy màu",
-        "thumnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
+        "thumbnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
       },
       "mentor": {
         "id": 2,
         "full_name": "ReactJS account",
-        "thumnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+        "thumbnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
       },
-      "status": "ongoing",
+      "status": "cancel",
       "id": 1
+    },
+    {
+      "duration": 1,
+      "total_price": 5,
+      "mentee": {
+        "id": 1,
+        "full_name": "Thỏ bảy màu",
+        "thumbnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
+      },
+      "mentor": {
+        "id": 2,
+        "full_name": "ReactJS account",
+        "thumbnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+      },
+      "status": "cancel",
+      "id": 2
+    },
+    {
+      "duration": 1,
+      "total_price": 50,
+      "mentee": {
+        "id": 2,
+        "full_name": "ReactJS account",
+        "thumbnail": "https://codelearn.io/Upload/Blog/react-js-co-ban-phan-1-63738082145.3856.jpg"
+      },
+      "mentor": {
+        "id": 1,
+        "full_name": "Thỏ bảy màu",
+        "thumbnail": "https://i.ytimg.com/vi/IBaPZ4lELvI/maxresdefault.jpg"
+      },
+      "status": "cancel",
+      "id": 3
     }
   ]
 }

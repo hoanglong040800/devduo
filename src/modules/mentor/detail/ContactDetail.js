@@ -20,13 +20,15 @@ export default function ContactDetail({ contacts }) {
           const simlifiedUrl = url.replace(/(^\w+:|^)\/\//, '')
 
           return (
-            <Box display="flex" key={key}>
-              <div>{contactsComponents[key]}</div>
+            simlifiedUrl && (
+              <Box display="flex" key={key}>
+                <div>{contactsComponents[key]}</div>
 
-              <a href={url} target="_blank" className={mui.link}>
-                {simlifiedUrl}
-              </a>
-            </Box>
+                <a href={url} target="_blank" className={mui.link}>
+                  {simlifiedUrl}
+                </a>
+              </Box>
+            )
           )
         })
       }

@@ -15,7 +15,7 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       session,
-      initAllMenteeBooking: await getAllMenteeBooking(apiUrl, session.user.id),
+      initAllMenteeBooking: await getAllMenteeBooking('http://localhost:8000', session.user.id),
     },
   }
 }

@@ -22,9 +22,12 @@ export async function getServerSideProps(ctx) {
     props: {
       session,
       apiUrl,
-      allFields: await getAllFields(apiUrl),
-      allTechnologies: await getAllTechnologies(apiUrl),
-      mentorDetails: await getMentorById(apiUrl, session.user.id),
+      allFields: await getAllFields('http://localhost:8000'),
+      allTechnologies: await getAllTechnologies('http://localhost:8000'),
+      mentorDetails: await getMentorById(
+        'http://localhost:8000',
+        session.user.id
+      ),
     },
   }
 }
@@ -46,7 +49,7 @@ export default function UserProfile({
     resolver: yupResolver(profileSchema),
     defaultValues: {
       full_name: mentorDetails.full_name || '',
-      thumnail: mentorDetails.thumnail || '',
+      thumbnail: mentorDetails.thumbnail || '',
       price: mentorDetails.price || 5,
       fields: mentorDetails.fields || [],
       technologies: mentorDetails.technologies || [],
@@ -82,12 +85,14 @@ export default function UserProfile({
     })
 
     data['contacts'] = watch('contacts')
-    data['user_id'] = session.user.id
+    data['user'] = session.user.id
+    data['fields'] = data['fields'].map(item => item.id)
+    data['technologies'] = data['technologies'].map(item => item.id)
 
     // console.log('SUBMIT', data)
 
-    await updateMentor(apiUrl, session.user.id, data)
-    router.push(`/mentors/${session.user.id}`)
+    await updateMentor('http://localhost:8000', session.user.id, data)
+    // router.push(`/mentors/${session.user.id}`)
   }
 
   function onError(err) {
@@ -104,7 +109,7 @@ export default function UserProfile({
         <Box display="flex" flexDirection="column" mx="auto" maxWidth="500px">
           <Box className={mui.imgContainer}>
             <img
-              src={watch('thumnail')}
+              src={watch('thumbnail')}
               alt={session.user.full_name}
               width="100%"
               height="100%"
@@ -119,8 +124,8 @@ export default function UserProfile({
           />
 
           <TextFieldController
-            name="thumnail"
-            label="Thumnail URL"
+            name="thumbnail"
+            label="Thumbnail URL"
             required
             {...property.form}
           />
@@ -159,6 +164,7 @@ export default function UserProfile({
             <TextAreaController
               name="description"
               label="Description"
+              required
               {...property.form}
             />
           </Box>
@@ -198,7 +204,7 @@ export default function UserProfile({
               size="large"
               onClick={handleSubmit(onSubmit, onError)}
             >
-              Save
+              Update
             </Button>
           </Box>
         </Box>

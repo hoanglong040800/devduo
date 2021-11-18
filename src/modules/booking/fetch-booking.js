@@ -6,7 +6,7 @@ import { updateUserMoney } from 'modules/user/fetch-users'
 // getAllUserMentorBooking
 export async function getAllMentorBooking(apiUrl, user_id) {
   const res = await fetch(
-    `${apiUrl}/booking?mentee.id=${user_id}&_sort=id&_order=desc`
+    `${apiUrl}/${user_id}/bookings/mentor`
   )
   const data = await res.json()
 
@@ -15,7 +15,7 @@ export async function getAllMentorBooking(apiUrl, user_id) {
 
 export async function getAllMenteeBooking(apiUrl, user_id) {
   const res = await fetch(
-    `${apiUrl}/booking?mentor.id=${user_id}&_sort=id&_order=desc`
+    `${apiUrl}/${user_id}/bookings/mentee`
   )
   const data = await res.json()
 

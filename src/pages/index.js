@@ -1,6 +1,7 @@
 import { Box, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import { getLimitMentors } from 'modules/mentor/fetch-mentors'
+import { getAllMentor } from 'modules/mentor/fetch-mentors'
+
 import ListMentor from 'modules/mentor/ListMentor'
 import { useSession } from 'next-auth/client'
 import Head from 'next/head'
@@ -8,7 +9,7 @@ import { useRouter } from 'next/router'
 
 export async function getServerSideProps() {
   return {
-    props: { limitMentors: await getLimitMentors(process.env.API_URL, 4) },
+    props: { limitMentors: await getAllMentor('http://localhost:8000') },
   }
 }
 

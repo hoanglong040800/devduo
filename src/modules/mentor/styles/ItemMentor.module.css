@@ -4,13 +4,13 @@
   cursor: pointer;
 }
 
-.thumnail {
+.thumbnail {
   position: relative;
   height: 40%; /* relate to content */
   width: 100%;
 }
 
-.thumnail img {
+.thumbnail img {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -19,7 +19,7 @@
 
 .content {
   padding: 0 20px;
-  height: 60%; /* relate to thumnail */
+  height: 60%; /* relate to thumbnail */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

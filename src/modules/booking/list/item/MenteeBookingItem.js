@@ -16,10 +16,10 @@ export default function MenteeBookingItem({ item, onCancel }) {
         <div className={mui.imgContainer}>
           <img
             src={
-              item.mentee.thumnail ||
+              item.mentee.image ||
               'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
             }
-            alt={item.mentee.full_name}
+            alt={item.mentee.user_name}
           />
         </div>
 
@@ -29,7 +29,7 @@ export default function MenteeBookingItem({ item, onCancel }) {
           justifyContent="space-between"
         >
           <Link href={`/mentors/${item.mentee.id}`}>
-            <a className={mui.fullname}>{item.mentee.full_name}</a>
+            <a className={mui.fullname}>{item.mentee.user_name}</a>
           </Link>
 
           <div>
@@ -39,7 +39,7 @@ export default function MenteeBookingItem({ item, onCancel }) {
               Total price: {item.total_price}$
             </Typography>
 
-            <Typography variant="body2">10:10 1/11/2021</Typography>
+            <Typography variant="body2">{item.time_start}</Typography>
           </div>
         </Box>
       </Box>

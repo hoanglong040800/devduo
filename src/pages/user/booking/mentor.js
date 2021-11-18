@@ -18,7 +18,7 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       session,
-      initAllMentorBooking: await getAllMentorBooking(apiUrl, session.user.id),
+      initAllMentorBooking: await getAllMentorBooking('http://localhost:8000', session.user.id),
     },
   }
 }
@@ -34,7 +34,7 @@ export default function BookingMentee({
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
     await updateMentorStatus(apiUrl, booking.mentor.id, true)
     
-    const data = await getAllMentorBooking(apiUrl, session.user.id)
+    const data = await getAllMentorBooking('http://localhost:8000', session.user.id)
     setAllMentorBooking(data)
   }
 

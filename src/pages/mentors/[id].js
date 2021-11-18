@@ -19,7 +19,7 @@ import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
-  const initDetails = await getMentorById(apiUrl, ctx.params.id)
+  const initDetails = await getMentorById('http://localhost:8000', ctx.params.id)
   const limitMentors = await getLimitMentors(apiUrl, 4)
 
   if (!initDetails || !limitMentors) {
@@ -48,7 +48,7 @@ export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
   const [booking, setBooking] = useState({ id: null, status: '' })
 
   useEffect(async () => {
-    const mentorDetail = await getMentorById(apiUrl, router.query.id)
+    const mentorDetail = await getMentorById('http://localhost:8000', router.query.id)
     setDetails(mentorDetail)
 
     if (session && details) {
@@ -76,12 +76,12 @@ export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
     data['mentee'] = {}
     data.mentee['id'] = session.user.id
     data.mentee['full_name'] = session.user.full_name
-    data.mentee['thumnail'] = session.user.thumnail
+    data.mentee['thumbnail'] = session.user.thumbnail
 
     data['mentor'] = {}
     data.mentor['id'] = details.id
     data.mentor['full_name'] = details.full_name
-    data.mentor['thumnail'] = details.thumnail
+    data.mentor['thumbnail'] = details.thumbnail
 
     // data['mentee_id'] = session.user.id
     // data['mentor_id'] = details.id

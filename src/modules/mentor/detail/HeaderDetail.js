@@ -9,7 +9,7 @@ export default function HeaderDetail({ details }) {
       <Grid item xs={12} sm={4}>
         <div className={mui.imgContainer}>
           <img
-            src={details.thumnail}
+            src={details.thumbnail}
             alt={details.full_name}
             className={mui.img}
           />
