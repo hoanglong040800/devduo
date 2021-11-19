@@ -1,3 +1,4 @@
+import { changeUserMoney } from 'common/store/userInfoSlice'
 import BookingTabs from 'modules/booking/BookingTabs'
 import { getAllMenteeBooking, updateBookingStatus } from 'modules/booking/fetch-booking'
 import BookingList from 'modules/booking/list/BookingList'
@@ -6,6 +7,7 @@ import SidebarUser from 'modules/user/SidebarUser'
 import { getSession } from 'next-auth/client'
 import Head from 'next/head'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
@@ -15,7 +17,7 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       session,
-      initAllMenteeBooking: await getAllMenteeBooking('http://localhost:8000', session.user.id),
+      initAllMenteeBooking: await getAllMenteeBooking(apiUrl, session.user.id),
     },
   }
 }
@@ -26,12 +28,14 @@ export default function BookingMentee({
   initAllMenteeBooking,
 }) {
   const [allMenteeBooking, setAllMenteeBooking] = useState(initAllMenteeBooking)
+  const dispatch=useDispatch()
 
   async function handleCancel(id) {
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
-    await updateMentorStatus(apiUrl, booking.mentor.id, true)
+    dispatch(changeUserMoney(-booking.total_price))
 
-    const data = await getAllMenteeBooking(apiUrl, session.user.id)
+
+    const data = await getAllMenteeBooking(apiUrl, session.user.mentor_id)
     setAllMenteeBooking(data)
   }
 

@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from '@material-ui/core'
+import { FiberManualRecord } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import Link from 'next/link'
 
@@ -28,9 +29,17 @@ export default function MentorBookingItem({ item, onCancel }) {
           flexDirection="column"
           justifyContent="space-between"
         >
-          <Link href={`/mentors/${item.mentor.id}`}>
-            <a className={mui.fullname}>{item.mentor.full_name}</a>
-          </Link>
+          <Box display="flex">
+            <Link href={`/mentors/${item.mentor.id}`}>
+              <a className={mui.fullname}>{item.mentor.full_name}</a>
+            </Link>
+
+            {item.mentor.status && (
+              <FiberManualRecord
+                style={{ fontSize: '0.8rem', color: '#64ff4f' }}
+              />
+            )}
+          </Box>
 
           <div>
             <Typography variant="body2">Duration: {item.duration}h</Typography>

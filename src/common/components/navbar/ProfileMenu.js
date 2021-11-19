@@ -54,7 +54,7 @@ export default function ProfileMenu() {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
-        <MenuItem onClick={() => handleSelect(`/mentors/${session.user.id}`)}>
+        <MenuItem onClick={() => handleSelect(`/mentors/${session.user.mentor_id}`)}>
           <Typography variant="h6">{session.user.full_name}</Typography>
         </MenuItem>
 

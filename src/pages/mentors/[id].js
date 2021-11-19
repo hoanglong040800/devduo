@@ -19,10 +19,9 @@ import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
-  const initDetails = await getMentorById('http://localhost:8000', ctx.params.id)
-  const limitMentors = await getLimitMentors(apiUrl, 4)
+  const initDetails = await getMentorById(apiUrl, ctx.params.id)
 
-  if (!initDetails || !limitMentors) {
+  if (!initDetails) {
     return {
       notFound: true,
     }
@@ -32,12 +31,11 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       initDetails,
-      limitMentors,
     },
   }
 }
 
-export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
+export default function MentorDetail({ apiUrl, initDetails }) {
   const router = useRouter()
   const [session, loading] = useSession()
   const userInfo = useSelector(state => state.userInfo)
@@ -48,11 +46,11 @@ export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
   const [booking, setBooking] = useState({ id: null, status: '' })
 
   useEffect(async () => {
-    const mentorDetail = await getMentorById('http://localhost:8000', router.query.id)
+    const mentorDetail = await getMentorById(apiUrl, router.query.id)
     setDetails(mentorDetail)
 
     if (session && details) {
-      const data = await getCurrentBooking(apiUrl, session.user.id, details.id)
+      const data = await getCurrentBooking(apiUrl, session.user.mentor_id, details.id)
       if (data) setBooking(data)
       else setBooking({ status: '' })
     } else setBooking({ status: '' })
@@ -73,24 +71,15 @@ export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
   async function handleBook(data) {
     handleCloseBookModal()
 
-    data['mentee'] = {}
-    data.mentee['id'] = session.user.id
-    data.mentee['full_name'] = session.user.full_name
-    data.mentee['thumbnail'] = session.user.thumbnail
-
-    data['mentor'] = {}
-    data.mentor['id'] = details.id
-    data.mentor['full_name'] = details.full_name
-    data.mentor['thumbnail'] = details.thumbnail
-
-    // data['mentee_id'] = session.user.id
-    // data['mentor_id'] = details.id
+    data['mentor'] = details.id
+    data['mentee'] = session.user.mentor_id
     data['status'] = 'ongoing'
+    data['total_price'] = data['total_price']
 
     const resData = await addBooking(apiUrl, data)
 
     if (resData) {
-      dispatch(changeUserMoney(-resData.total_price))
+      dispatch(changeUserMoney(-data.total_price))
       setBooking(resData)
     }
   }
@@ -146,11 +135,11 @@ export default function MentorDetail({ apiUrl, initDetails, limitMentors }) {
         )
       }
 
-      <Box my={5}>
+      {/* <Box my={5}>
         <h1>Mentors you may like</h1>
 
         <ListMentor list={limitMentors} />
-      </Box>
+      </Box> */}
     </>
   )
 }

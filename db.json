@@ -388,7 +388,7 @@
       "name": "Golang"
     }
   ],
-  "booking": [
+  "bookings": [
     {
       "duration": 1,
       "total_price": 5,

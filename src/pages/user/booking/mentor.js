@@ -8,7 +8,8 @@ import {
 import Head from 'next/head'
 import BookingList from 'modules/booking/list/BookingList'
 import { useState } from 'react'
-import { updateMentorStatus } from 'modules/mentor/fetch-mentors'
+import { useDispatch } from 'react-redux'
+import { changeUserMoney } from 'common/store/userInfoSlice'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
@@ -18,23 +19,24 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       session,
-      initAllMentorBooking: await getAllMentorBooking('http://localhost:8000', session.user.id),
+      initAllMentorBooking: await getAllMentorBooking(apiUrl, session.user.id),
     },
   }
 }
 
-export default function BookingMentee({
+export default function BookingMentor({
   apiUrl,
   session,
   initAllMentorBooking,
 }) {
   const [allMentorBooking, setAllMentorBooking] = useState(initAllMentorBooking)
+  const dispatch=useDispatch()
 
   async function handleCancel(id) {
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
-    await updateMentorStatus(apiUrl, booking.mentor.id, true)
+    dispatch(changeUserMoney(booking.total_price))
     
-    const data = await getAllMentorBooking('http://localhost:8000', session.user.id)
+    const data = await getAllMentorBooking(apiUrl, session.user.mentor_id)
     setAllMentorBooking(data)
   }
 
@@ -53,4 +55,4 @@ export default function BookingMentee({
   )
 }
 
-BookingMentee.auth = true
+BookingMentor.auth = true

@@ -22,11 +22,11 @@ export async function getServerSideProps(ctx) {
     props: {
       session,
       apiUrl,
-      allFields: await getAllFields('http://localhost:8000'),
-      allTechnologies: await getAllTechnologies('http://localhost:8000'),
+      allFields: await getAllFields(apiUrl),
+      allTechnologies: await getAllTechnologies(apiUrl),
       mentorDetails: await getMentorById(
-        'http://localhost:8000',
-        session.user.id
+        apiUrl,
+        session.user.mentor_id
       ),
     },
   }
@@ -89,10 +89,8 @@ export default function UserProfile({
     data['fields'] = data['fields'].map(item => item.id)
     data['technologies'] = data['technologies'].map(item => item.id)
 
-    // console.log('SUBMIT', data)
-
-    await updateMentor('http://localhost:8000', session.user.id, data)
-    // router.push(`/mentors/${session.user.id}`)
+    await updateMentor(apiUrl, session.user.id, data)
+    router.push(`/mentors/${session.user.mentor_id}`)
   }
 
   function onError(err) {

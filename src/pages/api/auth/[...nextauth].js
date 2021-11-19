@@ -1,7 +1,9 @@
+import { loginByEmail } from 'modules/auth/fetch-auth'
 import { getMentorById } from 'modules/mentor/fetch-mentors'
-import { getUserByEmail } from 'modules/user/fetch-users'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+
+const apiUrl=process.env.API_URL
 
 const options = {
   providers: [
@@ -18,10 +20,11 @@ const options = {
   callbacks: {
     jwt: async (token, user) => {
       if (user) {
-        const data = await getUserByEmail(process.env.API_URL, token['email'])
+        const data = await loginByEmail(apiUrl, token['email'])
 
         if (data) {
-          token['id'] = data.id
+          token['id'] = data.user_id
+          token['mentor_id'] = data.mentor_id
         } else token['id'] = 0
       }
 
@@ -29,8 +32,9 @@ const options = {
     },
 
     session: async (session, token) => {
-      const profile = await getMentorById(process.env.API_URL, token.id)
+      const profile = await getMentorById(apiUrl, token.id)
       session.user.id = token.id
+      session.user.mentor_id = token.mentor_id
       session.user.thumbnail = profile.thumbnail
       session.user.full_name = profile.full_name
 

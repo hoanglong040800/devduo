@@ -8,8 +8,10 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 export async function getServerSideProps() {
+  const apiUrl=process.env.API_URL
+  
   return {
-    props: { limitMentors: await getAllMentor('http://localhost:8000') },
+    props: { limitMentors: await getAllMentor(apiUrl) },
   }
 }
 

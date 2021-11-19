@@ -18,7 +18,8 @@ export async function getUserById(apiUrl, id) {
 
 export async function updateUserMoney(apiUrl, id, money) {
   const user = await getUserById(apiUrl, id)
-  const body = { money: user.money + money }
+  const body = { money: +user.money + +money }
+  console.log({body})
 
   const res = await fetch(`${apiUrl}/users/${id}`, {
     method: 'PATCH',
@@ -29,6 +30,7 @@ export async function updateUserMoney(apiUrl, id, money) {
   })
 
   const data = await res.json()
+  console.log('update user money', { data })
 
   return data
 }
