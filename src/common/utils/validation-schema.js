@@ -22,6 +22,7 @@ export const profileSchema = yup.object().shape({
     .number()
     .typeError('Money is required')
     .required()
+    .integer()
     .min(1)
     .max(2000)
     .label('Money'),

@@ -35,6 +35,20 @@ export async function getMentorById(apiUrl, id) {
   }
 }
 
+export async function getMentorsByFilter(apiUrl, query) {
+  const res = await fetch(`${apiUrl}/mentors/filter?${query}`)
+  const data = await res.json()
+
+  return data
+}
+
+export async function getMentorsBySearch(apiUrl, query) {
+  const res = await fetch(`${apiUrl}/mentors/search?search=${query}`)
+  const data = await res.json()
+
+  return data
+}
+
 // ========= ADD ===========
 
 // ========= UPDATE =========

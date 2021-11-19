@@ -1,12 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, Grid, MenuItem, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import AutocompleteController from 'common/components/input/AutocompleteController'
 import SelectController from 'common/components/input/SelectController'
 import TextFieldController from 'common/components/input/TextFieldController'
 import { useForm } from 'react-hook-form'
 
-export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
+export default function FIlterMentor({
+  allFields,
+  allTechnologies,
+  onFilter,
+  onSearch,
+}) {
   const mui = useStyles()
 
   const {
@@ -15,13 +18,13 @@ export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
     control,
     formState: { errors },
     setValue,
+    reset,
   } = useForm({
     defaultValues: {
       full_name: '',
-      price: '',
-      mentee: '',
+      min_price: '',
       fields: '',
-      technologies: [],
+      technologies: '',
     },
   })
 
@@ -41,50 +44,51 @@ export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
     },
   }
 
+  function handleSearch() {
+    handleSubmit(onSearch, onError)()
+    reset({
+      full_name: watch('full_name'),
+      min_price: '',
+      fields: '',
+      technologies: '',
+    })
+  }
+
+  function handleFilter() {
+    handleSubmit(onFilter, onError)()
+    reset({
+      full_name: '',
+      min_price: watch('min_price'),
+      fields: watch('fields'),
+      technologies: watch('technologies'),
+    })
+  }
+
   function onError(errors) {
     console.log('ERROR', errors)
   }
 
   return (
     <Paper className={mui.paper}>
+      <TextFieldController
+        name="full_name"
+        label="Full Name"
+        control={control}
+        errors={errors}
+      />
+
+      <Box display="flex" justifyContent="flex-end" mt={3}>
+        <Button
+          color="primary"
+          variant="contained"
+          size="small"
+          onClick={handleSearch}
+        >
+          Search
+        </Button>
+      </Box>
+
       <Grid container spacing={3}>
-        <Grid {...props.gridThree}>
-          <TextFieldController
-            name="full_name"
-            label="Fullname"
-            control={control}
-            errors={errors}
-          />
-        </Grid>
-
-        <Grid {...props.gridThree}>
-          <SelectController
-            name="price"
-            label="Price"
-            control={control}
-            errors={errors}
-          >
-            <MenuItem value="">Any</MenuItem>
-            <MenuItem value="asc">Low to high</MenuItem>
-            <MenuItem value="desc">High to low</MenuItem>
-          </SelectController>
-        </Grid>
-
-        <Grid {...props.gridThree}>
-          <SelectController
-            name="mentee"
-            label="Mentee"
-            control={control}
-            errors={errors}
-          >
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={50}>50</MenuItem>
-            <MenuItem value={50}>50</MenuItem>
-          </SelectController>
-        </Grid>
-
         <Grid {...props.gridTwo}>
           <SelectController
             name="fields"
@@ -105,7 +109,7 @@ export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
         </Grid>
 
         <Grid {...props.gridTwo}>
-        <SelectController
+          <SelectController
             name="technologies"
             label="Technologies"
             control={control}
@@ -122,6 +126,22 @@ export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
             }
           </SelectController>
         </Grid>
+
+        <Grid {...props.gridTwo}>
+          <SelectController
+            name="min_price"
+            label="Min price ($/h)"
+            control={control}
+            errors={errors}
+          >
+            <MenuItem value="">Any</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={50}>50</MenuItem>
+            <MenuItem value={100}>100</MenuItem>
+          </SelectController>
+        </Grid>
       </Grid>
 
       <Box display="flex" justifyContent="flex-end" mt={3}>
@@ -129,7 +149,7 @@ export default function FIlterMentor({ allFields, allTechnologies,onFilter }) {
           color="primary"
           variant="contained"
           size="small"
-          onClick={handleSubmit(onFilter, onError)}
+          onClick={handleFilter}
         >
           Filter
         </Button>

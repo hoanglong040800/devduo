@@ -1,7 +1,11 @@
 import { Box, Button } from '@material-ui/core'
 import SidebarMdTemplate from 'common/template/SidebarMdTemplate'
 import { getAllFields, getAllTechnologies } from 'modules/fetch-common'
-import { getAllMentor } from 'modules/mentor/fetch-mentors'
+import {
+  getAllMentor,
+  getMentorsByFilter,
+  getMentorsBySearch,
+} from 'modules/mentor/fetch-mentors'
 import FilterMentor from 'modules/mentor/FilterMentor'
 import ListMentor from 'modules/mentor/ListMentor'
 import Head from 'next/head'
@@ -30,8 +34,20 @@ export default function MentorPage({
   const [list, setList] = useState(mentorList)
 
   async function handleFilter(data) {
-    console.log('handleFilter', data)
-    console.log('URLSearchParams', new URLSearchParams(data).toString())
+    for (let key in data) {
+      data[key] === '' && delete data[key]
+    }
+
+    const newList = await getMentorsByFilter(
+      apiUrl,
+      new URLSearchParams(data).toString()
+    )
+    setList(newList)
+  }
+
+  async function handleSearch(data) {
+    const newList = await getMentorsBySearch(apiUrl, data.full_name)
+    setList(newList)
   }
 
   return (
@@ -56,6 +72,7 @@ export default function MentorPage({
             allFields={allFields}
             allTechnologies={allTechnologies}
             onFilter={handleFilter}
+            onSearch={handleSearch}
           />
         }
       >
