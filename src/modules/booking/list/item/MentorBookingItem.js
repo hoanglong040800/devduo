@@ -2,6 +2,7 @@ import { Box, Button, Typography } from '@material-ui/core'
 import { FiberManualRecord } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import Link from 'next/link'
+import { convertTimeStart } from 'common/utils/utils'
 
 export default function MentorBookingItem({ item, onCancel }) {
   const mui = useStyles()
@@ -10,6 +11,10 @@ export default function MentorBookingItem({ item, onCancel }) {
     finish: '#5dff52',
     cancel: '#fc8c58',
   }
+  const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
+    item.time_start,
+    item.duration
+  )
 
   return (
     <div className={mui.paper}>
@@ -48,7 +53,7 @@ export default function MentorBookingItem({ item, onCancel }) {
               Total price: {item.total_price}$
             </Typography>
 
-            <Typography variant="body2">{item.time_start}</Typography>
+            <Typography variant="body2">{formatStartDatetime}</Typography>
           </div>
         </Box>
       </Box>
@@ -59,9 +64,13 @@ export default function MentorBookingItem({ item, onCancel }) {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography variant="h6" style={{ color: statusColor[item.status] }}>
-          {item.status}
-        </Typography>
+        <>
+          <Typography variant="h6" style={{ color: statusColor[item.status] }}>
+            {item.status}
+          </Typography>
+
+          <p>{formatCountdownTime}</p>
+        </>
 
         {
           //
@@ -93,7 +102,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: [theme.shadows[1]],
 
     [theme.breakpoints.down('xs')]: {
-      height: 160,
+      height: 200,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center',

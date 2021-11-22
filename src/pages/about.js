@@ -10,8 +10,11 @@ export default function About() {
         <title>About - DevDuo</title>
       </Head>
 
-      <h1>About page</h1>
-      <pre>{JSON.stringify(session,null,2)}</pre>
+      <h1>About DevDuo</h1>
+
+      {/* <pre>{JSON.stringify(session,null,2)}</pre> */}
+
+      
     </>
   )
 }
