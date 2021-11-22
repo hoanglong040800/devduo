@@ -7,7 +7,7 @@ export default function MainInfo({ details }) {
   const mui = useStyles()
 
   return (
-    <Paper elevation={0} className={mui.paper}>
+    <Paper className={mui.paper}>
       <HeaderDetail details={details} />
 
       <BodyDetail details={details} />
@@ -17,6 +17,7 @@ export default function MainInfo({ details }) {
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    padding: '20px 30px',
+    padding: theme.spacing(3),
+    boxShadow: theme.shadows[0],
   },
 }))

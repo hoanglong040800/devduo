@@ -42,4 +42,6 @@ export const profileSchema = yup.object().shape({
   github: yup.string().url().label('Github'),
 
   website: yup.string().url().label('Website'),
+
+  email: yup.string().email().label('Email'),
 })

@@ -1,4 +1,4 @@
-import { Box, Grid, makeStyles, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 import ContactDetail from './ContactDetail'
 
 export default function HeaderDetail({ details }) {
@@ -19,9 +19,9 @@ export default function HeaderDetail({ details }) {
       <Grid item xs={12} sm={8}>
         <div className={mui.content}>
           <Typography variant="h4">{details.full_name}</Typography>
-          
+
           {details.contacts ? (
-            <ContactDetail contacts={details.contacts} />
+            <ContactDetail contacts={details.contacts} type="public" />
           ) : null}
         </div>
       </Grid>

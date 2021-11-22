@@ -1,34 +1,31 @@
 import { Box, makeStyles } from '@material-ui/core'
-import { Facebook, GitHub, Language, LinkedIn } from '@material-ui/icons'
+import {
+  privateContactsComponent,
+  publicContactsComponents,
+} from 'common/utils/constants'
 
-const contactsComponents = {
-  facebook: <Facebook style={{ color: '#1877F2' }} />,
-  github: <GitHub style={{ color: '#333' }} />,
-  linkedin: <LinkedIn style={{ color: '#0077B5' }} />,
-  website: <Language style={{ color: '#333' }} />,
-}
-
-export default function ContactDetail({ contacts }) {
+export default function ContactDetail({ contacts, type = 'public' }) {
   const mui = useStyles()
+  const contactsComponents =
+    type === 'public' ? publicContactsComponents : privateContactsComponent
 
   return (
-    <Box my={2}>
+    <Box mt={1}>
       {
         //
-        Object.keys(contacts).map(key => {
+        Object.keys(contactsComponents).map(key => {
           const url = contacts[key]
-          const simlifiedUrl = url.replace(/(^\w+:|^)\/\//, '')
+          if (!url) return null
+          const simplified = url.replace(/(^\w+:|^)\/\//, '')
 
           return (
-            simlifiedUrl && (
-              <Box display="flex" key={key}>
-                <div>{contactsComponents[key]}</div>
+            <Box display="flex" key={key}>
+              <div>{contactsComponents[key]}</div>
 
-                <a href={url} target="_blank" className={mui.link}>
-                  {simlifiedUrl}
-                </a>
-              </Box>
-            )
+              <a href={url} target="_blank" className={mui.link}>
+                {simplified}
+              </a>
+            </Box>
           )
         })
       }

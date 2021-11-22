@@ -24,10 +24,7 @@ export async function getServerSideProps(ctx) {
       apiUrl,
       allFields: await getAllFields(apiUrl),
       allTechnologies: await getAllTechnologies(apiUrl),
-      mentorDetails: await getMentorById(
-        apiUrl,
-        session.user.mentor_id
-      ),
+      mentorDetails: await getMentorById(apiUrl, session.user.mentor_id),
     },
   }
 }
@@ -56,10 +53,11 @@ export default function UserProfile({
       description: mentorDetails.description || '',
 
       contacts: mentorDetails.contacts || {},
-      facebook: mentorDetails.contacts.facebook || '',
       linkedin: mentorDetails.contacts.linkedin || '',
       github: mentorDetails.contacts.github || '',
       website: mentorDetails.contacts.website || '',
+      facebook: mentorDetails.contacts.facebook || '',
+      email: mentorDetails.contacts.email || '',
     },
   })
 
@@ -74,7 +72,13 @@ export default function UserProfile({
   }
 
   async function onSubmit(data) {
-    const contactFields = ['facebook', 'website', 'linkedin', 'github']
+    const contactFields = [
+      'website',
+      'linkedin',
+      'github',
+      'facebook',
+      'email',
+    ]
 
     // assemble contact from contact fields
     setValue('contacts', arrToObjWithData(contactFields, data))
@@ -168,13 +172,7 @@ export default function UserProfile({
           </Box>
 
           <Box mt={2} maxWidth="300px">
-            <h3>Contacts</h3>
-
-            <TextFieldController
-              name="facebook"
-              label="Faccebook"
-              {...property.form}
-            />
+            <h3>Public Contacts</h3>
 
             <TextFieldController
               name="linkedin"
@@ -191,6 +189,20 @@ export default function UserProfile({
             <TextFieldController
               name="website"
               label="Website"
+              {...property.form}
+            />
+
+            <h3>Private Contacts</h3>
+
+            <TextFieldController
+              name="facebook"
+              label="Facebook"
+              {...property.form}
+            />
+
+            <TextFieldController
+              name="email"
+              label="Email"
               {...property.form}
             />
           </Box>
