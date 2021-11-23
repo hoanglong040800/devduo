@@ -17,7 +17,7 @@ export function convertUTCToDateTime(utc) {
 
 export function convertTimeStart(time_start, duration) {
   const startDatetime = convertUTCToDateTime(time_start)
-  const formatStartDatetime = moment(startDatetime).format('hh:mm:ss D/M/YY')
+  const formatStartDatetime = moment(startDatetime).format('D/M/YY  hh:mm:ss')
 
   // countdown
   const finishMili = moment(startDatetime).add(duration, 'hours').valueOf()

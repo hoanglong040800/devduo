@@ -24,6 +24,18 @@ export default function SideInfo({
     )
   }, [bookingStatus, session, details.id])
 
+  const priceComponent = (
+    <Box display="flex" justifyContent="center" mb={2}>
+      <Typography variant="h1" align="center" color="secondary">
+        {details.price}
+      </Typography>
+
+      <Typography variant="h6" color="secondary">
+        $/h
+      </Typography>
+    </Box>
+  )
+
   const isOfflineComponent = (
     <Box mb={1}>
       <Typography align="center" gutterBottom>
@@ -98,15 +110,7 @@ export default function SideInfo({
   return (
     <>
       <Paper className={mui.paper}>
-        <Box display="flex" justifyContent="center" mb={2}>
-          <Typography variant="h1" align="center" color="secondary">
-            {details.price}
-          </Typography>
-
-          <Typography variant="h6" color="secondary">
-            $/h
-          </Typography>
-        </Box>
+        {priceComponent}
 
         {!isMyProfile && !details.status && !isBooked && isOfflineComponent}
 

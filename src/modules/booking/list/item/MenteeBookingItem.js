@@ -1,14 +1,16 @@
 import { Box, Button, Typography } from '@material-ui/core'
+import { FiberManualRecord } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
+import { statusColor } from 'common/utils/constants'
+import { convertTimeStart } from 'common/utils/utils'
 import Link from 'next/link'
 
 export default function MenteeBookingItem({ item, onCancel }) {
   const mui = useStyles()
-  const statusColor = {
-    ongoing: '#f0de16',
-    finish: '#5dff52',
-    cancel: '#fc8c58',
-  }
+  const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
+    item.time_start,
+    item.duration
+  )
 
   return (
     <div className={mui.paper}>
@@ -39,7 +41,7 @@ export default function MenteeBookingItem({ item, onCancel }) {
               Total price: {item.total_price}$
             </Typography>
 
-            <Typography variant="body2">{item.time_start}</Typography>
+            <Typography variant="body2">{formatStartDatetime}</Typography>
           </div>
         </Box>
       </Box>
@@ -53,6 +55,8 @@ export default function MenteeBookingItem({ item, onCancel }) {
         <Typography variant="h6" style={{ color: statusColor[item.status] }}>
           {item.status}
         </Typography>
+
+        {item.status === 'ongoing' && <p>{formatCountdownTime}</p>}
 
         {
           //

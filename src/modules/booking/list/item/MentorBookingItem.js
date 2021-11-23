@@ -3,14 +3,11 @@ import { FiberManualRecord } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import Link from 'next/link'
 import { convertTimeStart } from 'common/utils/utils'
+import { statusColor } from 'common/utils/constants'
+import ActiveStatusDot from 'modules/mentor/status/ActiveStatusDot'
 
 export default function MentorBookingItem({ item, onCancel }) {
   const mui = useStyles()
-  const statusColor = {
-    ongoing: '#f0de16',
-    finish: '#5dff52',
-    cancel: '#fc8c58',
-  }
   const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
     item.time_start,
     item.duration
@@ -39,11 +36,7 @@ export default function MentorBookingItem({ item, onCancel }) {
               <a className={mui.fullname}>{item.mentor.full_name}</a>
             </Link>
 
-            {item.mentor.status && (
-              <FiberManualRecord
-                style={{ fontSize: '0.8rem', color: '#64ff4f' }}
-              />
-            )}
+            <ActiveStatusDot status={item.mentor.status} />
           </Box>
 
           <div>
@@ -64,13 +57,11 @@ export default function MentorBookingItem({ item, onCancel }) {
         justifyContent="space-between"
         alignItems="center"
       >
-        <>
-          <Typography variant="h6" style={{ color: statusColor[item.status] }}>
-            {item.status}
-          </Typography>
+        <Typography variant="h6" style={{ color: statusColor[item.status] }}>
+          {item.status}
+        </Typography>
 
-          <p>{formatCountdownTime}</p>
-        </>
+        {item.status === 'ongoing' && <p>{formatCountdownTime}</p>}
 
         {
           //
@@ -102,7 +93,8 @@ const useStyles = makeStyles(theme => ({
     boxShadow: [theme.shadows[1]],
 
     [theme.breakpoints.down('xs')]: {
-      height: 200,
+      height: 'auto',
+      minHeight: 150,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center',

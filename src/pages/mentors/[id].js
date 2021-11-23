@@ -134,12 +134,6 @@ export default function MentorDetail({ apiUrl, initDetails }) {
           </Box>
         )
       }
-
-      {/* <Box my={5}>
-        <h1>Mentors you may like</h1>
-
-        <ListMentor list={limitMentors} />
-      </Box> */}
     </>
   )
 }

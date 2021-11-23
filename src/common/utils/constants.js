@@ -27,6 +27,13 @@ export const url = {
   afterLogout: 'http://localhost:3000',
 }
 
+// BOOKING STATUS
+export const statusColor = {
+  ongoing: '#f0de16',
+  finish: '#5dff52',
+  cancel: '#fc8c58',
+}
+
 // CONTACTS
 
 import {

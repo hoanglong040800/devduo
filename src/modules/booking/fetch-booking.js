@@ -44,6 +44,7 @@ export async function addBooking(apiUrl, data) {
     await updateUserMoney(apiUrl, booking.mentee, -data.total_price)
     await updateUserMoney(apiUrl, booking.mentor, data.total_price)
     await updateMentorStatus(apiUrl, data.mentor, false)
+    await updateMentorStatus(apiUrl, data.mentee, false)
 
     return booking
   } catch (e) {
@@ -78,6 +79,7 @@ export async function updateBookingStatus(apiUrl, id, status) {
           -booking.total_price
         )
         await updateMentorStatus(apiUrl, booking.mentor.id, true)
+        await updateMentorStatus(apiUrl, booking.mentee.id, true)
         break
 
       default:
