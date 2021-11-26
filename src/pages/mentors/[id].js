@@ -7,7 +7,6 @@ import { changeUserMoney } from 'common/store/userInfoSlice'
 import { Box, CircularProgress } from '@material-ui/core'
 import RightSidebarTemplate from 'common/template/RightSidebarTemplate'
 import BookModal from 'modules/booking/BookModal'
-import ListMentor from 'modules/mentor/ListMentor'
 import MainInfo from 'modules/mentor/detail/MainInfo'
 import SideInfo from 'modules/mentor/detail/SideInfo'
 import {
