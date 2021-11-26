@@ -82,6 +82,10 @@ export async function updateBookingStatus(apiUrl, id, status) {
         await updateMentorStatus(apiUrl, booking.mentee.id, true)
         break
 
+      case 'finish':
+        await updateMentorStatus(apiUrl, booking.mentor.id, true)
+        await updateMentorStatus(apiUrl, booking.mentee.id, true)
+
       default:
         null
     }

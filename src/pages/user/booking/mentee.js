@@ -1,6 +1,9 @@
 import { changeUserMoney } from 'common/store/userInfoSlice'
 import BookingTabs from 'modules/booking/BookingTabs'
-import { getAllMenteeBooking, updateBookingStatus } from 'modules/booking/fetch-booking'
+import {
+  getAllMenteeBooking,
+  updateBookingStatus,
+} from 'modules/booking/fetch-booking'
 import BookingList from 'modules/booking/list/BookingList'
 import { updateMentorStatus } from 'modules/mentor/fetch-mentors'
 import SidebarUser from 'modules/user/SidebarUser'
@@ -28,14 +31,22 @@ export default function BookingMentee({
   initAllMenteeBooking,
 }) {
   const [allMenteeBooking, setAllMenteeBooking] = useState(initAllMenteeBooking)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   async function handleCancel(id) {
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
     dispatch(changeUserMoney(-booking.total_price))
 
+    refreshBookings()
+  }
 
-    const data = await getAllMenteeBooking(apiUrl, session.user.mentor_id)
+  async function handleFinish(id) {
+    await updateBookingStatus(apiUrl, id, 'finish')
+    refreshBookings()
+  }
+
+  async function refreshBookings() {
+    const data = await getAllMenteeBooking(apiUrl, session.user.id)
     setAllMenteeBooking(data)
   }
 
@@ -47,7 +58,12 @@ export default function BookingMentee({
 
       <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentee">
-          <BookingList list={allMenteeBooking} type="mentee" onCancel={handleCancel} />
+          <BookingList
+            list={allMenteeBooking}
+            type="mentee"
+            onCancel={handleCancel}
+            onFinish={handleFinish}
+          />
         </BookingTabs>
       </SidebarUser>
     </>

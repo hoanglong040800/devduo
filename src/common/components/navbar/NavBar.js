@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   hamburger: {
     display: 'block',
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   logoandlink: {
     display: 'none',
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       display: 'flex',
       alignItems: 'center',
     },

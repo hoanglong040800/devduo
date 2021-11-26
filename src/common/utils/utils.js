@@ -8,19 +8,17 @@ export function arrToObjWithData(arr, data) {
 }
 
 export function convertUTCToDateTime(utc) {
-  let date = utc.slice(0, utc.indexOf('T'))
-  let time = utc.substr(utc.indexOf('T') + 1, 8)
   let datetime = utc.slice(0, 19)
-
   return datetime
 }
 
 export function convertTimeStart(time_start, duration) {
   const startDatetime = convertUTCToDateTime(time_start)
-  const formatStartDatetime = moment(startDatetime).format('D/M/YY  hh:mm:ss')
+  const formatStartDatetime = moment(startDatetime).format('D/M/YY  hh:mm A')
 
   // countdown
-  const finishMili = moment(startDatetime).add(duration, 'hours').valueOf()
+  const finishMili = moment(startDatetime).add(duration, 'minutes').valueOf()
+  // const finishMili = moment(startDatetime).add(duration, 'hours').valueOf()
   const nowMili = moment().valueOf()
   const countdownMili = finishMili - nowMili
   const formatCountdownTime = formatTimeLeft(countdownMili)

@@ -30,12 +30,21 @@ export default function BookingMentor({
   initAllMentorBooking,
 }) {
   const [allMentorBooking, setAllMentorBooking] = useState(initAllMentorBooking)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   async function handleCancel(id) {
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
     dispatch(changeUserMoney(booking.total_price))
-    
+
+    refreshBookings()
+  }
+
+  async function handleFinish(id) {
+    await updateBookingStatus(apiUrl, id, 'finish')
+    refreshBookings()
+  }
+
+  async function refreshBookings() {
     const data = await getAllMentorBooking(apiUrl, session.user.mentor_id)
     setAllMentorBooking(data)
   }
@@ -48,7 +57,7 @@ export default function BookingMentor({
 
       <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentor">
-          <BookingList list={allMentorBooking} onCancel={handleCancel} />
+          <BookingList list={allMentorBooking} onCancel={handleCancel} onFinish={handleFinish} />
         </BookingTabs>
       </SidebarUser>
     </>

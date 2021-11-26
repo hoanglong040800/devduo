@@ -5,13 +5,18 @@ import Link from 'next/link'
 import { convertTimeStart } from 'common/utils/utils'
 import { statusColor } from 'common/utils/constants'
 import ActiveStatusDot from 'modules/mentor/status/ActiveStatusDot'
+import { useEffect } from 'react'
 
-export default function MentorBookingItem({ item, onCancel }) {
+export default function MentorBookingItem({ item, onCancel, onFinish }) {
   const mui = useStyles()
   const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
     item.time_start,
     item.duration
   )
+
+  useEffect(() => {
+    item.status === 'ongoing' && formatCountdownTime === '' && onFinish(item.id)
+  }, [])
 
   return (
     <div className={mui.paper}>
@@ -65,7 +70,7 @@ export default function MentorBookingItem({ item, onCancel }) {
 
         {
           //
-          item.status === 'ongoing' ? (
+          item.status === 'ongoing' && (
             <Button
               color="primary"
               size="small"
@@ -74,7 +79,7 @@ export default function MentorBookingItem({ item, onCancel }) {
             >
               Cancel
             </Button>
-          ) : null
+          )
         }
       </Box>
     </div>

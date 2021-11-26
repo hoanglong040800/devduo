@@ -4,13 +4,18 @@ import { makeStyles } from '@material-ui/styles'
 import { statusColor } from 'common/utils/constants'
 import { convertTimeStart } from 'common/utils/utils'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
-export default function MenteeBookingItem({ item, onCancel }) {
+export default function MenteeBookingItem({ item, onCancel, onFinish }) {
   const mui = useStyles()
   const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
     item.time_start,
     item.duration
   )
+
+  useEffect(() => {
+    item.status === 'ongoing' && formatCountdownTime === '' && onFinish(item.id)
+  }, [])
 
   return (
     <div className={mui.paper}>
@@ -60,7 +65,7 @@ export default function MenteeBookingItem({ item, onCancel }) {
 
         {
           //
-          item.status === 'ongoing' ? (
+          item.status === 'ongoing' && (
             <Button
               color="primary"
               size="small"
@@ -69,7 +74,7 @@ export default function MenteeBookingItem({ item, onCancel }) {
             >
               Cancel
             </Button>
-          ) : null
+          ) 
         }
       </Box>
     </div>

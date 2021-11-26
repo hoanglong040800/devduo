@@ -3,7 +3,12 @@ import { useRouter } from 'next/router'
 import MenteeBookingItem from './item/MenteeBookingItem'
 import MentorBookingItem from './item/MentorBookingItem'
 
-export default function BookingList({ list, type = 'mentor',onCancel }) {
+export default function BookingList({
+  list,
+  type = 'mentor',
+  onCancel,
+  onFinish,
+}) {
   const router = useRouter()
 
   return (
@@ -12,8 +17,22 @@ export default function BookingList({ list, type = 'mentor',onCancel }) {
         //
         list
           ? type === 'mentor'
-            ? list.map(item => <MentorBookingItem key={item.id} item={item} onCancel={onCancel} />)
-            : list.map(item => <MenteeBookingItem key={item.id} item={item} onCancel={onCancel}/>)
+            ? list.map(item => (
+                <MentorBookingItem
+                  key={item.id}
+                  item={item}
+                  onCancel={onCancel}
+                  onFinish={onFinish}
+                />
+              ))
+            : list.map(item => (
+                <MenteeBookingItem
+                  key={item.id}
+                  item={item}
+                  onCancel={onCancel}
+                  onFinish={onFinish}
+                />
+              ))
           : null
       }
     </Box>
