@@ -15,10 +15,13 @@ import {
   updateBookingStatus,
 } from 'modules/booking/fetch-booking'
 import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
+import RatingList from 'modules/rating/RatingList'
+import { getAllMentorRatings } from 'modules/rating/fetch-ratings'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
   const initDetails = await getMentorById(apiUrl, ctx.params.id)
+  const mentorRatings = await getAllMentorRatings(apiUrl, ctx.params.id)
 
   if (!initDetails) {
     return {
@@ -30,11 +33,12 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       initDetails,
+      mentorRatings
     },
   }
 }
 
-export default function MentorDetail({ apiUrl, initDetails }) {
+export default function MentorDetail({ apiUrl, initDetails,mentorRatings }) {
   const router = useRouter()
   const [session, loading] = useSession()
   const userInfo = useSelector(state => state.userInfo)
@@ -49,7 +53,11 @@ export default function MentorDetail({ apiUrl, initDetails }) {
     setDetails(mentorDetail)
 
     if (session && details) {
-      const data = await getCurrentBooking(apiUrl, session.user.mentor_id, details.id)
+      const data = await getCurrentBooking(
+        apiUrl,
+        session.user.mentor_id,
+        details.id
+      )
       if (data) setBooking(data)
       else setBooking({ status: '' })
     } else setBooking({ status: '' })
@@ -102,37 +110,34 @@ export default function MentorDetail({ apiUrl, initDetails }) {
         <title>{details && details.full_name}</title>
       </Head>
 
-      {
-        //
-        details ? (
-          <>
-            <RightSidebarTemplate
-              sidebar={
-                <SideInfo
-                  details={details}
-                  bookingStatus={booking.status}
-                  onClickBook={handleClickBook}
-                  onCancel={handleCancel}
-                />
-              }
-            >
-              <MainInfo details={details} />
-            </RightSidebarTemplate>
+      {details && (
+        <>
+          <RightSidebarTemplate
+            sidebar={
+              <SideInfo
+                details={details}
+                bookingStatus={booking.status}
+                onClickBook={handleClickBook}
+                onCancel={handleCancel}
+              />
+            }
+          >
+            <MainInfo details={details} />
+          </RightSidebarTemplate>
 
-            <BookModal
-              open={openBookModal}
-              onClose={handleCloseBookModal}
-              onBook={handleBook}
-              details={details}
-              money={userInfo.user.money}
-            />
-          </>
-        ) : (
-          <Box display="flex" justifyContent="center">
-            <CircularProgress />
-          </Box>
-        )
-      }
+          <BookModal
+            open={openBookModal}
+            onClose={handleCloseBookModal}
+            onBook={handleBook}
+            details={details}
+            money={userInfo.user.money}
+          />
+
+          <RightSidebarTemplate>
+            <RatingList list={mentorRatings} />
+          </RightSidebarTemplate>
+        </>
+      )}
     </>
   )
 }
