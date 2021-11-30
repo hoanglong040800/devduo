@@ -10,6 +10,8 @@ import BookingList from 'modules/booking/list/BookingList'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeUserMoney } from 'common/store/userInfoSlice'
+import AddRatingModal from 'modules/rating/AddRatingModal'
+import { addRating } from 'modules/rating/fetch-ratings'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
@@ -31,6 +33,8 @@ export default function BookingMentor({
 }) {
   const [allMentorBooking, setAllMentorBooking] = useState(initAllMentorBooking)
   const dispatch = useDispatch()
+  const [curBooking, setCurBooking] = useState(null)
+  const [openAddBookingModal, setOpenAddBookingModal] = useState(false)
 
   async function handleCancel(id) {
     const booking = await updateBookingStatus(apiUrl, id, 'cancel')
@@ -49,6 +53,17 @@ export default function BookingMentor({
     setAllMentorBooking(data)
   }
 
+  function handleOpenRatingModal(item) {
+    setCurBooking(item)
+    setOpenAddBookingModal(true)
+  }
+
+  async function handleAddRating(data) {
+    data['booking'] = curBooking.id
+    await addRating(apiUrl, data)
+    refreshBookings()
+  }
+
   return (
     <>
       <Head>
@@ -57,9 +72,21 @@ export default function BookingMentor({
 
       <SidebarUser value="/user/booking/mentor">
         <BookingTabs value="/user/booking/mentor">
-          <BookingList list={allMentorBooking} onCancel={handleCancel} onFinish={handleFinish} />
+          <BookingList
+            list={allMentorBooking}
+            onCancel={handleCancel}
+            onFinish={handleFinish}
+            onOpenRatingModal={handleOpenRatingModal}
+          />
         </BookingTabs>
       </SidebarUser>
+
+      <AddRatingModal
+        open={openAddBookingModal}
+        booking={curBooking}
+        onClose={() => setOpenAddBookingModal(false)}
+        onAddRating={handleAddRating}
+      />
     </>
   )
 }

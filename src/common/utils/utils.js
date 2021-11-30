@@ -34,7 +34,18 @@ export function formatTimeLeft(miliseconds) {
   const minutes = countdownMoment.minutes()
   const seconds = countdownMoment.seconds()
 
-  if (hours > 0) return `${hours} hours left`
-  if (minutes > 0) return `${minutes} minutes left`
-  if (seconds > 0) return `${seconds} seconds left`
+  if (hours > 0) return `${formatPluralTime(hours, 'hour')} left`
+
+  if (minutes > 0) return `${formatPluralTime(minutes, 'minute')} left`
+
+  if (seconds > 0) return `${formatPluralTime(seconds, 'second')} left`
+}
+
+export function formatPluralTime(number, type) {
+  let result = `${number} ${type}`
+  if (number > 1) {
+    return `${result}s`
+  }
+
+  return result
 }

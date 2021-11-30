@@ -1,6 +1,7 @@
 import { Box, Typography } from '@material-ui/core'
 import { Star } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
+import { formatPluralTime } from 'common/utils/utils'
 
 export default function RatingItem({ item }) {
   const mui = useStyles()
@@ -35,10 +36,7 @@ export default function RatingItem({ item }) {
             }
           </div>
 
-          <p>
-            ({item.booking.duration}
-            {item.booking.duration > 1 ? ' hours' : ' hour'})
-          </p>
+          <p>({formatPluralTime(item.booking.duration, 'hour')})</p>
         </Box>
       </Box>
     </div>

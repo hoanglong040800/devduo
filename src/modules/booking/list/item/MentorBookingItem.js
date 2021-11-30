@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from '@material-ui/core'
-import { FiberManualRecord } from '@material-ui/icons'
+import { Box, Button, IconButton, Typography } from '@material-ui/core'
+import { AddComment, FiberManualRecord } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import Link from 'next/link'
 import { convertTimeStart } from 'common/utils/utils'
@@ -7,7 +7,12 @@ import { statusColor } from 'common/utils/constants'
 import ActiveStatusDot from 'modules/mentor/status/ActiveStatusDot'
 import { useEffect } from 'react'
 
-export default function MentorBookingItem({ item, onCancel, onFinish }) {
+export default function MentorBookingItem({
+  item,
+  onCancel,
+  onFinish,
+  onOpenRatingModal,
+}) {
   const mui = useStyles()
   const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
     item.time_start,
@@ -65,6 +70,19 @@ export default function MentorBookingItem({ item, onCancel, onFinish }) {
         <Typography variant="h6" style={{ color: statusColor[item.status] }}>
           {item.status}
         </Typography>
+
+        {item.status === 'finish' && (
+          <IconButton
+            size="small"
+            onClick={() => onOpenRatingModal(item)}
+            disabled={item.is_rating}
+          >
+            <AddComment
+              fontSize="small"
+              style={{ color: item.is_rating ? statusColor.finish : 'gray' }}
+            />
+          </IconButton>
+        )}
 
         {item.status === 'ongoing' && <p>{formatCountdownTime}</p>}
 

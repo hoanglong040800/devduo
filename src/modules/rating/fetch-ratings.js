@@ -11,6 +11,9 @@ export async function getAllMentorRatings(apiUrl, mentor_id) {
 export async function addRating(apiUrl, body) {
   const res = await fetch(`${apiUrl}/ratings`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(body),
   })
 

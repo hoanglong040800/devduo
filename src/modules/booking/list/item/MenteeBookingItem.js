@@ -1,13 +1,15 @@
-import { Box, Button, Typography } from '@material-ui/core'
-import { FiberManualRecord } from '@material-ui/icons'
+import { Box, Button, IconButton, Typography } from '@material-ui/core'
+import { FiberManualRecord, RateReview } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import { statusColor } from 'common/utils/constants'
 import { convertTimeStart } from 'common/utils/utils'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 export default function MenteeBookingItem({ item, onCancel, onFinish }) {
   const mui = useStyles()
+  const router = useRouter()
   const { formatStartDatetime, formatCountdownTime } = convertTimeStart(
     item.time_start,
     item.duration
@@ -63,6 +65,18 @@ export default function MenteeBookingItem({ item, onCancel, onFinish }) {
 
         {item.status === 'ongoing' && <p>{formatCountdownTime}</p>}
 
+        {item.status === 'finish' && item.is_rating && (
+          <IconButton
+            size="small"
+            onClick={() => router.push(`/mentors/${item.mentor.id}`)}
+          >
+            <RateReview
+              fontSize="small"
+              style={{ color: statusColor.finish }}
+            />
+          </IconButton>
+        )}
+
         {
           //
           item.status === 'ongoing' && (
@@ -74,7 +88,7 @@ export default function MenteeBookingItem({ item, onCancel, onFinish }) {
             >
               Cancel
             </Button>
-          ) 
+          )
         }
       </Box>
     </div>

@@ -1,5 +1,4 @@
 import { Box } from '@material-ui/core'
-import { useRouter } from 'next/router'
 import MenteeBookingItem from './item/MenteeBookingItem'
 import MentorBookingItem from './item/MentorBookingItem'
 
@@ -8,9 +7,8 @@ export default function BookingList({
   type = 'mentor',
   onCancel,
   onFinish,
+  onOpenRatingModal,
 }) {
-  const router = useRouter()
-
   return (
     <Box display="flex" flexDirection="column" mx="auto" maxWidth={600}>
       {
@@ -23,6 +21,7 @@ export default function BookingList({
                   item={item}
                   onCancel={onCancel}
                   onFinish={onFinish}
+                  onOpenRatingModal={onOpenRatingModal}
                 />
               ))
             : list.map(item => (
