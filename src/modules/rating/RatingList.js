@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles'
 import RatingItem from './RatingItem'
 
-export default function RatingList({ list }) {
+export default function RatingList({ list,onDelete }) {
   const mui = useStyles()
 
   return (
@@ -11,7 +11,7 @@ export default function RatingList({ list }) {
       {
         //
         list.length ? (
-          list.map(item => <RatingItem item={item} />)
+          list.map(item => <RatingItem item={item} onDelete={onDelete} />)
         ) : (
           <p align="center">No rating for this mentor</p>
         )

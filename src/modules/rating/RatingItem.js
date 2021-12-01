@@ -1,10 +1,12 @@
-import { Box, Typography } from '@material-ui/core'
-import { Star } from '@material-ui/icons'
+import { Box, IconButton, Typography } from '@material-ui/core'
+import { DeleteOutline, Star } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import { formatPluralTime } from 'common/utils/utils'
+import { useSession } from 'next-auth/client'
 
-export default function RatingItem({ item }) {
+export default function RatingItem({ item, onDelete }) {
   const mui = useStyles()
+  const [session] = useSession()
 
   return (
     <div className={mui.root}>
@@ -37,6 +39,17 @@ export default function RatingItem({ item }) {
           </div>
 
           <p>({formatPluralTime(item.booking.duration, 'hour')})</p>
+
+          {session
+            ? session.user.id === item.booking.mentee.id && (
+                <IconButton size="small" onClick={() => onDelete(item.id)}>
+                  <DeleteOutline
+                    fontSize="small"
+                    style={{ color: '#ff6347' }}
+                  />
+                </IconButton>
+              )
+            : null}
         </Box>
       </Box>
     </div>

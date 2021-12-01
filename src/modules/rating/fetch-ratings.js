@@ -23,3 +23,12 @@ export async function addRating(apiUrl, body) {
 }
 
 // DELETE
+export async function deleteRating(apiUrl, id) {
+  const res = await fetch(`${apiUrl}/ratings/${id}`, {
+    method: 'DELETE',
+  })
+
+  const data = res.json()
+
+  return data
+}

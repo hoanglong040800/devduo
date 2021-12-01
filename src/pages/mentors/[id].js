@@ -16,12 +16,12 @@ import {
 } from 'modules/booking/fetch-booking'
 import { getLimitMentors, getMentorById } from 'modules/mentor/fetch-mentors'
 import RatingList from 'modules/rating/RatingList'
-import { getAllMentorRatings } from 'modules/rating/fetch-ratings'
+import { deleteRating, getAllMentorRatings } from 'modules/rating/fetch-ratings'
 
 export async function getServerSideProps(ctx) {
   const apiUrl = process.env.API_URL
   const initDetails = await getMentorById(apiUrl, ctx.params.id)
-  const mentorRatings = await getAllMentorRatings(apiUrl, ctx.params.id)
+  const initMentorRatings = await getAllMentorRatings(apiUrl, ctx.params.id)
 
   if (!initDetails) {
     return {
@@ -33,12 +33,16 @@ export async function getServerSideProps(ctx) {
     props: {
       apiUrl,
       initDetails,
-      mentorRatings
+      initMentorRatings,
     },
   }
 }
 
-export default function MentorDetail({ apiUrl, initDetails,mentorRatings }) {
+export default function MentorDetail({
+  apiUrl,
+  initDetails,
+  initMentorRatings,
+}) {
   const router = useRouter()
   const [session, loading] = useSession()
   const userInfo = useSelector(state => state.userInfo)
@@ -47,6 +51,8 @@ export default function MentorDetail({ apiUrl, initDetails,mentorRatings }) {
   const [details, setDetails] = useState(initDetails)
   const [openBookModal, setOpenBookModal] = useState(false)
   const [booking, setBooking] = useState({ id: null, status: '' })
+
+  const [mentorRatings, setMentorRatings] = useState(initMentorRatings)
 
   useEffect(async () => {
     const mentorDetail = await getMentorById(apiUrl, router.query.id)
@@ -104,6 +110,12 @@ export default function MentorDetail({ apiUrl, initDetails,mentorRatings }) {
     }
   }
 
+  async function handleDeleteRating(id) {
+    await deleteRating(apiUrl, id)
+    const data = mentorRatings.filter(item => item.id !== id)
+    setMentorRatings(data)
+  }
+
   return (
     <>
       <Head>
@@ -134,7 +146,7 @@ export default function MentorDetail({ apiUrl, initDetails,mentorRatings }) {
           />
 
           <RightSidebarTemplate>
-            <RatingList list={mentorRatings} />
+            <RatingList list={mentorRatings} onDelete={handleDeleteRating} />
           </RightSidebarTemplate>
         </>
       )}
